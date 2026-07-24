@@ -1,0 +1,777 @@
+/* ================================================================
+   TEMA-BASE.CSS
+   Estilos compartidos para todas las páginas de estudio
+   (Anatomía, Biología, Química, Física, Matemática, Lenguaje)
+   ================================================================ */
+
+/* -------------------- 1. RESET -------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    line-height: 1.7;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* -------------------- 2. HEADER GLOBAL -------------------- */
+.header-global {
+    background: #1e293b;
+    padding: 14px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #334155;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #38bdf8;
+}
+
+.nav-global {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.nav-global a {
+    color: #94a3b8;
+    font-size: 15px;
+    transition: color 0.3s;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+.nav-global a:hover {
+    color: #38bdf8;
+    background: #334155;
+}
+
+/* -------------------- 3. PROGRESO DEL TEMA -------------------- */
+.tema-header {
+    background: #1e293b;
+    padding: 20px 30px;
+    border-bottom: 1px solid #334155;
+}
+
+.tema-header h1 {
+    font-size: 26px;
+    color: #38bdf8;
+    margin-bottom: 10px;
+}
+
+.progreso {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.progreso span {
+    font-size: 14px;
+    color: #94a3b8;
+}
+
+.barra {
+    flex: 1;
+    height: 10px;
+    background: #334155;
+    border-radius: 20px;
+    overflow: hidden;
+    min-width: 120px;
+}
+
+.barra-interna {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #2563eb, #38bdf8);
+    border-radius: 20px;
+    transition: width 0.5s ease;
+}
+
+.tema-meta {
+    display: flex;
+    gap: 30px;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #94a3b8;
+}
+
+/* -------------------- 4. CUERPO PRINCIPAL -------------------- */
+.contenedor-estudio {
+    display: flex;
+    gap: 30px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+/* -------------------- 5. ÍNDICE (STICKY) -------------------- */
+.indice {
+    width: 260px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
+    background: #1e293b;
+    border-radius: 16px;
+    padding: 20px 18px;
+    border: 1px solid #334155;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+}
+
+.indice h3 {
+    color: #38bdf8;
+    font-size: 16px;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+}
+
+.indice ul {
+    list-style: none;
+    padding: 0;
+}
+
+.indice ul li {
+    margin-bottom: 6px;
+}
+
+.indice ul li a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #cbd5e1;
+    transition: all 0.25s;
+    border-left: 3px solid transparent;
+}
+
+.indice ul li a:hover {
+    background: #334155;
+    color: #f1f5f9;
+}
+
+.indice ul li.activo a {
+    background: #2563eb;
+    color: white;
+    border-left-color: #38bdf8;
+    font-weight: 600;
+}
+
+/* Scroll del índice */
+.indice::-webkit-scrollbar {
+    width: 5px;
+}
+.indice::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 10px;
+}
+.indice::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* -------------------- 6. CONTENIDO PRINCIPAL -------------------- */
+.contenido {
+    flex: 1;
+    min-width: 0;
+}
+
+.contenido section {
+    margin-bottom: 40px;
+    background: #1e293b;
+    padding: 25px 30px;
+    border-radius: 16px;
+    border: 1px solid #334155;
+    scroll-margin-top: 100px;
+}
+
+.contenido h2 {
+    font-size: 24px;
+    color: #38bdf8;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #334155;
+    padding-bottom: 10px;
+}
+
+.contenido h3 {
+    font-size: 19px;
+    color: #94a3b8;
+    margin: 20px 0 12px;
+}
+
+.contenido h4 {
+    font-size: 17px;
+    color: #cbd5e1;
+    margin: 18px 0 10px;
+}
+
+.contenido p {
+    margin-bottom: 14px;
+    color: #e2e8f0;
+}
+
+.contenido ul {
+    padding-left: 22px;
+    margin-bottom: 16px;
+}
+
+.contenido ul li {
+    margin-bottom: 8px;
+    color: #cbd5e1;
+}
+
+.contenido strong {
+    color: #f1f5f9;
+}
+
+/* -------------------- 7. TABLAS -------------------- */
+.tabla {
+    background: #0f172a;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 16px 0;
+}
+
+.tabla-fila {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 12px 18px;
+    border-bottom: 1px solid #334155;
+    gap: 8px;
+}
+
+.tabla-fila:last-child {
+    border-bottom: none;
+}
+
+.tabla-fila span {
+    flex: 1;
+    min-width: 100px;
+}
+
+.tabla-fila span:first-child {
+    font-weight: 600;
+    color: #38bdf8;
+    min-width: 130px;
+}
+
+.tabla-fila span:last-child {
+    color: #94a3b8;
+    font-size: 14px;
+    min-width: 120px;
+}
+
+/* -------------------- 8. RESUMEN RÁPIDO -------------------- */
+.resumen-rapido {
+    background: #1e293b !important;
+    border-left: 5px solid #f59e0b !important;
+}
+
+.resumen-rapido ul {
+    list-style: none;
+    padding: 0;
+}
+
+.resumen-rapido ul li {
+    padding: 6px 0;
+    border-bottom: 1px solid #334155;
+}
+
+.resumen-rapido ul li:last-child {
+    border-bottom: none;
+}
+
+/* -------------------- 9. FLASHCARDS -------------------- */
+.flashcard {
+    background: #0f172a;
+    border-radius: 14px;
+    padding: 20px;
+    margin: 25px 0;
+    border: 1px solid #334155;
+    text-align: center;
+}
+
+.flashcard h4 {
+    color: #8b5cf6;
+    margin-bottom: 10px;
+}
+
+.flashcard-inner {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 10px 0;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.flashcard-inner:hover {
+    transform: scale(1.01);
+    border-color: #8b5cf6;
+}
+
+.flashcard-inner p {
+    margin: 0;
+    font-size: 18px;
+}
+
+.flashcard-respuesta {
+    color: #8b5cf6;
+    font-size: 15px !important;
+    margin-top: 8px !important;
+}
+
+.flashcard button {
+    background: #334155;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    margin: 5px 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.flashcard button:hover {
+    background: #475569;
+}
+
+/* -------------------- 10. FEYNMAN -------------------- */
+.feynman {
+    background: #0f172a;
+    border-radius: 14px;
+    padding: 20px;
+    margin: 25px 0;
+    border: 1px solid #f59e0b;
+}
+
+.feynman h4 {
+    color: #f59e0b;
+}
+
+.feynman textarea {
+    width: 100%;
+    min-height: 80px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 12px;
+    color: #e2e8f0;
+    font-size: 14px;
+    resize: vertical;
+    margin: 10px 0;
+}
+
+.feynman button {
+    background: #f59e0b;
+    color: #0f172a;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.feynman button:hover {
+    background: #d97706;
+}
+
+/* -------------------- 11. MAPA MENTAL -------------------- */
+.mapa-mental {
+    background: #0f172a;
+    border-radius: 14px;
+    padding: 20px;
+    margin: 25px 0;
+    border: 1px solid #334155;
+}
+
+.mapa-mental h4 {
+    color: #22c55e;
+    text-align: center;
+}
+
+.mapa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+}
+
+.mapa-nodo {
+    background: #1e293b;
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: 1px solid #334155;
+    text-align: center;
+    min-width: 100px;
+    font-weight: 500;
+}
+
+.mapa-nodo.principal {
+    background: #2563eb;
+    color: white;
+    font-size: 18px;
+    border: none;
+}
+
+.mapa-hijos {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mapa-nodo small {
+    display: block;
+    font-weight: normal;
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 4px;
+}
+
+/* -------------------- 12. IMÁGENES (placeholder) -------------------- */
+.imagen-placeholder {
+    background: #0f172a;
+    border: 2px dashed #334155;
+    border-radius: 12px;
+    padding: 30px 20px;
+    text-align: center;
+    margin: 20px 0;
+    color: #64748b;
+}
+
+.imagen-placeholder p {
+    margin: 0;
+}
+
+/* -------------------- 13. MINI EXAMEN -------------------- */
+.examen {
+    background: #0f172a;
+    border-radius: 14px;
+    padding: 20px;
+    margin: 15px 0;
+}
+
+.pregunta {
+    background: #1e293b;
+    padding: 16px 18px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    border-left: 4px solid #334155;
+}
+
+.pregunta p {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #f1f5f9;
+}
+
+.pregunta label {
+    display: block;
+    padding: 6px 0;
+    color: #cbd5e1;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.pregunta label:hover {
+    color: white;
+}
+
+.pregunta input[type="radio"] {
+    margin-right: 10px;
+    accent-color: #2563eb;
+}
+
+.respuesta-correcta {
+    margin-top: 10px;
+    padding: 8px 14px;
+    background: #0f172a;
+    border-radius: 8px;
+    color: #22c55e;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.examen button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.examen button:hover {
+    background: #1d4ed8;
+}
+
+#resultadoExamen {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #38bdf8;
+}
+
+/* -------------------- 14. POMODORO -------------------- */
+.pomodoro {
+    background: #1e293b;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    border: 1px solid #334155;
+    margin-top: 30px;
+}
+
+.pomodoro h3 {
+    color: #3b82f6;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.pomodoro-timer {
+    font-size: 52px;
+    font-weight: 700;
+    color: #38bdf8;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 3px;
+    background: #0f172a;
+    padding: 10px 20px;
+    border-radius: 16px;
+    display: inline-block;
+    margin: 10px auto;
+}
+
+.pomodoro-botones {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 16px 0;
+}
+
+.pomodoro-botones button {
+    background: #334155;
+    color: white;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.pomodoro-botones button:hover {
+    background: #475569;
+    transform: scale(1.03);
+}
+
+.pomodoro-botones button:first-child {
+    background: #2563eb;
+}
+
+.pomodoro-botones button:first-child:hover {
+    background: #1d4ed8;
+}
+
+.pomodoro p {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+/* -------------------- 15. NAVEGACIÓN ENTRE TEMAS -------------------- */
+.navegacion-temas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 40px;
+    padding: 20px 0;
+    border-top: 2px solid #334155;
+}
+
+.navegacion-temas a {
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: 0.3s;
+    background: #1e293b;
+    color: #94a3b8;
+    border: 1px solid #334155;
+}
+
+.navegacion-temas a:hover {
+    background: #334155;
+    color: white;
+}
+
+.navegacion-temas .btn-menu {
+    background: #2563eb;
+    color: white;
+    border: none;
+}
+
+.navegacion-temas .btn-menu:hover {
+    background: #1d4ed8;
+}
+
+/* -------------------- 16. FOOTER -------------------- */
+.footer-global {
+    text-align: center;
+    padding: 25px;
+    color: #64748b;
+    font-size: 14px;
+    border-top: 1px solid #334155;
+    margin-top: 30px;
+}
+
+/* -------------------- 17. RESPONSIVE -------------------- */
+@media (max-width: 1024px) {
+    .contenedor-estudio {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .indice {
+        width: 100%;
+        position: relative;
+        top: 0;
+        max-height: none;
+        overflow-y: visible;
+        padding: 16px;
+    }
+
+    .indice ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .indice ul li {
+        margin: 0;
+    }
+
+    .indice ul li a {
+        padding: 6px 14px;
+        font-size: 13px;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+    }
+
+    .indice ul li.activo a {
+        border-bottom-color: #38bdf8;
+        border-left-color: transparent;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-global {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        padding: 12px 16px;
+    }
+
+    .nav-global {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .tema-header {
+        padding: 16px;
+    }
+
+    .tema-header h1 {
+        font-size: 20px;
+    }
+
+    .contenido section {
+        padding: 18px 16px;
+    }
+
+    .contenido h2 {
+        font-size: 20px;
+    }
+
+    .pomodoro-timer {
+        font-size: 40px;
+    }
+
+    .tabla-fila {
+        flex-direction: column;
+        padding: 10px 14px;
+    }
+
+    .tabla-fila span {
+        min-width: auto;
+    }
+
+    .navegacion-temas {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .navegacion-temas a {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .contenedor-estudio {
+        padding: 12px;
+    }
+
+    .tema-header h1 {
+        font-size: 17px;
+    }
+
+    .flashcard-inner p {
+        font-size: 15px;
+    }
+
+    .pomodoro-timer {
+        font-size: 32px;
+    }
+
+    .pomodoro-botones button {
+        padding: 8px 18px;
+        font-size: 13px;
+    }
+
+    .examen button {
+        width: 100%;
+    }
+
+    .indice ul li a {
+        font-size: 12px;
+        padding: 4px 10px;
+    }
+}

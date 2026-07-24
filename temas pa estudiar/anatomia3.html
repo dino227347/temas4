@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anatomía - Tema 3: Artrología</title>
+    <link rel="stylesheet" href="tema-base.css">
+    <style>
+        /* ================================================================
+           PERSONALIZACIÓN PARA ANATOMÍA (TEMA 3)
+           ================================================================ */
+        :root {
+            --primary-color: #2563eb;    /* Azul */
+            --secondary-color: #60a5fa;  /* Azul claro */
+            --accent-color: #3b82f6;
+        }
+
+        .tema-header h1::before { content: "🩺 "; }
+        .indice ul li.activo a { background: var(--primary-color); border-left-color: var(--secondary-color); }
+        .barra-interna { background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); }
+        .logo { color: var(--secondary-color); }
+        .nav-global a:hover { color: var(--secondary-color); background: #334155; }
+        .contenido h2 { color: var(--secondary-color); }
+        .indice h3 { color: var(--secondary-color); }
+        .flashcard h4 { color: var(--secondary-color); }
+        .examen button { background: var(--primary-color); }
+        .examen button:hover { background: #1d4ed8; }
+        .pomodoro h3 { color: var(--primary-color); }
+        .pomodoro-timer { color: var(--secondary-color); }
+        .mapa-mental h4 { color: var(--secondary-color); }
+        .mapa-nodo.principal { background: var(--primary-color); }
+
+        .definicion-destacada {
+            background: #1e293b;
+            border-left: 4px solid var(--secondary-color);
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin: 16px 0;
+        }
+        .definicion-destacada p { margin: 0; color: #f1f5f9; }
+        .definicion-destacada strong { color: var(--secondary-color); }
+
+        .dato-curioso {
+            background: #0f172a;
+            border: 1px solid var(--secondary-color);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin: 16px 0;
+        }
+        .dato-curioso p { margin: 0; color: #cbd5e1; }
+        .dato-curioso strong { color: var(--secondary-color); }
+
+        .autoevaluacion {
+            background: #1e293b;
+            border: 2px solid var(--secondary-color);
+            border-radius: 14px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .autoevaluacion h3 { color: var(--secondary-color); }
+        .autoevaluacion li { padding: 8px 0; border-bottom: 1px solid #334155; color: #cbd5e1; }
+        .autoevaluacion li:last-child { border-bottom: none; }
+        .autoevaluacion li strong { color: #f1f5f9; }
+
+        .referencias {
+            background: #0f172a;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 14px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .referencias li { font-size: 13px; color: #94a3b8; margin-bottom: 6px; }
+        .referencias h4 { color: var(--secondary-color); margin-bottom: 12px; }
+
+        .active-recall {
+            background: #0f172a;
+            border: 2px solid #ef4444;
+            border-radius: 14px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .active-recall h4 { color: #ef4444; }
+
+        .resumen-rapido { border-left: 5px solid var(--secondary-color) !important; }
+
+        .tabla-fila span:first-child { color: var(--secondary-color); min-width: 150px; }
+        .tabla-fila span:nth-child(2) { color: #e2e8f0; flex: 2; }
+
+        .tabla-compleja {
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+        .tabla-compleja table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            color: #e2e8f0;
+            background: #0f172a;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .tabla-compleja th {
+            background: #1e293b;
+            color: var(--secondary-color);
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 2px solid #334155;
+        }
+        .tabla-compleja td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #334155;
+        }
+        .tabla-compleja tr:last-child td { border-bottom: none; }
+        .tabla-compleja strong { color: var(--secondary-color); }
+
+        .formula-destacada {
+            background: #0f172a;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin: 10px 0;
+            text-align: center;
+            font-size: 18px;
+            color: #f1f5f9;
+            border: 1px solid var(--secondary-color);
+        }
+        .formula-destacada .highlight { color: var(--secondary-color); font-weight: bold; }
+
+        .ejercicio-resuelto {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 16px 0;
+            border-left: 4px solid var(--secondary-color);
+        }
+        .ejercicio-resuelto p { margin: 4px 0; color: #cbd5e1; }
+        .ejercicio-resuelto strong { color: var(--secondary-color); }
+        .ejercicio-resuelto .solucion {
+            background: #0f172a;
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-top: 8px;
+            color: #e2e8f0;
+        }
+
+        .nota {
+            background: #0f172a;
+            border-radius: 10px;
+            padding: 10px 16px;
+            border-left: 4px solid #f59e0b;
+            margin: 10px 0;
+            color: #cbd5e1;
+        }
+        .nota strong { color: var(--secondary-color); }
+
+        @media (max-width: 768px) {
+            .tabla-fila { flex-direction: column; }
+            .tabla-fila span { min-width: auto; }
+        }
+
+        /* Estilo para lista de tipos de articulaciones */
+        .tipo-articulacion {
+            background: #1e293b;
+            border-radius: 10px;
+            padding: 10px 16px;
+            margin: 8px 0;
+            border-left: 3px solid var(--secondary-color);
+        }
+        .tipo-articulacion strong {
+            color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- 1. HEADER GLOBAL                                              -->
+<!-- ============================================================ -->
+<header class="header-global">
+    <div class="logo">🩺 MedStudy</div>
+    <nav class="nav-global">
+        <a href="../index.html">🏠 Inicio</a>
+        <a href="../temas.html">📚 Temas</a>
+        <a href="../Primer mini examen/examenGUjaja.html">📝 Examen</a>
+    </nav>
+</header>
+
+<!-- ============================================================ -->
+<!-- 2. PROGRESO DEL TEMA                                          -->
+<!-- ============================================================ -->
+<div class="tema-header">
+    <h1>Anatomía - Tema 3: Artrología</h1>
+    <div class="progreso">
+        <span>Progreso: <span id="porcentajeProgreso">0</span>%</span>
+        <div class="barra">
+            <div class="barra-interna" id="barraProgreso" style="width: 0%;"></div>
+        </div>
+    </div>
+    <div class="tema-meta">
+        <span>⏱️ <span id="tiempoEstudio">0</span> min estudiados</span>
+        <span>📇 <span id="flashcardsCompletadas">0</span> flashcards</span>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 3. CUERPO: ÍNDICE + CONTENIDO                                -->
+<!-- ============================================================ -->
+<div class="contenedor-estudio">
+
+    <!-- ===================== -->
+    <!-- 3.1 ÍNDICE (sticky)   -->
+    <!-- ===================== -->
+    <aside class="indice">
+        <h3>📌 Índice</h3>
+        <ul>
+            <li class="activo"><a href="#resumen">⭐ Resumen</a></li>
+            <li><a href="#pomodoro">⏱️ Pomodoro</a></li>
+            <li><a href="#introduccion">1. Introducción</a></li>
+            <li><a href="#definicion">2. Definición</a></li>
+            <li><a href="#clasificacion-estructural">3. Clasificación estructural y funcional</a></li>
+            <li><a href="#fibrosas">3.1 Fibrosas (Sinartrosis)</a></li>
+            <li><a href="#cartilaginosas">3.2 Cartilaginosas (Anfiartrosis)</a></li>
+            <li><a href="#sinoviales">3.3 Sinoviales (Diartrosis)</a></li>
+            <li><a href="#componentes-sinovial">4. Componentes de una articulación sinovial</a></li>
+            <li><a href="#clasificacion-sinoviales">5. Clasificación de las sinoviales</a></li>
+            <li><a href="#anatomia-aplicada">6. Anatomía aplicada</a></li>
+            <li><a href="#autoevaluacion">7. Autoevaluación</a></li>
+            <li><a href="#examen">8. Mini Examen</a></li>
+            <li><a href="#cuadro-resumen">📊 Cuadro resumen</a></li>
+            <li><a href="#referencias">📚 Referencias</a></li>
+        </ul>
+    </aside>
+
+    <!-- ===================== -->
+    <!-- 3.2 CONTENIDO          -->
+    <!-- ===================== -->
+    <main class="contenido">
+
+        <!-- ========================================================== -->
+        <!-- RESUMEN RÁPIDO                                              -->
+        <!-- ========================================================== -->
+        <section id="resumen" class="resumen-rapido">
+            <h2>⭐ Resumen Rápido</h2>
+            <p><strong>Artrología o Sindesmología:</strong> estudio de las articulaciones (uniones entre huesos).</p>
+            <ul>
+                <li><strong>Articulación:</strong> punto de unión entre dos o más superficies articulares que fija, permite semimovilidad o movilidad.</li>
+                <li><strong>Clasificación estructural y funcional:</strong>
+                    <ul>
+                        <li><strong>Fibrosas (Sinartrosis):</strong> inmóviles. Suturas, sindesmosis, gonfosis.</li>
+                        <li><strong>Cartilaginosas (Anfiartrosis):</strong> semimóviles. Sincondrosis, sinfibrosis (sínfisis).</li>
+                        <li><strong>Sinoviales (Diartrosis):</strong> móviles. Tienen cavidad sinovial. Clasificación por forma: planas, bisagra, elipsoide, pivote, silla de montar, esfera.</li>
+                    </ul>
+                </li>
+                <li><strong>Componentes de una articulación sinovial:</strong> superficies articulares (cartílago hialino), cartílago interarticular (meniscos, rodetes), cápsula articular, membrana sinovial, líquido sinovial, ligamentos, músculos periarticulares.</li>
+                <li><strong>Patologías:</strong> artrosis (degeneración del cartílago), artritis reumatoidea (inflamación de membrana sinovial), esguince (pérdida momentánea de contacto), luxación (pérdida permanente).</li>
+            </ul>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- POMODORO                                                    -->
+        <!-- ========================================================== -->
+        <section id="pomodoro" class="pomodoro">
+            <h3>⏱️ Pomodoro · Enfoque de estudio</h3>
+            <p style="color:#94a3b8; font-size:14px; margin-bottom:12px;">
+                Estudia por 25 minutos, descansa 5. Repite 4 ciclos y toma un descanso largo de 15-30 min.
+            </p>
+            <div class="pomodoro-timer">
+                <span id="pomodoroMinutos">25</span>:<span id="pomodoroSegundos">00</span>
+            </div>
+            <div class="pomodoro-botones">
+                <button onclick="iniciarPomodoro()">▶ Iniciar</button>
+                <button onclick="pausarPomodoro()">⏸ Pausar</button>
+                <button onclick="reiniciarPomodoro()">⏹ Reiniciar</button>
+            </div>
+            <p>🍅 Pomodoro #<span id="pomodoroContador">1</span> de hoy</p>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 1. INTRODUCCIÓN                                            -->
+        <!-- ========================================================== -->
+        <section id="introduccion">
+            <h2>1. Introducción</h2>
+            <p>Los huesos de la estructura humana están conectados entre sí por medio de uniones denominadas <strong>articulaciones</strong>. El estudio de estas estructuras anatómicas recibe el nombre de <strong>Artrología</strong> o <strong>Sindesmología</strong> (Syndesmos = conjunción).</p>
+            <p>Las articulaciones son fundamentales para el movimiento, la estabilidad y la protección del cuerpo. Su estudio abarca desde su clasificación estructural hasta sus funciones y patologías asociadas.</p>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 2. DEFINICIÓN                                              -->
+        <!-- ========================================================== -->
+        <section id="definicion">
+            <h2>2. Definición de Articulación</h2>
+            <div class="definicion-destacada">
+                <p><strong>Articulación:</strong> punto de unión entre dos o más superficies articulares, que "fija", "permite la semimovilidad" o "posibilita el desplazamiento" entre las superficies articulares con factor limitante.</p>
+            </div>
+            <p>Las articulaciones pueden clasificarse según su <strong>estructura</strong> (presencia o ausencia de cavidad sinovial, tipo de tejido conectivo que une los huesos) y su <strong>función</strong> (grado de movimiento permitido).</p>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 3. CLASIFICACIÓN ESTRUCTURAL Y FUNCIONAL                   -->
+        <!-- ========================================================== -->
+        <section id="clasificacion-estructural">
+            <h2>3. Clasificación estructural y funcional de las articulaciones</h2>
+
+            <!-- ========================================================== -->
+            <!-- 3.1 FIBROSAS                                               -->
+            <!-- ========================================================== -->
+            <section id="fibrosas">
+                <h3>3.1 Fibrosas (Sinartrosis) – Inmóviles</h3>
+                <div class="definicion-destacada">
+                    <p><strong>Características:</strong> No hay cavidad sinovial. Las superficies articulares están unidas por <strong>tejido fibroso</strong> (colágeno). Son <strong>inmóviles</strong>.</p>
+                </div>
+
+                <h4>Subtipos:</h4>
+
+                <div class="tipo-articulacion">
+                    <p><strong>Suturas:</strong> Contienen escaso tejido conectivo denso fibroso. Se encuentran principalmente en el <strong>cráneo y cara</strong>.</p>
+                    <ul style="margin-top:4px;">
+                        <li><strong>Sutura dentada:</strong> Articulación interparietal, parieto-occipital, fronto-parietal.</li>
+                        <li><strong>Sutura escamosa:</strong> Entre el parietal y la escama del temporal.</li>
+                        <li><strong>Sutura armónica:</strong> Entre los huesos propios de la nariz, rama ascendente del maxilar superior, unguis y etmoides.</li>
+                        <li><strong>Sutura esquindelesis:</strong> Entre la cresta esfenoidal inferior y el borde superior del vómer.</li>
+                    </ul>
+                    <p style="margin-top:4px; color:#94a3b8; font-size:13px;">📌 En adultos mayores, las suturas pueden desaparecer y soldarse (proceso llamado <strong>sinostosis</strong>).</p>
+                </div>
+
+                <div class="tipo-articulacion">
+                    <p><strong>Sindesmosis</strong> (sindesmos = ligamento): Mayor distancia entre superficies óseas y mayor cantidad de tejido conectivo fibroso que las suturas. Unen fuertemente. <strong>Ejemplo:</strong> Articulación tibio-fibular inferior.</p>
+                </div>
+
+                <div class="tipo-articulacion">
+                    <p><strong>Gonfosis</strong> (gomphos = clavija): Articulación <strong>dentó-alveolar</strong> de la mandíbula y el maxilar. El tejido fibroso que une el diente y el alvéolo se denomina <strong>ligamento periodontal</strong>.</p>
+                </div>
+
+                <!-- IMAGEN: Articulaciones fibrosas -->
+                <div class="imagen-placeholder">
+                    <img src="Nueva carpeta/anato1.1.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                    🖼️ <strong>IMAGEN:</strong> Articulaciones fibrosas: suturas (A. dentada, B. escamosa, C. armónica, D. esquindelesis), sindesmosis y gonfosis - <em>Fuente: Tórtora Derrickson, Grabowski. Principios de Anatomía y Fisiología. 9ª edición</em></p>
+                </div>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- 3.2 CARTILAGINOSAS                                         -->
+            <!-- ========================================================== -->
+            <section id="cartilaginosas">
+                <h3>3.2 Cartilaginosas (Anfiartrosis) – Semimóviles</h3>
+                <div class="definicion-destacada" style="border-left-color: #f59e0b;">
+                    <p><strong>Características:</strong> No hay cavidad sinovial. Están unidas mediante <strong>cartílago</strong> y algunos reforzados por ligamentos periféricos. Su movimiento es <strong>limitado</strong>.</p>
+                </div>
+
+                <h4>Subtipos:</h4>
+
+                <div class="tipo-articulacion">
+                    <p><strong>Sincondrosis:</strong> El espacio interarticular está ocupado por <strong>cartílago hialino</strong>, lo que da poca flexibilidad y movimiento. <strong>Ejemplos:</strong> Cartílago epifisario de crecimiento entre la diáfisis y epífisis de huesos largos; articulación esfeno-occipital.</p>
+                </div>
+
+                <div class="tipo-articulacion">
+                    <p><strong>Sinfibrosis o Sínfisis</strong> (sy´mphys = unión): Las superficies articulares están revestidas de <strong>cartílago hialino</strong> y el espacio interarticular está ocupado por un <strong>disco fibrocartilaginoso</strong> que los une. <strong>Ejemplos:</strong> Articulaciones intervertebrales; sínfisis del pubis; manubrio con el cuerpo del esternón.</p>
+                </div>
+
+                <!-- IMAGEN: Articulaciones semimóviles -->
+                <div class="imagen-placeholder">
+                    <img src="Nueva carpeta/anato1.2.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                    🖼️ <strong>IMAGEN:</strong> Articulaciones semimóviles - <em>Fuente: Tórtora Derrickson, Grabowski. Principios de Anatomía y Fisiología. 9ª edición</em></p>
+                </div>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- 3.3 SINOVIALES                                             -->
+            <!-- ========================================================== -->
+            <section id="sinoviales">
+                <h3>3.3 Sinoviales (Diartrosis) – Móviles</h3>
+                <div class="definicion-destacada" style="border-left-color: #22c55e;">
+                    <p><strong>Características:</strong> Tienen <strong>cavidad sinovial</strong>. Permiten un <strong>amplio movimiento</strong> en diferentes sentidos. Son las articulaciones más complejas.</p>
+                </div>
+
+                <p>Para su estudio, es necesario conocer los componentes de una articulación móvil (ver sección 4).</p>
+
+                <!-- IMAGEN: Componentes de una articulación sinovial -->
+                <div class="imagen-placeholder">
+                    <img src="Nueva carpeta/anato1.3.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                    🖼️ <strong>IMAGEN:</strong> Componentes de una articulación sinovial - <em>Fuente: Tórtora Derrickson, Grabowski. Principios de Anatomía y Fisiología. 9ª edición</em></p>
+                </div>
+
+                <!-- ========================================================== -->
+                <!-- FLASHCARD (1)                                               -->
+                <!-- ========================================================== -->
+                <div class="flashcard">
+                    <h4>📇 Flashcard · Repaso Rápido</h4>
+                    <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                    <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                        <p><strong>"Clasificación de articulaciones según su movilidad"</strong></p>
+                        <p class="flashcard-respuesta" style="display:none;">Sinartrosis (inmóviles): fibrosas. Anfiartrosis (semimóviles): cartilaginosas. Diartrosis (móviles): sinoviales.</p>
+                    </div>
+                    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                        <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                        <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                    </div>
+                    <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                        📊 Progreso: <span id="flashcardProgreso1">0</span> de <span id="flashcardTotal1">12</span> flashcards
+                    </p>
+                </div>
+            </section>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 4. COMPONENTES DE UNA ARTICULACIÓN SINOVIAL                -->
+        <!-- ========================================================== -->
+        <section id="componentes-sinovial">
+            <h2>4. Componentes de una articulación sinovial o móvil</h2>
+
+            <div class="tipo-articulacion">
+                <p><strong>1. Superficies articulares:</strong> Las superficies óseas articulares están revestidas por <strong>cartílago hialino</strong>. Su función principal es <strong>proteger e impedir el desgaste óseo</strong>, facilita el deslizamiento. Su espesor es proporcional a la presión que soporta.</p>
+            </div>
+
+            <div class="tipo-articulacion">
+                <p><strong>2. Cartílago interarticular:</strong> Su función es <strong>aumentar las superficies articulares</strong>, evitar el desplazamiento exagerado y ser almohadillas que soportan el peso.</p>
+                <ul style="margin-top:4px;">
+                    <li><strong>Meniscos:</strong> Forma de semiluna "C" o "O" incompleta. Sus caras libres se aplican a las superficies articulares y su periferia se adhiere a la cápsula articular. <strong>Ejemplo:</strong> Meniscos de la articulación de la rodilla (evitan desplazamiento lateral o medial de los cóndilos del fémur).</li>
+                    <li><strong>Rodetes o labrum articular:</strong> Anillos fibrocartilaginosos completos que se disponen en el contorno de la cavidad articular. Una cara es libre articular, la otra es adherida a la superficie articular opuesta, y la cara periférica se adhiere a la cápsula. <strong>Ejemplos:</strong> Rodete de la articulación escapulohumeral, rodete de la coxofemoral.</li>
+                </ul>
+            </div>
+
+            <div class="tipo-articulacion">
+                <p><strong>3. Cápsula articular:</strong> Manguito fibroso tubuliforme que se inserta en el contorno o periferia de las superficies articulares. Su función es <strong>unir y juntar los huesos</strong> entre sí.</p>
+            </div>
+
+            <div class="tipo-articulacion">
+                <p><strong>4. Membrana sinovial:</strong> Membrana delgada que <strong>tapiza la cara interna</strong> de la cápsula articular. Se inserta en el contorno cartilaginoso de las superficies articulares.</p>
+            </div>
+
+            <div class="tipo-articulacion">
+                <p><strong>5. Líquido sinovial:</strong> Líquido interarticular, <strong>transparente y viscoso</strong> (similar a la clara de huevo). <strong>Lubrica y facilita el deslizamiento</strong>, disminuye la fricción y amortigua los golpes.</p>
+            </div>
+
+            <div class="tipo-articulacion">
+                <p><strong>6. Ligamentos</strong> (ligamentum = vendaje): Son <strong>engrosamientos de la cápsula articular</strong> que refuerzan los sitios de mayor tracción. Casi en su totalidad son dependencias de los músculos periarticulares. También existen ligamentos independientes (vestigios de involución muscular). <strong>Ejemplos:</strong> Ligamento coracoacromial, ligamento coracohumeral (resultan de la involución del músculo pectoral menor).</p>
+            </div>
+
+            <div class="tipo-articulacion">
+                <p><strong>7. Músculos periarticulares:</strong> Son los músculos y sus tendones terminales que refuerzan las articulaciones, denominándose <strong>ligamentos activos</strong>. <strong>Ejemplo:</strong> Músculos del manguito rotador de la articulación escapulohumeral.</p>
+            </div>
+
+            <div class="nota">
+                <p><strong>Nota importante:</strong> La denominada articulación <strong>"Sisarcosis" escapulotorácica</strong>, por algunos autores, <strong>no es considerada una verdadera articulación</strong> porque no reúne los criterios de una articulación verdadera.</p>
+            </div>
+
+            <!-- ========================================================== -->
+            <!-- FLASHCARD (2)                                               -->
+            <!-- ========================================================== -->
+            <div class="flashcard">
+                <h4>📇 Flashcard · Repaso Rápido</h4>
+                <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                    <p><strong>"Componentes de una articulación sinovial"</strong></p>
+                    <p class="flashcard-respuesta" style="display:none;">Superficies articulares (cartílago hialino), cartílago interarticular (meniscos, rodetes), cápsula articular, membrana sinovial, líquido sinovial, ligamentos, músculos periarticulares.</p>
+                </div>
+                <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                    <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                    <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                </div>
+                <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                    📊 Progreso: <span id="flashcardProgreso2">0</span> de <span id="flashcardTotal2">12</span> flashcards
+                </p>
+            </div>
+
+            <!-- Active Recall -->
+            <div class="active-recall">
+                <h4>❓ Active Recall</h4>
+                <p style="color:#cbd5e1;"><strong>¿Cuál es la función del líquido sinovial y dónde se encuentra?</strong></p>
+                <details style="margin-top:10px; cursor:pointer; color:#94a3b8;">
+                    <summary style="font-weight:bold; color:#38bdf8;">👆 Ver respuesta</summary>
+                    <p style="color:#22c55e; margin-top:8px; padding:12px; background:#1e293b; border-radius:8px;">
+                        El líquido sinovial se encuentra en la <strong>cavidad articular</strong>. Es transparente y viscoso (como clara de huevo), y su función es <strong>lubricar y facilitar el deslizamiento</strong> de las superficies articulares, disminuir la fricción y amortiguar los golpes.
+                    </p>
+                </details>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 5. CLASIFICACIÓN DE LAS SINOVIALES                         -->
+        <!-- ========================================================== -->
+        <section id="clasificacion-sinoviales">
+            <h2>5. Clasificación de las articulaciones sinoviales (móviles)</h2>
+            <p>Según la <strong>superficie articular</strong>, se clasifican en:</p>
+
+            <div class="tipo-articulacion">
+                <p><strong>1. Superficies planas (Artrodia):</strong> Permiten movimientos de deslizamiento. Son <strong>"no axiales"</strong> porque los movimientos no se realizan alrededor de un eje. <strong>Ejemplos:</strong> Articulación intercuneal, intermetacarpiana, intervertebral.</p>
+            </div>
+
+            <div class="tipo-articulacion">
+                <p><strong>2. Articulación en bisagra, polea (Troclear o Ginglimo):</strong> Superficies articulares similares a una polea o carrete. Son <strong>monoaxiales</strong> (un solo eje). <strong>Ejemplos:</strong> Articulación húmero-ulnar, de la rodilla, interfalángicas de la mano y del pie.</p>
+            </div>
+
+            <div class="tipo-articulacion">
+                <p><strong>3. Articulación elipsoide (Condylos = nudillo):</strong> Superficies articulares: una oval convexa y otra cóncava. Son <strong>biaxiales</strong> (movimientos de lateralidad y antero-posterior). <strong>Ejemplos:</strong> Articulación de la muñeca, temporomandibular, occipito-atloidea.</p>
+            </div>
+
+            <div class="tipo-articulacion">
+                <p><strong>4. Articulación en pivote (Trocoide o cilindro):</strong> Una superficie es cilíndrica y la otra cóncava. Su movimiento es <strong>monoaxial</strong> (rotación alrededor de su eje). <strong>Ejemplos:</strong> Articulación radio-ulnar superior, atloideo-axoidea (atlas y axis).</p>
+            </div>
+
+            <div class="tipo-articulacion">
+                <p><strong>5. Articulación en silla de montar (Encaje recíproco):</strong> Cada superficie es cóncava en un sentido y convexa en el otro, encajando entre sí. Son <strong>biaxiales</strong> (lateralidad y antero-posterior). <strong>Ejemplos:</strong> Articulación trapecio-metacarpiana del pulgar, calcáneo-cuboidea del pie.</p>
+            </div>
+
+            <div class="tipo-articulacion">
+                <p><strong>6. Articulación en esfera (Enartrosis o Cotílica):</strong> Una superficie es en forma de <strong>esfera</strong> y la otra en forma de <strong>copa</strong> (cóncava). Son <strong>multiaxiales</strong> (movimientos en todos los sentidos alrededor de tres ejes). <strong>Ejemplos:</strong> Articulación escapulohumeral (hombro), coxofemoral (cadera).</p>
+            </div>
+
+            <!-- IMAGEN: Clasificación de sinoviales -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/anato1.4.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                🖼️ <strong>IMAGEN:</strong> Clasificación de las articulaciones sinoviales (fig. 6 del PDF) - <em>Fuente: Tórtora Derrickson, Grabowski. Principios de Anatomía y Fisiología. 9ª edición</em></p>
+            </div>
+
+            <!-- ========================================================== -->
+            <!-- FLASHCARD (3)                                               -->
+            <!-- ========================================================== -->
+            <div class="flashcard">
+                <h4>📇 Flashcard · Repaso Rápido</h4>
+                <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                    <p><strong>"Tipos de articulaciones sinoviales"</strong></p>
+                    <p class="flashcard-respuesta" style="display:none;">Planas (artrodia), bisagra (troclear), elipsoide (condílea), pivote (trocoide), silla de montar (encaje recíproco), esfera (enartrosis).</p>
+                </div>
+                <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                    <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                    <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                </div>
+                <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                    📊 Progreso: <span id="flashcardProgreso3">0</span> de <span id="flashcardTotal3">12</span> flashcards
+                </p>
+            </div>
+
+            <!-- Active Recall -->
+            <div class="active-recall">
+                <h4>❓ Active Recall</h4>
+                <p style="color:#cbd5e1;"><strong>¿Qué tipo de articulación es la escapulohumeral (hombro) y por qué?</strong></p>
+                <details style="margin-top:10px; cursor:pointer; color:#94a3b8;">
+                    <summary style="font-weight:bold; color:#38bdf8;">👆 Ver respuesta</summary>
+                    <p style="color:#22c55e; margin-top:8px; padding:12px; background:#1e293b; border-radius:8px;">
+                        Es una articulación <strong>en esfera (enartrosis)</strong> porque una superficie es esférica (cabeza del húmero) y la otra es cóncava (cavidad glenoidea de la escápula). Es <strong>multiaxial</strong>, permitiendo movimientos en todos los sentidos.
+                    </p>
+                </details>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 6. ANATOMÍA APLICADA                                       -->
+        <!-- ========================================================== -->
+        <section id="anatomia-aplicada">
+            <h2>6. Anatomía aplicada</h2>
+
+            <div class="tipo-articulacion">
+                <p><strong>Patologías de las articulaciones cartilaginosas (semimóviles):</strong></p>
+                <p>Las articulaciones semimóviles, por su poco movimiento, son asiento frecuente de enfermedades que afectan a la <strong>tercera edad</strong>, como la <strong>sinostosis</strong> (soldadura de los cuerpos vertebrales cervicales y dorsales).</p>
+            </div>
+
+            <div class="tipo-articulacion">
+                <p><strong>Patologías del cartílago (Artrosis):</strong></p>
+                <p>Los cartílagos de revestimiento e intra-articulares se ven afectados por enfermedades degenerativas propias de la tercera edad, como la <strong>artrosis</strong>. Esta enfermedad se caracteriza por <strong>erosionar, agrietar y desgastar</strong> hasta llegar a la destrucción total de los cartílagos. Se desencadena con la deficiencia de hormonas: <strong>estrógenos en la mujer</strong> (menopausia) y <strong>testosterona en el hombre</strong> (andropausia).</p>
+            </div>
+
+            <div class="tipo-articulacion">
+                <p><strong>Patologías de la membrana sinovial (Artritis reumatoidea):</strong></p>
+                <p>Enfermedades <strong>inmunológicas</strong> (anticuerpos y células defensoras que atacan a nuestras propias células) afectan a la membrana sinovial, como la <strong>artritis reumatoidea</strong>. Esta afecta a las células de la membrana sinovial, que por un proceso inflamatorio crónico liberan enzimas lisosomales que destruyen los cartílagos interarticulares, de revestimiento, cápsula articular y ligamentos, resultando en la <strong>deformación de la articulación</strong>.</p>
+            </div>
+
+            <div class="tipo-articulacion">
+                <p><strong>Patologías de ligamentos y cápsula (Esguince y Luxación):</strong></p>
+                <ul>
+                    <li><strong>Esguince:</strong> <strong>Pérdida momentánea del contacto</strong> entre dos superficies articulares, asociado a estiramiento o laceración (ruptura) de cápsula y ligamentos. Manifestaciones: <strong>dolor, inflamación, tumefacción, equimosis</strong> (moretón por sangrado que abarca el tejido celular subcutáneo), <strong>dificultad o impotencia funcional</strong> (según el grado).</li>
+                    <li><strong>Luxación:</strong> <strong>Pérdida permanente del contacto</strong> entre dos superficies articulares, asociado a estiramiento o laceración de cápsula y ligamentos. Manifestaciones: <strong>dolor, inflamación, deformación, tumefacción, equimosis, impotencia funcional</strong>.</li>
+                </ul>
+            </div>
+
+            <div class="dato-curioso">
+                <p>⚠️ <strong>Dato clínico:</strong> La artritis reumatoidea es una enfermedad autoinmune que afecta aproximadamente al 1% de la población mundial, con mayor incidencia en mujeres (3:1).</p>
+            </div>
+
+            <!-- ========================================================== -->
+            <!-- MAPA MENTAL                                                -->
+            <!-- ========================================================== -->
+            <div class="mapa-mental">
+                <h4>🧠 Mapa Mental: Artrología</h4>
+                <div class="mapa">
+                    <div class="mapa-nodo principal">🦴 ARTICULACIONES</div>
+                    <div class="mapa-hijos" style="flex-wrap: wrap; gap: 15px;">
+                        <div class="mapa-nodo" style="min-width: 100px;">Fibrosas (Sinartrosis)<br><small>Suturas, sindesmosis, gonfosis</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">Cartilaginosas (Anfiartrosis)<br><small>Sincondrosis, sinfibrosis</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">Sinoviales (Diartrosis)<br><small>6 tipos según forma</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">Patologías<br><small>Artrosis, artritis, esguince, luxación</small></div>
+                    </div>
+                </div>
+                <p style="text-align:center; color:#94a3b8; font-size:13px; margin-top:10px;">
+                    🔹 Las articulaciones se clasifican por estructura y función, determinando su movilidad.
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 7. AUTOEVALUACIÓN                                          -->
+        <!-- ========================================================== -->
+        <section id="autoevaluacion">
+            <h2>7. Preguntas de Autoevaluación</h2>
+
+            <div class="autoevaluacion">
+                <h3>📝 Preguntas del PDF</h3>
+                <ol style="list-style-type: decimal; padding-left: 20px;">
+                    <li><strong>Definición de articulación.</strong></li>
+                    <li><strong>De dos ejemplos de articulaciones sinfibrosis.</strong></li>
+                    <li><strong>¿Cuál es la función del cartílago interarticular?</strong></li>
+                    <li><strong>Mencione los componentes de una articulación sinovial.</strong></li>
+                    <li><strong>¿Qué tipo de articulación son: glenohumeral, radiocubital proximal, metacarpofalángica del pulgar y tibioastragalina?</strong></li>
+                </ol>
+
+                <details style="margin-top:15px; cursor:pointer; color:#94a3b8;">
+                    <summary style="font-weight:bold; color:#38bdf8;">👆 Ver respuestas sugeridas</summary>
+                    <div style="background:#0f172a; padding:15px; border-radius:10px; margin-top:10px; color:#e2e8f0; font-size:14px;">
+                        <p><strong>1.</strong> Articulación es el punto de unión entre dos o más superficies articulares, que "fija", "permite la semimovilidad" o "posibilita el desplazamiento" entre ellas con factor limitante.</p>
+                        <p><strong>2.</strong> Sínfisis del pubis y articulaciones intervertebrales (discos intervertebrales).</p>
+                        <p><strong>3.</strong> Aumentar las superficies articulares, evitar el desplazamiento exagerado de una superficie fuera de la cavidad articular, y ser almohadillas que soportan el peso.</p>
+                        <p><strong>4.</strong> Superficies articulares (cartílago hialino), cartílago interarticular (meniscos, rodetes), cápsula articular, membrana sinovial, líquido sinovial, ligamentos, músculos periarticulares.</p>
+                        <p><strong>5.</strong> Glenohumeral: <strong>enartrosis</strong> (esfera). Radiocubital proximal: <strong>trocoide</strong> (pivote). Metacarpofalángica del pulgar: <strong>silla de montar</strong> (encaje recíproco). Tibioastragalina: <strong>troclear</strong> (bisagra).</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Feynman -->
+            <div class="feynman" style="margin-top:30px;">
+                <h4>🗣️ Explica este tema (Método Feynman)</h4>
+                <p><em>"Imagina que le enseñas a un niño de 5 años: ¿qué son las articulaciones y cómo se mueven nuestros huesos?"</em></p>
+                <textarea id="feynmanTexto" placeholder="Escribe tu explicación aquí..."></textarea>
+                <button onclick="guardarFeynman()">💾 Guardar explicación</button>
+                <p id="feynmanGuardado" style="color:#22c55e; margin-top:8px; display:none;">✅ Explicación guardada</p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 8. MINI EXAMEN                                             -->
+        <!-- ========================================================== -->
+        <section id="examen">
+            <h2>8. Mini Examen (10 preguntas)</h2>
+            <p>Responde y haz clic en <strong>"Ver respuestas"</strong>.</p>
+
+            <div class="examen">
+                <!-- Pregunta 1 -->
+                <div class="pregunta">
+                    <p><strong>1. ¿Qué estudia la artrología?</strong></p>
+                    <label><input type="radio" name="q1" value="0"> A) Los músculos</label>
+                    <label><input type="radio" name="q1" value="1"> B) Los huesos</label>
+                    <label><input type="radio" name="q1" value="2"> C) Las articulaciones</label>
+                    <label><input type="radio" name="q1" value="3"> D) Los nervios</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: C) Las articulaciones</div>
+                </div>
+                <!-- Pregunta 2 -->
+                <div class="pregunta">
+                    <p><strong>2. ¿Qué tipo de articulación es inmóvil?</strong></p>
+                    <label><input type="radio" name="q2" value="0"> A) Sinartrosis</label>
+                    <label><input type="radio" name="q2" value="1"> B) Anfiartrosis</label>
+                    <label><input type="radio" name="q2" value="2"> C) Diartrosis</label>
+                    <label><input type="radio" name="q2" value="3"> D) Sinovial</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: A) Sinartrosis</div>
+                </div>
+                <!-- Pregunta 3 -->
+                <div class="pregunta">
+                    <p><strong>3. ¿Qué tipo de articulación es la gonfosis?</strong></p>
+                    <label><input type="radio" name="q3" value="0"> A) Sinovial</label>
+                    <label><input type="radio" name="q3" value="1"> B) Cartilaginosa</label>
+                    <label><input type="radio" name="q3" value="2"> C) Fibrosa</label>
+                    <label><input type="radio" name="q3" value="3"> D) Semimóvil</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: C) Fibrosa</div>
+                </div>
+                <!-- Pregunta 4 -->
+                <div class="pregunta">
+                    <p><strong>4. ¿Dónde se encuentran las suturas?</strong></p>
+                    <label><input type="radio" name="q4" value="0"> A) En la columna vertebral</label>
+                    <label><input type="radio" name="q4" value="1"> B) En el cráneo y cara</label>
+                    <label><input type="radio" name="q4" value="2"> C) En la rodilla</label>
+                    <label><input type="radio" name="q4" value="3"> D) En la cadera</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) En el cráneo y cara</div>
+                </div>
+                <!-- Pregunta 5 -->
+                <div class="pregunta">
+                    <p><strong>5. ¿Qué tipo de cartílago recubre las superficies articulares sinoviales?</strong></p>
+                    <label><input type="radio" name="q5" value="0"> A) Cartílago fibroso</label>
+                    <label><input type="radio" name="q5" value="1"> B) Cartílago elástico</label>
+                    <label><input type="radio" name="q5" value="2"> C) Cartílago hialino</label>
+                    <label><input type="radio" name="q5" value="3"> D) Cartílago calcificado</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: C) Cartílago hialino</div>
+                </div>
+                <!-- Pregunta 6 -->
+                <div class="pregunta">
+                    <p><strong>6. ¿Cuál es la función del líquido sinovial?</strong></p>
+                    <label><input type="radio" name="q6" value="0"> A) Unir los huesos</label>
+                    <label><input type="radio" name="q6" value="1"> B) Lubricar y amortiguar</label>
+                    <label><input type="radio" name="q6" value="2"> C) Producir cartílago</label>
+                    <label><input type="radio" name="q6" value="3"> D) Reforzar la articulación</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) Lubricar y amortiguar</div>
+                </div>
+                <!-- Pregunta 7 -->
+                <div class="pregunta">
+                    <p><strong>7. ¿Qué articulación es un ejemplo de enartrosis (esfera)?</strong></p>
+                    <label><input type="radio" name="q7" value="0"> A) Rodilla</label>
+                    <label><input type="radio" name="q7" value="1"> B) Hombro (escapulohumeral)</label>
+                    <label><input type="radio" name="q7" value="2"> C) Muñeca</label>
+                    <label><input type="radio" name="q7" value="3"> D) Codo</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) Hombro (escapulohumeral)</div>
+                </div>
+                <!-- Pregunta 8 -->
+                <div class="pregunta">
+                    <p><strong>8. ¿Qué enfermedad degenerativa afecta al cartílago articular?</strong></p>
+                    <label><input type="radio" name="q8" value="0"> A) Artritis reumatoidea</label>
+                    <label><input type="radio" name="q8" value="1"> B) Artrosis</label>
+                    <label><input type="radio" name="q8" value="2"> C) Esguince</label>
+                    <label><input type="radio" name="q8" value="3"> D) Luxación</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) Artrosis</div>
+                </div>
+                <!-- Pregunta 9 -->
+                <div class="pregunta">
+                    <p><strong>9. ¿Qué es un esguince?</strong></p>
+                    <label><input type="radio" name="q9" value="0"> A) Pérdida permanente del contacto articular</label>
+                    <label><input type="radio" name="q9" value="1"> B) Pérdida momentánea del contacto articular</label>
+                    <label><input type="radio" name="q9" value="2"> C) Inflamación de la membrana sinovial</label>
+                    <label><input type="radio" name="q9" value="3"> D) Desgaste del cartílago</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) Pérdida momentánea del contacto articular</div>
+                </div>
+                <!-- Pregunta 10 -->
+                <div class="pregunta">
+                    <p><strong>10. ¿Qué tipo de articulación sinovial es la radiocubital proximal?</strong></p>
+                    <label><input type="radio" name="q10" value="0"> A) Troclear (bisagra)</label>
+                    <label><input type="radio" name="q10" value="1"> B) Trocoide (pivote)</label>
+                    <label><input type="radio" name="q10" value="2"> C) Enartrosis (esfera)</label>
+                    <label><input type="radio" name="q10" value="3"> D) Artrodia (plana)</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) Trocoide (pivote)</div>
+                </div>
+
+                <button onclick="corregirExamen()">✅ Ver respuestas</button>
+                <div id="resultadoExamen" style="margin-top:15px; font-weight:bold;"></div>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- CUADRO RESUMEN                                              -->
+        <!-- ========================================================== -->
+        <section id="cuadro-resumen" style="margin-top:30px;">
+            <h2>📊 Cuadro Resumen: Clasificación de articulaciones</h2>
+            <div style="background:#1e293b; border-radius:14px; padding:16px; overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; color:#e2e8f0; font-size:13px;">
+                    <thead>
+                        <tr style="background:#0f172a; color:#38bdf8;">
+                            <th style="padding:8px; border:1px solid #334155;">Clasificación</th>
+                            <th style="padding:8px; border:1px solid #334155;">Tipo</th>
+                            <th style="padding:8px; border:1px solid #334155;">Movilidad</th>
+                            <th style="padding:8px; border:1px solid #334155;">Características</th>
+                            <th style="padding:8px; border:1px solid #334155;">Ejemplos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td rowspan="3" style="padding:6px; border:1px solid #334155;"><strong>Fibrosas</strong></td><td style="padding:6px; border:1px solid #334155;">Suturas</td><td style="padding:6px; border:1px solid #334155;">Inmóviles</td><td style="padding:6px; border:1px solid #334155;">Escaso tejido fibroso</td><td style="padding:6px; border:1px solid #334155;">Cráneo y cara</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;">Sindesmosis</td><td style="padding:6px; border:1px solid #334155;">Inmóviles</td><td style="padding:6px; border:1px solid #334155;">Mayor tejido fibroso</td><td style="padding:6px; border:1px solid #334155;">Tibio-fibular inferior</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;">Gonfosis</td><td style="padding:6px; border:1px solid #334155;">Inmóviles</td><td style="padding:6px; border:1px solid #334155;">Ligamento periodontal</td><td style="padding:6px; border:1px solid #334155;">Diente-alvéolo</td></tr>
+                        <tr><td rowspan="2" style="padding:6px; border:1px solid #334155;"><strong>Cartilaginosas</strong></td><td style="padding:6px; border:1px solid #334155;">Sincondrosis</td><td style="padding:6px; border:1px solid #334155;">Semimóviles</td><td style="padding:6px; border:1px solid #334155;">Cartílago hialino</td><td style="padding:6px; border:1px solid #334155;">Cartílago epifisario</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;">Sínfisis</td><td style="padding:6px; border:1px solid #334155;">Semimóviles</td><td style="padding:6px; border:1px solid #334155;">Disco fibrocartilaginoso</td><td style="padding:6px; border:1px solid #334155;">Intervertebrales, pubis</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Sinoviales</strong></td><td style="padding:6px; border:1px solid #334155;">6 tipos</td><td style="padding:6px; border:1px solid #334155;">Móviles</td><td style="padding:6px; border:1px solid #334155;">Cavidad sinovial, cartílago hialino</td><td style="padding:6px; border:1px solid #334155;">Hombro, rodilla, etc.</td></tr>
+                    </tbody>
+                </table>
+                <p style="text-align:center; color:#94a3b8; font-size:12px; margin-top:10px;">📋 Fuente: elaboración propia basada en el PDF</p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- REFERENCIAS BIBLIOGRÁFICAS                                 -->
+        <!-- ========================================================== -->
+        <section id="referencias">
+            <h2>📚 Referencias Bibliográficas</h2>
+            <div class="referencias">
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li>1. Robertis, E. (2019). <em>Fundamentos de Biología Celular y Molecular</em> (16ª ed.). Madrid: El Ateneo.</li>
+                    <li>2. Tortora, G. J., & Derrickson, B. (2010). <em>Principios de Anatomía y Fisiología</em> (11a. ed., 4a. reimp.). Buenos Aires: Médica Panamericana.</li>
+                    <li>3. Rouviére, H., & Delmas, A. (2005). <em>Anatomía Humana: Descriptiva, topográfica y funcional</em> (11a. ed.). Barcelona: Elsevier Masson.</li>
+                    <li>4. Latarjet, M. (2008). <em>Anatomía Humana</em> (4a. ed., 6a. reimp.). Buenos Aires: Médica Panamericana.</li>
+                    <li>5. Drake, R. L., Vogl, A. W., & Mitchell, A. W. (2015). <em>Gray Anatomía para estudiantes</em> (3a. ed.). Barcelona: Elsevier.</li>
+                    <li>6. Moore, K. L., Agur, A. M., & Dalley, A. F. (2015). <em>Fundamentos de Anatomía con orientación clínica</em> (5a. ed.). Barcelona: Wolters Kluwer.</li>
+                    <li>7. Saladin, K. S. (2013). <em>Anatomía y fisiología: La unidad entre forma y función</em> (6a. ed.). México D.F.: McGraw-Hill.</li>
+                    <li>8. Audesick, G. (2005). <em>Biología: La vida en la Tierra</em>. México D.F.: McGraw-Hill.</li>
+                </ul>
+                <p style="color:#94a3b8; font-size:12px; margin-top:10px; text-align:center;">
+                    📖 Estas referencias sustentan el contenido desarrollado en esta página.
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- MENÚ DE TEMAS                                              -->
+        <!-- ========================================================== -->
+        <div style="text-align:center; margin-top:30px; padding:20px; border-top:2px solid #334155;">
+            <a href="../temas.html" class="btn-menu" style="
+                display:inline-block;
+                padding:12px 35px;
+                background:var(--primary-color);
+                color:white;
+                border-radius:10px;
+                font-weight:600;
+                text-decoration:none;
+                transition:0.3s;
+            ">📋 Menú de temas</a>
+        </div>
+
+    </main>
+</div>
+
+<!-- ============================================================ -->
+<!-- 4. FOOTER                                                     -->
+<!-- ============================================================ -->
+<footer class="footer-global">
+    <p>🩺 MedStudy · Simulador de Estudio · 2026</p>
+</footer>
+
+<!-- ============================================================ -->
+<!-- 5. JAVASCRIPT                                                 -->
+<!-- ============================================================ -->
+<script>
+
+    // ========================================================
+    // 1. PROGRESO
+    // ========================================================
+    let progreso = 0;
+    const secciones = document.querySelectorAll('.contenido > section, .contenido > section section');
+    const barra = document.getElementById('barraProgreso');
+    const porcentajeTexto = document.getElementById('porcentajeProgreso');
+
+    function actualizarProgreso() {
+        let vistas = 0;
+        secciones.forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.7) vistas++;
+        });
+        progreso = Math.round((vistas / secciones.length) * 100);
+        barra.style.width = progreso + '%';
+        porcentajeTexto.textContent = progreso;
+    }
+
+    window.addEventListener('scroll', actualizarProgreso);
+    window.addEventListener('load', actualizarProgreso);
+
+    // ========================================================
+    // 2. FLASHCARDS (12 en total)
+    // ========================================================
+    let flashcardsAcertadas = 0;
+    let flashcardsTotales = 0;
+    let totalFlashcards = 12;
+
+    function actualizarFlashcardsGlobal() {
+        document.getElementById('flashcardsCompletadas').textContent = flashcardsAcertadas;
+        document.querySelectorAll('[id^="flashcardProgreso"]').forEach(el => {
+            el.textContent = flashcardsAcertadas;
+        });
+        document.querySelectorAll('[id^="flashcardTotal"]').forEach(el => {
+            el.textContent = totalFlashcards;
+        });
+    }
+
+    function flashcardAcertada() {
+        flashcardsAcertadas++;
+        flashcardsTotales++;
+        actualizarFlashcardsGlobal();
+        alert('✅ ¡Bien!');
+    }
+
+    function flashcardFallada() {
+        flashcardsTotales++;
+        actualizarFlashcardsGlobal();
+        alert('❌ Revísalo después.');
+    }
+
+    actualizarFlashcardsGlobal();
+
+    // ========================================================
+    // 3. FEYNMAN
+    // ========================================================
+    function guardarFeynman() {
+        const texto = document.getElementById('feynmanTexto').value;
+        if (texto.trim().length > 0) {
+            localStorage.setItem('feynman_artrologia', texto);
+            document.getElementById('feynmanGuardado').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('feynmanGuardado').style.display = 'none';
+            }, 3000);
+        } else {
+            alert('✍️ Escribe algo antes de guardar.');
+        }
+    }
+
+    // ========================================================
+    // 4. MINI EXAMEN
+    // ========================================================
+    function corregirExamen() {
+        const preguntas = document.querySelectorAll('.pregunta');
+        let correctas = 0;
+        const respuestasCorrectas = [2, 0, 2, 1, 2, 1, 1, 1, 1, 1];
+
+        preguntas.forEach((p, i) => {
+            const seleccionada = p.querySelector('input:checked');
+            const respuestaDiv = p.querySelector('.respuesta-correcta');
+            respuestaDiv.style.display = 'block';
+
+            if (seleccionada && parseInt(seleccionada.value) === respuestasCorrectas[i]) {
+                correctas++;
+                seleccionada.parentElement.style.color = '#22c55e';
+            } else if (seleccionada) {
+                seleccionada.parentElement.style.color = '#ef4444';
+            }
+        });
+
+        document.getElementById('resultadoExamen').textContent =
+            `📊 Resultado: ${correctas}/10 correctas (${(correctas/10)*100}%)`;
+    }
+
+    // ========================================================
+    // 5. POMODORO
+    // ========================================================
+    let pomodoroActivo = false;
+    let pomodoroTiempo = 25 * 60;
+    let pomodoroIntervalo = null;
+    let pomodoroContador = 1;
+
+    function actualizarPomodoroDisplay() {
+        const min = String(Math.floor(pomodoroTiempo / 60)).padStart(2, '0');
+        const seg = String(pomodoroTiempo % 60).padStart(2, '0');
+        document.getElementById('pomodoroMinutos').textContent = min;
+        document.getElementById('pomodoroSegundos').textContent = seg;
+    }
+
+    function iniciarPomodoro() {
+        if (pomodoroActivo) return;
+        pomodoroActivo = true;
+        pomodoroIntervalo = setInterval(() => {
+            pomodoroTiempo--;
+            actualizarPomodoroDisplay();
+            if (pomodoroTiempo <= 0) {
+                clearInterval(pomodoroIntervalo);
+                pomodoroActivo = false;
+                alert('⏰ ¡Tiempo completado! Descansa 5 minutos.');
+                pomodoroContador++;
+                document.getElementById('pomodoroContador').textContent = pomodoroContador;
+                pomodoroTiempo = 25 * 60;
+                actualizarPomodoroDisplay();
+            }
+        }, 1000);
+    }
+
+    function pausarPomodoro() {
+        clearInterval(pomodoroIntervalo);
+        pomodoroActivo = false;
+    }
+
+    function reiniciarPomodoro() {
+        clearInterval(pomodoroIntervalo);
+        pomodoroActivo = false;
+        pomodoroTiempo = 25 * 60;
+        actualizarPomodoroDisplay();
+    }
+
+    // ========================================================
+    // 6. ÍNDICE - RESALTADO DE SECCIÓN ACTIVA
+    // ========================================================
+    const enlaces = document.querySelectorAll('.indice a');
+
+    window.addEventListener('scroll', () => {
+        let actual = '';
+        secciones.forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < 200) {
+                actual = sec.getAttribute('id');
+            }
+        });
+        enlaces.forEach(enlace => {
+            enlace.parentElement.classList.remove('activo');
+            if (enlace.getAttribute('href') === '#' + actual) {
+                enlace.parentElement.classList.add('activo');
+            }
+        });
+    });
+
+    // ========================================================
+    // 7. SCROLL SUAVE
+    // ========================================================
+    document.querySelectorAll('.indice a').forEach(enlace => {
+        enlace.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.querySelector(enlace.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // ========================================================
+    // 8. TIEMPO DE ESTUDIO (simulado)
+    // ========================================================
+    let tiempoEstudio = 0;
+    setInterval(() => {
+        tiempoEstudio++;
+        document.getElementById('tiempoEstudio').textContent = tiempoEstudio;
+    }, 60000);
+
+</script>
+
+</body>
+</html>

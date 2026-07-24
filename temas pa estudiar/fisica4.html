@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Física - Tema 4: Dinámica</title>
+    <link rel="stylesheet" href="tema-base.css">
+    <style>
+        /* ================================================================
+           PERSONALIZACIÓN PARA FÍSICA (TEMA 4 - DINÁMICA)
+           ================================================================ */
+        :root {
+            --primary-color: #dc2626;    /* Rojo */
+            --secondary-color: #f87171;  /* Rojo claro */
+            --accent-color: #ef4444;
+        }
+
+        .tema-header h1::before { content: "⚡ "; }
+        .indice ul li.activo a { background: var(--primary-color); border-left-color: var(--secondary-color); }
+        .barra-interna { background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); }
+        .logo { color: var(--secondary-color); }
+        .nav-global a:hover { color: var(--secondary-color); background: #334155; }
+        .contenido h2 { color: var(--secondary-color); }
+        .indice h3 { color: var(--secondary-color); }
+        .flashcard h4 { color: var(--secondary-color); }
+        .examen button { background: var(--primary-color); }
+        .examen button:hover { background: #b91c1c; }
+        .pomodoro h3 { color: var(--primary-color); }
+        .pomodoro-timer { color: var(--secondary-color); }
+        .mapa-mental h4 { color: var(--secondary-color); }
+        .mapa-nodo.principal { background: var(--primary-color); }
+
+        .definicion-destacada {
+            background: #1e293b;
+            border-left: 4px solid var(--secondary-color);
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin: 16px 0;
+        }
+        .definicion-destacada p { margin: 0; color: #f1f5f9; }
+        .definicion-destacada strong { color: var(--secondary-color); }
+
+        .dato-curioso {
+            background: #0f172a;
+            border: 1px solid var(--secondary-color);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin: 16px 0;
+        }
+        .dato-curioso p { margin: 0; color: #cbd5e1; }
+        .dato-curioso strong { color: var(--secondary-color); }
+
+        .autoevaluacion {
+            background: #1e293b;
+            border: 2px solid var(--secondary-color);
+            border-radius: 14px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .autoevaluacion h3 { color: var(--secondary-color); }
+        .autoevaluacion li { padding: 8px 0; border-bottom: 1px solid #334155; color: #cbd5e1; }
+        .autoevaluacion li:last-child { border-bottom: none; }
+        .autoevaluacion li strong { color: #f1f5f9; }
+
+        .referencias {
+            background: #0f172a;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 14px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .referencias li { font-size: 13px; color: #94a3b8; margin-bottom: 6px; }
+        .referencias h4 { color: var(--secondary-color); margin-bottom: 12px; }
+
+        .active-recall {
+            background: #0f172a;
+            border: 2px solid #ef4444;
+            border-radius: 14px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .active-recall h4 { color: #ef4444; }
+
+        .resumen-rapido { border-left: 5px solid var(--secondary-color) !important; }
+
+        .tabla-fila span:first-child { color: var(--secondary-color); min-width: 150px; }
+        .tabla-fila span:nth-child(2) { color: #e2e8f0; flex: 2; }
+
+        .tabla-compleja {
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+        .tabla-compleja table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            color: #e2e8f0;
+            background: #0f172a;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .tabla-compleja th {
+            background: #1e293b;
+            color: var(--secondary-color);
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 2px solid #334155;
+        }
+        .tabla-compleja td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #334155;
+        }
+        .tabla-compleja tr:last-child td { border-bottom: none; }
+        .tabla-compleja strong { color: var(--secondary-color); }
+
+        .formula-destacada {
+            background: #0f172a;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin: 10px 0;
+            text-align: center;
+            font-size: 20px;
+            color: #f1f5f9;
+            border: 1px solid var(--secondary-color);
+            font-family: 'Times New Roman', serif;
+        }
+        .formula-destacada .highlight { color: var(--secondary-color); font-weight: bold; }
+
+        .ejercicio-resuelto {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 16px 0;
+            border-left: 4px solid var(--secondary-color);
+        }
+        .ejercicio-resuelto p { margin: 4px 0; color: #cbd5e1; }
+        .ejercicio-resuelto strong { color: var(--secondary-color); }
+        .ejercicio-resuelto .solucion {
+            background: #0f172a;
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-top: 8px;
+            color: #e2e8f0;
+        }
+
+        .nota {
+            background: #0f172a;
+            border-radius: 10px;
+            padding: 10px 16px;
+            border-left: 4px solid #f59e0b;
+            margin: 10px 0;
+            color: #cbd5e1;
+        }
+        .nota strong { color: var(--secondary-color); }
+
+        @media (max-width: 768px) {
+            .tabla-fila { flex-direction: column; }
+            .tabla-fila span { min-width: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- 1. HEADER GLOBAL                                              -->
+<!-- ============================================================ -->
+<header class="header-global">
+    <div class="logo">⚡ PhysStudy</div>
+    <nav class="nav-global">
+        <a href="../index.html">🏠 Inicio</a>
+        <a href="../temas.html">📚 Temas</a>
+        <a href="../Primer mini examen/examenGUjaja.html">📝 Examen</a>
+    </nav>
+</header>
+
+<!-- ============================================================ -->
+<!-- 2. PROGRESO DEL TEMA                                          -->
+<!-- ============================================================ -->
+<div class="tema-header">
+    <h1>Física - Tema 4: Dinámica</h1>
+    <div class="progreso">
+        <span>Progreso: <span id="porcentajeProgreso">0</span>%</span>
+        <div class="barra">
+            <div class="barra-interna" id="barraProgreso" style="width: 0%;"></div>
+        </div>
+    </div>
+    <div class="tema-meta">
+        <span>⏱️ <span id="tiempoEstudio">0</span> min estudiados</span>
+        <span>📇 <span id="flashcardsCompletadas">0</span> flashcards</span>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 3. CUERPO: ÍNDICE + CONTENIDO                                -->
+<!-- ============================================================ -->
+<div class="contenedor-estudio">
+
+    <!-- ===================== -->
+    <!-- 3.1 ÍNDICE (sticky)   -->
+    <!-- ===================== -->
+    <aside class="indice">
+        <h3>📌 Índice</h3>
+        <ul>
+            <li class="activo"><a href="#resumen">⭐ Resumen</a></li>
+            <li><a href="#pomodoro">⏱️ Pomodoro</a></li>
+            <li><a href="#introduccion">1. Introducción</a></li>
+            <li><a href="#dinamica">2. Dinámica</a></li>
+            <li><a href="#fuerza">3. Definición de fuerza</a></li>
+            <li><a href="#tipos-fuerza">4. Tipos de fuerza</a></li>
+            <li><a href="#leyes-newton">5. Leyes de Newton</a></li>
+            <li><a href="#primera-ley">5.1 Primera ley (Inercia)</a></li>
+            <li><a href="#segunda-ley">5.2 Segunda ley (F = ma)</a></li>
+            <li><a href="#masa-peso">5.3 Masa y peso</a></li>
+            <li><a href="#tercera-ley">5.4 Tercera ley (Acción-reacción)</a></li>
+            <li><a href="#dcl">6. Diagrama de cuerpo libre</a></li>
+            <li><a href="#friccion">7. Fuerzas de fricción</a></li>
+            <li><a href="#ejercicios">8. Problemas resueltos</a></li>
+            <li><a href="#autoevaluacion">9. Autoevaluación</a></li>
+            <li><a href="#examen">10. Mini Examen</a></li>
+            <li><a href="#cuadro-resumen">📊 Cuadro resumen</a></li>
+            <li><a href="#referencias">📚 Referencias</a></li>
+        </ul>
+    </aside>
+
+    <!-- ===================== -->
+    <!-- 3.2 CONTENIDO          -->
+    <!-- ===================== -->
+    <main class="contenido">
+
+        <!-- ========================================================== -->
+        <!-- RESUMEN RÁPIDO                                              -->
+        <!-- ========================================================== -->
+        <section id="resumen" class="resumen-rapido">
+            <h2>⭐ Resumen Rápido</h2>
+            <p><strong>Dinámica:</strong> parte de la física mecánica que estudia el movimiento considerando las fuerzas que lo producen.</p>
+            <ul>
+                <li><strong>Fuerza:</strong> interacción entre dos cuerpos o entre un cuerpo y su ambiente (vectorial).</li>
+                <li><strong>Tipos de fuerzas:</strong> gravitacionales, electromagnéticas, nucleares fuertes y débiles.</li>
+                <li><strong>1ª Ley de Newton (Inercia):</strong> un objeto permanece en reposo o movimiento rectilíneo uniforme si la fuerza neta es cero.</li>
+                <li><strong>2ª Ley de Newton:</strong> ∑F = m·a. La aceleración es proporcional a la fuerza neta e inversamente proporcional a la masa.</li>
+                <li><strong>Peso:</strong> fuerza con que la Tierra atrae a un cuerpo: w = m·g.</li>
+                <li><strong>3ª Ley de Newton (Acción-reacción):</strong> toda acción tiene una reacción igual y opuesta, sobre cuerpos diferentes.</li>
+                <li><strong>Fricción:</strong> fuerza que se opone al movimiento. Estática (f<sub>s</sub> = μ<sub>s</sub>N) y cinética (f<sub>k</sub> = μ<sub>k</sub>N).</li>
+                <li><strong>Diagrama de cuerpo libre:</strong> representación de todas las fuerzas que actúan sobre un cuerpo.</li>
+            </ul>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- POMODORO                                                    -->
+        <!-- ========================================================== -->
+        <section id="pomodoro" class="pomodoro">
+            <h3>⏱️ Pomodoro · Enfoque de estudio</h3>
+            <p style="color:#94a3b8; font-size:14px; margin-bottom:12px;">
+                Estudia por 25 minutos, descansa 5. Repite 4 ciclos y toma un descanso largo de 15-30 min.
+            </p>
+            <div class="pomodoro-timer">
+                <span id="pomodoroMinutos">25</span>:<span id="pomodoroSegundos">00</span>
+            </div>
+            <div class="pomodoro-botones">
+                <button onclick="iniciarPomodoro()">▶ Iniciar</button>
+                <button onclick="pausarPomodoro()">⏸ Pausar</button>
+                <button onclick="reiniciarPomodoro()">⏹ Reiniciar</button>
+            </div>
+            <p>🍅 Pomodoro #<span id="pomodoroContador">1</span> de hoy</p>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 1. INTRODUCCIÓN                                            -->
+        <!-- ========================================================== -->
+        <section id="introduccion">
+            <h2>1. Introducción</h2>
+            <p>Una vez estudiado el movimiento en cuanto a desplazamiento, velocidad y aceleración (cinemática), se debe complementar el estudio con los conceptos de la <strong>dinámica</strong>, que permiten establecer las interacciones entre las <strong>fuerzas</strong> que actúan sobre los objetos y comprender las <strong>tres leyes del movimiento</strong> de Newton.</p>
+            <p>El objetivo de este tema es que el estudiante comprenda y utilice correctamente las leyes básicas del movimiento para resolver problemas aplicados a su área de estudio.</p>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 2. DINÁMICA                                                -->
+        <!-- ========================================================== -->
+        <section id="dinamica">
+            <h2>2. Dinámica</h2>
+            <div class="definicion-destacada">
+                <p><strong>Dinámica:</strong> parte de la física mecánica que estudia a los cuerpos en movimiento contemplando los fenómenos que provocan dicho movimiento: las fuerzas que actúan sobre el cuerpo, al igual que su masa y aceleración.</p>
+            </div>
+            <p>La dinámica complementa a la cinemática al incorporar el concepto de <strong>fuerza</strong> como causa del movimiento o de sus cambios.</p>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 3. DEFINICIÓN DE FUERZA                                    -->
+        <!-- ========================================================== -->
+        <section id="fuerza">
+            <h2>3. Definición de fuerza</h2>
+            <div class="definicion-destacada">
+                <p><strong>Fuerza (</strong><span style="font-size:20px;">F</span><strong>):</strong> es una <strong>interacción entre dos cuerpos</strong> o entre un cuerpo y su ambiente. Es una <strong>cantidad vectorial</strong> (tiene magnitud, dirección y sentido).</p>
+            </div>
+            <p>Cotidianamente, percibimos la fuerza al levantar objetos, empujar un automóvil o al utilizar instrumentos quirúrgicos regulando la fuerza aplicada.</p>
+            <p>La unidad de fuerza en el Sistema Internacional es el <strong>Newton (N)</strong>: 1 N = 1 kg·m/s².</p>
+            <div class="dato-curioso">
+                <p>📌 <strong>Dato:</strong> Las fuerzas fundamentales de la naturaleza son: gravitacional, electromagnética, nuclear fuerte y nuclear débil. En la física clásica se estudian principalmente la gravitacional y la electromagnética.</p>
+            </div>
+
+            <!-- IMAGEN: Tipos de fuerza -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/fisi1.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                🖼️ <strong>IMAGEN:</strong> Ejemplos de fuerzas en la vida cotidiana - <em>Fuente: Física de Serway</em></p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 4. TIPOS DE FUERZA                                         -->
+        <!-- ========================================================== -->
+        <section id="tipos-fuerza">
+            <h2>4. Tipos de fuerza</h2>
+            <p>Las únicas fuerzas fundamentales conocidas en la naturaleza son todas <strong>fuerzas de campo</strong>:</p>
+            <ul>
+                <li><strong>Fuerzas gravitacionales:</strong> interacción entre objetos con masa.</li>
+                <li><strong>Fuerzas electromagnéticas:</strong> interacción entre cargas eléctricas.</li>
+                <li><strong>Fuerzas nucleares fuertes:</strong> entre partículas subatómicas (mantienen unido el núcleo).</li>
+                <li><strong>Fuerzas nucleares débiles:</strong> surgen en ciertos procesos de decaimiento radiactivo.</li>
+            </ul>
+            <p>En el estudio de la física clásica, las fuerzas que más se estudian son la <strong>fuerza gravitacional</strong> y la <strong>electromagnética</strong>.</p>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 5. LEYES DE NEWTON                                         -->
+        <!-- ========================================================== -->
+        <section id="leyes-newton">
+            <h2>5. Leyes de Newton</h2>
+            <p>Isaac Newton (1642-1727), físico y matemático inglés, fue uno de los científicos más brillantes de la historia. Antes de cumplir 30 años, formuló las leyes de la mecánica, descubrió la ley de gravitación universal e inventó el cálculo. Sus teorías dominaron el pensamiento científico durante dos siglos.</p>
+
+            <!-- IMAGEN: Isaac Newton -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/fisi2.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                🖼️ <strong>IMAGEN:</strong> Isaac Newton (1642-1727) - <em>Fuente: dominio público</em></p>
+            </div>
+
+            <!-- ========================================================== -->
+            <!-- 5.1 PRIMERA LEY                                           -->
+            <!-- ========================================================== -->
+            <section id="primera-ley">
+                <h3>5.1 Primera ley de Newton (Ley de la inercia)</h3>
+                <div class="definicion-destacada">
+                    <p><strong>Primera ley:</strong> si un objeto no interactúa con otros objetos, es posible identificar un marco de referencia en el que el objeto tiene <strong>aceleración cero</strong>.</p>
+                    <p style="margin-top:6px;">Un cuerpo sobre el que no actúa una fuerza neta se mueve con <strong>velocidad constante</strong> (que puede ser cero) y aceleración cero.</p>
+                </div>
+                <p>Esta ley se conoce como <strong>ley de la inercia</strong>. La <strong>inercia</strong> es la propiedad que tienen los cuerpos de permanecer en su estado de reposo o movimiento mientras no se aplique sobre ellos alguna fuerza, o la resistencia que opone la materia al modificar su estado de reposo o movimiento.</p>
+                <p><strong>Ejemplo cotidiano:</strong> cuando una persona viaja en un automóvil y este frena bruscamente, el cuerpo tiende a seguir hacia adelante (fuerza de inercia).</p>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- 5.2 SEGUNDA LEY                                           -->
+            <!-- ========================================================== -->
+            <section id="segunda-ley">
+                <h3>5.2 Segunda ley de Newton</h3>
+                <div class="definicion-destacada">
+                    <p><strong>Segunda ley:</strong> cuando se ve desde un marco de referencia inercial, la <strong>aceleración</strong> de un objeto es <strong>directamente proporcional</strong> a la fuerza neta que actúa sobre él e <strong>inversamente proporcional</strong> a su masa.</p>
+                </div>
+                <div class="formula-destacada">
+                    <strong>∑F = m · a</strong>
+                </div>
+                <p>Esta expresión permite resolver problemas donde se aplican fuerzas constantes sobre sistemas de cuerpos.</p>
+
+                <h4>5.2.1 Masa</h4>
+                <div class="definicion-destacada" style="border-left-color: #f59e0b;">
+                    <p><strong>Masa (m):</strong> medida cuantitativa de la <strong>inercia</strong>. Cuanto mayor sea la masa, mayor será la resistencia del cuerpo a ser acelerado. m = ∑F / a.</p>
+                    <p>Unidad SI: <strong>kilogramo (kg)</strong>.</p>
+                </div>
+
+                <h4>5.2.2 Fuerza</h4>
+                <p>Cotidianamente, al sostener objetos con la mano, si el objeto se acelera con mayor módulo, su masa es baja; si se acelera con menor módulo, su masa es mayor.</p>
+                <div class="formula-destacada">
+                    1 N = 1 kg·m/s²
+                </div>
+
+                <!-- IMAGEN: Fuerza y masa -->
+                <div class="imagen-placeholder">
+                    <img src="Nueva carpeta/fisi1.1.jpg"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                    🖼️ <strong>IMAGEN:</strong> Relación entre fuerza, masa y aceleración - <em>Fuente: image.freepik.com</em></p>
+                </div>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- 5.3 MASA Y PESO                                           -->
+            <!-- ========================================================== -->
+            <section id="masa-peso">
+                <h3>5.3 Peso</h3>
+                <div class="definicion-destacada">
+                    <p><strong>Peso (w):</strong> es la <strong>fuerza</strong> con que la Tierra atrae a un cuerpo. Es una fuerza gravitacional, por lo que depende del lugar (planeta).</p>
+                </div>
+                <div class="formula-destacada">
+                    <strong>w = m · g</strong>
+                </div>
+                <p>donde <strong>g</strong> es la aceleración de la gravedad (≈ 9.81 m/s² en la superficie terrestre).</p>
+                <p><strong>Ejemplo:</strong> Un objeto de 2 kg tiene un peso de w = 2 × 9.81 = 19.62 N en la Tierra. En la Luna (g = 1.622 m/s²), su peso sería w = 2 × 1.622 = 3.244 N.</p>
+                <div class="nota">
+                    <p><strong>Nota:</strong> La masa es constante (no depende del lugar), mientras que el peso varía con la gravedad.</p>
+                </div>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- 5.4 TERCERA LEY                                           -->
+            <!-- ========================================================== -->
+            <section id="tercera-ley">
+                <h3>5.4 Tercera ley de Newton (Acción-reacción)</h3>
+                <div class="definicion-destacada">
+                    <p><strong>Tercera ley:</strong> si el cuerpo A ejerce una fuerza sobre el cuerpo B (una <strong>acción</strong>), entonces B ejerce una fuerza sobre A (una <strong>reacción</strong>). Estas dos fuerzas tienen la <strong>misma magnitud</strong>, <strong>dirección opuesta</strong> y actúan sobre <strong>diferentes cuerpos</strong>.</p>
+                </div>
+                <p><strong>Ejemplo:</strong> Cuando empujas una pared, la pared te empuja a ti con la misma fuerza (en sentido contrario).</p>
+
+                <!-- ========================================================== -->
+                <!-- FLASHCARD (1)                                               -->
+                <!-- ========================================================== -->
+                <div class="flashcard">
+                    <h4>📇 Flashcard · Repaso Rápido</h4>
+                    <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                    <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                        <p><strong>"Segunda ley de Newton"</strong></p>
+                        <p class="flashcard-respuesta" style="display:none;">∑F = m·a. La aceleración es directamente proporcional a la fuerza neta e inversamente proporcional a la masa.</p>
+                    </div>
+                    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                        <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                        <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                    </div>
+                    <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                        📊 Progreso: <span id="flashcardProgreso1">0</span> de <span id="flashcardTotal1">12</span> flashcards
+                    </p>
+                </div>
+            </section>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 6. DIAGRAMA DE CUERPO LIBRE                                -->
+        <!-- ========================================================== -->
+        <section id="dcl">
+            <h2>6. Diagrama de cuerpo libre (DCL)</h2>
+            <div class="definicion-destacada">
+                <p><strong>Diagrama de cuerpo libre:</strong> representación gráfica de todas las <strong>fuerzas</strong> que actúan sobre un objeto, permitiendo establecer las ecuaciones del movimiento para encontrar la información faltante.</p>
+            </div>
+            <p>En un DCL se dibuja el objeto como un punto y se representan todas las fuerzas externas que actúan sobre él (peso, normal, tensión, fricción, etc.).</p>
+
+            <!-- IMAGEN: Diagrama de cuerpo libre -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/fisi3.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                🖼️ <strong>IMAGEN:</strong> Ejemplo de diagrama de cuerpo libre - <em>Fuente: elaboración propia</em></p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 7. FUERZAS DE FRICCIÓN                                     -->
+        <!-- ========================================================== -->
+        <section id="friccion">
+            <h2>7. Fuerzas de fricción</h2>
+            <div class="definicion-destacada">
+                <p><strong>Fricción:</strong> fuerza de contacto que se <strong>opone al movimiento</strong> entre dos superficies. Se debe a las rugosidades microscópicas de las superficies en contacto.</p>
+            </div>
+            <p>Los lubricantes (como las vaselinas) reducen la fricción al crear una capa entre las superficies.</p>
+
+            <h3>7.1 Fricción cinética</h3>
+            <p>Ocurre cuando el objeto <strong>está en movimiento</strong>. Se calcula con:</p>
+            <div class="formula-destacada">
+                <strong>f<sub>k</sub> = μ<sub>k</sub> · N</strong>
+            </div>
+            <p>donde <strong>μ<sub>k</sub></strong> es el coeficiente de fricción cinética y <strong>N</strong> es la fuerza normal.</p>
+
+            <h3>7.2 Fricción estática</h3>
+            <p>Ocurre cuando el objeto <strong>está en reposo</strong> y se intenta mover. Se calcula con:</p>
+            <div class="formula-destacada">
+                <strong>f<sub>s</sub> = μ<sub>s</sub> · N</strong>
+            </div>
+            <p>donde <strong>μ<sub>s</sub></strong> es el coeficiente de fricción estática (generalmente mayor que μ<sub>k</sub>).</p>
+
+            <div class="nota">
+                <p><strong>Importante:</strong> Para mover un objeto en reposo, se debe aplicar una fuerza mayor que la fricción estática máxima. Una vez en movimiento, la fricción cinética es generalmente menor que la estática.</p>
+            </div>
+
+            <!-- IMAGEN: Fricción -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/fisi4.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                🖼️ <strong>IMAGEN:</strong> Fuerza de fricción entre superficies - <em>Fuente: www.ecured.cu</em></p>
+            </div>
+
+            <!-- ========================================================== -->
+            <!-- FLASHCARD (2)                                               -->
+            <!-- ========================================================== -->
+            <div class="flashcard">
+                <h4>📇 Flashcard · Repaso Rápido</h4>
+                <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                    <p><strong>"Diferencia entre fricción estática y cinética"</strong></p>
+                    <p class="flashcard-respuesta" style="display:none;">Estática: actúa cuando el objeto está en reposo (f<sub>s</sub> = μ<sub>s</sub>N). Cinética: actúa cuando el objeto se mueve (f<sub>k</sub> = μ<sub>k</sub>N). Generalmente μ<sub>s</sub> > μ<sub>k</sub>.</p>
+                </div>
+                <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                    <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                    <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                </div>
+                <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                    📊 Progreso: <span id="flashcardProgreso2">0</span> de <span id="flashcardTotal2">12</span> flashcards
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 8. PROBLEMAS RESUELTOS                                     -->
+        <!-- ========================================================== -->
+        <section id="ejercicios">
+            <h2>8. Problemas resueltos</h2>
+
+            <div class="ejercicio-resuelto">
+                <p><strong>Problema 1:</strong> Hallar la fuerza F necesaria para mover los cuerpos de masas 1.5 kg, 1.0 kg y 2.0 kg con aceleración de 3 m/s² (sin fricción).</p>
+                <details style="margin-top:8px; cursor:pointer; color:#94a3b8;">
+                    <summary style="font-weight:bold; color:var(--secondary-color);">👆 Ver solución</summary>
+                    <div class="solucion">
+                        <p>F = (m₁ + m₂ + m₃)·a = (1.5 + 1.0 + 2.0)·3 = 4.5·3 = <strong>13.5 N</strong>.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="ejercicio-resuelto">
+                <p><strong>Problema 2:</strong> Un cuerpo de 2 kg se desliza sobre un plano inclinado de 30° sin fricción. Determine la aceleración y la velocidad después de descender 3 m verticalmente.</p>
+                <details style="margin-top:8px; cursor:pointer; color:#94a3b8;">
+                    <summary style="font-weight:bold; color:var(--secondary-color);">👆 Ver solución</summary>
+                    <div class="solucion">
+                        <p>a = g·senθ = 9.81·sen30° = 9.81·0.5 = <strong>4.905 m/s²</strong>.</p>
+                        <p>Usando v² = v₀² + 2·a·d, donde d = h/sen30° = 3/0.5 = 6 m, v² = 2·4.905·6 = 58.86 → v = <strong>7.67 m/s</strong>.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="ejercicio-resuelto">
+                <p><strong>Problema 3 (Máquina de Atwood):</strong> Dos masas de 2 kg y 4 kg se sueltan desde el reposo. Determine la aceleración y la tensión en la cuerda.</p>
+                <details style="margin-top:8px; cursor:pointer; color:#94a3b8;">
+                    <summary style="font-weight:bold; color:var(--secondary-color);">👆 Ver solución</summary>
+                    <div class="solucion">
+                        <p>a = g·(m₂ − m₁)/(m₁ + m₂) = 9.81·(4 − 2)/(4 + 2) = 9.81·2/6 = <strong>3.27 m/s²</strong>.</p>
+                        <p>T = m₁·(g + a) = 2·(9.81 + 3.27) = 2·13.08 = <strong>26.16 N</strong>.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="ejercicio-resuelto">
+                <p><strong>Problema 4:</strong> Sistema con fricción: m₁ = 10 kg sobre superficie horizontal (μ = 0.2), m₂ = 15 kg colgando. Determine aceleración y tensión.</p>
+                <details style="margin-top:8px; cursor:pointer; color:#94a3b8;">
+                    <summary style="font-weight:bold; color:var(--secondary-color);">👆 Ver solución</summary>
+                    <div class="solucion">
+                        <p>Ecuaciones: T − m₁gμ = m₁a; −T + m₂g = m₂a.</p>
+                        <p>Sumando: m₂g − m₁gμ = (m₁ + m₂)a → a = g(m₂ − m₁μ)/(m₁ + m₂) = 9.81(15 − 10·0.2)/25 = 9.81·13/25 = <strong>5.10 m/s²</strong>.</p>
+                        <p>T = m₂(g − a) = 15(9.81 − 5.10) = 15·4.71 = <strong>70.65 N</strong>.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="ejercicio-resuelto">
+                <p><strong>Problema 5:</strong> Dos bloques de 12 kg y 18 kg jalados por F = 68 N sobre superficie con μ<sub>k</sub> = 0.1. Determine aceleración y tensión.</p>
+                <details style="margin-top:8px; cursor:pointer; color:#94a3b8;">
+                    <summary style="font-weight:bold; color:var(--secondary-color);">👆 Ver solución</summary>
+                    <div class="solucion">
+                        <p>f<sub>k</sub> = μ<sub>k</sub>(m₁ + m₂)g = 0.1·30·9.81 = 29.43 N.</p>
+                        <p>a = (F − f<sub>k</sub>)/(m₁ + m₂) = (68 − 29.43)/30 = <strong>1.29 m/s²</strong>.</p>
+                        <p>Para el bloque 2: T − f<sub>k2</sub> = m₂a → T = m₂a + μ<sub>k</sub>m₂g = 18·1.29 + 0.1·18·9.81 = 23.22 + 17.66 = <strong>40.88 N</strong>.</p>
+                        <p>(Los valores de las opciones del PDF indican T ≈ 27.2 N para una configuración diferente; en este caso el cálculo da 40.88 N).</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="ejercicio-resuelto">
+                <p><strong>Problema 6:</strong> Cálculo de peso en la Tierra y en la Luna.</p>
+                <details style="margin-top:8px; cursor:pointer; color:#94a3b8;">
+                    <summary style="font-weight:bold; color:var(--secondary-color);">👆 Ver solución</summary>
+                    <div class="solucion">
+                        <p>Tierra: w = 2·9.81 = <strong>19.62 N</strong>.</p>
+                        <p>Luna: w = 2·1.622 = <strong>3.244 N</strong>.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Mapa Mental -->
+            <div class="mapa-mental">
+                <h4>🧠 Mapa Mental: Dinámica</h4>
+                <div class="mapa">
+                    <div class="mapa-nodo principal">⚡ DINÁMICA</div>
+                    <div class="mapa-hijos" style="flex-wrap: wrap; gap: 15px;">
+                        <div class="mapa-nodo" style="min-width: 100px;">1ª Ley<br><small>Inercia, ∑F = 0 → v = cte</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">2ª Ley<br><small>∑F = m·a</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">3ª Ley<br><small>Acción-reacción</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">Peso<br><small>w = m·g</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">Fricción<br><small>f<sub>s</sub> = μ<sub>s</sub>N, f<sub>k</sub> = μ<sub>k</sub>N</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">DCL<br><small>Diagrama de cuerpo libre</small></div>
+                    </div>
+                </div>
+                <p style="text-align:center; color:#94a3b8; font-size:13px; margin-top:10px;">
+                    🔹 Las leyes de Newton son la base de la mecánica clásica.
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 9. AUTOEVALUACIÓN                                          -->
+        <!-- ========================================================== -->
+        <section id="autoevaluacion">
+            <h2>9. Preguntas de Autoevaluación</h2>
+
+            <div class="autoevaluacion">
+                <h3>📝 Ejercicios propuestos</h3>
+                <ol style="list-style-type: decimal; padding-left: 20px;">
+                    <li><strong>Un objeto de 1 kg de masa, ¿cuánto pesa en la Tierra?</strong></li>
+                    <li><strong>¿Qué fuerza neta se necesita para acelerar un objeto de 5 kg a 2 m/s²?</strong></li>
+                    <li><strong>¿Cuál es la diferencia entre masa y peso?</strong></li>
+                    <li><strong>¿Qué es el diagrama de cuerpo libre?</strong></li>
+                    <li><strong>¿Cómo se calcula la fuerza de fricción cinética?</strong></li>
+                    <li><strong>¿Qué establece la tercera ley de Newton?</strong></li>
+                    <li><strong>Un cuerpo de 10 kg se desliza sobre una superficie horizontal con μ<sub>k</sub> = 0.3. ¿Qué fuerza de fricción actúa sobre él?</strong></li>
+                    <li><strong>¿Qué es la inercia?</strong></li>
+                    <li><strong>Dos bloques de 2 kg y 3 kg están en contacto sobre una superficie sin fricción. Si se aplica una fuerza de 10 N al bloque de 2 kg, ¿cuál es la aceleración del sistema?</strong></li>
+                    <li><strong>¿Cuáles son las fuerzas fundamentales de la naturaleza?</strong></li>
+                </ol>
+
+                <details style="margin-top:15px; cursor:pointer; color:#94a3b8;">
+                    <summary style="font-weight:bold; color:#38bdf8;">👆 Ver respuestas sugeridas</summary>
+                    <div style="background:#0f172a; padding:15px; border-radius:10px; margin-top:10px; color:#e2e8f0; font-size:14px;">
+                        <p><strong>1.</strong> w = 1·9.81 = 9.81 N.</p>
+                        <p><strong>2.</strong> F = m·a = 5·2 = 10 N.</p>
+                        <p><strong>3.</strong> Masa es cantidad de materia (constante); peso es fuerza gravitacional (varía con g).</p>
+                        <p><strong>4.</strong> Representación gráfica de todas las fuerzas que actúan sobre un cuerpo.</p>
+                        <p><strong>5.</strong> f<sub>k</sub> = μ<sub>k</sub>·N.</p>
+                        <p><strong>6.</strong> Toda acción tiene una reacción igual y opuesta, sobre cuerpos diferentes.</p>
+                        <p><strong>7.</strong> f<sub>k</sub> = 0.3·10·9.81 = 29.43 N.</p>
+                        <p><strong>8.</strong> Resistencia de un cuerpo a cambiar su estado de reposo o movimiento.</p>
+                        <p><strong>9.</strong> a = F/(m₁+m₂) = 10/(2+3) = 2 m/s².</p>
+                        <p><strong>10.</strong> Gravitacional, electromagnética, nuclear fuerte, nuclear débil.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Feynman -->
+            <div class="feynman" style="margin-top:30px;">
+                <h4>🗣️ Explica este tema (Método Feynman)</h4>
+                <p><em>"Imagina que le enseñas a un niño de 5 años: ¿qué es la fuerza y cómo se relaciona con el movimiento?"</em></p>
+                <textarea id="feynmanTexto" placeholder="Escribe tu explicación aquí..."></textarea>
+                <button onclick="guardarFeynman()">💾 Guardar explicación</button>
+                <p id="feynmanGuardado" style="color:#22c55e; margin-top:8px; display:none;">✅ Explicación guardada</p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 10. MINI EXAMEN                                            -->
+        <!-- ========================================================== -->
+        <section id="examen">
+            <h2>10. Mini Examen (10 preguntas)</h2>
+            <p>Responde y haz clic en <strong>"Ver respuestas"</strong>.</p>
+
+            <div class="examen">
+                <!-- Pregunta 1 -->
+                <div class="pregunta">
+                    <p><strong>1. ¿Qué establece la primera ley de Newton?</strong></p>
+                    <label><input type="radio" name="q1" value="0"> A) ∑F = ma</label>
+                    <label><input type="radio" name="q1" value="1"> B) Todo cuerpo permanece en reposo o MRU si la fuerza neta es cero</label>
+                    <label><input type="radio" name="q1" value="2"> C) Acción-reacción</label>
+                    <label><input type="radio" name="q1" value="3"> D) La fuerza es igual a masa por aceleración</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B</div>
+                </div>
+                <!-- Pregunta 2 -->
+                <div class="pregunta">
+                    <p><strong>2. La segunda ley de Newton se expresa como:</strong></p>
+                    <label><input type="radio" name="q2" value="0"> A) ∑F = ma</label>
+                    <label><input type="radio" name="q2" value="1"> B) v = v₀ + at</label>
+                    <label><input type="radio" name="q2" value="2"> C) w = mg</label>
+                    <label><input type="radio" name="q2" value="3"> D) f = μN</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: A</div>
+                </div>
+                <!-- Pregunta 3 -->
+                <div class="pregunta">
+                    <p><strong>3. La fuerza de fricción cinética se calcula con:</strong></p>
+                    <label><input type="radio" name="q3" value="0"> A) f<sub>s</sub> = μ<sub>s</sub>N</label>
+                    <label><input type="radio" name="q3" value="1"> B) f<sub>k</sub> = μ<sub>k</sub>N</label>
+                    <label><input type="radio" name="q3" value="2"> C) f = ma</label>
+                    <label><input type="radio" name="q3" value="3"> D) f = μmg</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B</div>
+                </div>
+                <!-- Pregunta 4 -->
+                <div class="pregunta">
+                    <p><strong>4. ¿Cuál es el peso de un objeto de 5 kg en la Tierra? (g = 9.81 m/s²)</strong></p>
+                    <label><input type="radio" name="q4" value="0"> A) 5 N</label>
+                    <label><input type="radio" name="q4" value="1"> B) 49.05 N</label>
+                    <label><input type="radio" name="q4" value="2"> C) 9.81 N</label>
+                    <label><input type="radio" name="q4" value="3"> D) 50 N</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B</div>
+                </div>
+                <!-- Pregunta 5 -->
+                <div class="pregunta">
+                    <p><strong>5. La tercera ley de Newton se refiere a:</strong></p>
+                    <label><input type="radio" name="q5" value="0"> A) Inercia</label>
+                    <label><input type="radio" name="q5" value="1"> B) Aceleración</label>
+                    <label><input type="radio" name="q5" value="2"> C) Acción-reacción</label>
+                    <label><input type="radio" name="q5" value="3"> D) Fuerza y masa</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: C</div>
+                </div>
+                <!-- Pregunta 6 -->
+                <div class="pregunta">
+                    <p><strong>6. Un objeto de 2 kg se acelera a 3 m/s². ¿Qué fuerza neta actúa sobre él?</strong></p>
+                    <label><input type="radio" name="q6" value="0"> A) 3 N</label>
+                    <label><input type="radio" name="q6" value="1"> B) 6 N</label>
+                    <label><input type="radio" name="q6" value="2"> C) 2 N</label>
+                    <label><input type="radio" name="q6" value="3"> D) 9 N</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B</div>
+                </div>
+                <!-- Pregunta 7 -->
+                <div class="pregunta">
+                    <p><strong>7. ¿Qué propiedad tienen los cuerpos de resistir cambios en su estado de movimiento?</strong></p>
+                    <label><input type="radio" name="q7" value="0"> A) Elasticidad</label>
+                    <label><input type="radio" name="q7" value="1"> B) Inercia</label>
+                    <label><input type="radio" name="q7" value="2"> C) Densidad</label>
+                    <label><input type="radio" name="q7" value="3"> D) Fricción</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B</div>
+                </div>
+                <!-- Pregunta 8 -->
+                <div class="pregunta">
+                    <p><strong>8. ¿Qué tipo de fuerza actúa entre dos cargas eléctricas?</strong></p>
+                    <label><input type="radio" name="q8" value="0"> A) Gravitacional</label>
+                    <label><input type="radio" name="q8" value="1"> B) Electromagnética</label>
+                    <label><input type="radio" name="q8" value="2"> C) Nuclear fuerte</label>
+                    <label><input type="radio" name="q8" value="3"> D) Nuclear débil</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B</div>
+                </div>
+                <!-- Pregunta 9 -->
+                <div class="pregunta">
+                    <p><strong>9. En el diagrama de cuerpo libre, la fuerza normal es:</strong></p>
+                    <label><input type="radio" name="q9" value="0"> A) La fuerza de gravedad</label>
+                    <label><input type="radio" name="q9" value="1"> B) La fuerza que la superficie ejerce perpendicularmente</label>
+                    <label><input type="radio" name="q9" value="2"> C) La fuerza de fricción</label>
+                    <label><input type="radio" name="q9" value="3"> D) La tensión de una cuerda</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B</div>
+                </div>
+                <!-- Pregunta 10 -->
+                <div class="pregunta">
+                    <p><strong>10. ¿Cuál es la aceleración de un sistema de dos masas en una máquina de Atwood con m₁ = 3 kg y m₂ = 5 kg?</strong></p>
+                    <label><input type="radio" name="q10" value="0"> A) 9.81 m/s²</label>
+                    <label><input type="radio" name="q10" value="1"> B) 2.45 m/s²</label>
+                    <label><input type="radio" name="q10" value="2"> C) 4.90 m/s²</label>
+                    <label><input type="radio" name="q10" value="3"> D) 0 m/s²</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B (a = g(m₂−m₁)/(m₁+m₂) = 9.81·2/8 = 2.45)</div>
+                </div>
+
+                <button onclick="corregirExamen()">✅ Ver respuestas</button>
+                <div id="resultadoExamen" style="margin-top:15px; font-weight:bold;"></div>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- CUADRO RESUMEN                                              -->
+        <!-- ========================================================== -->
+        <section id="cuadro-resumen" style="margin-top:30px;">
+            <h2>📊 Cuadro Resumen: Dinámica</h2>
+            <div style="background:#1e293b; border-radius:14px; padding:16px; overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; color:#e2e8f0; font-size:13px;">
+                    <thead>
+                        <tr style="background:#0f172a; color:#38bdf8;">
+                            <th style="padding:8px; border:1px solid #334155;">Concepto</th>
+                            <th style="padding:8px; border:1px solid #334155;">Fórmula / Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Fuerza</strong></td><td style="padding:6px; border:1px solid #334155;">Interacción entre cuerpos (vectorial). Unidad: N (kg·m/s²).</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>1ª Ley (Inercia)</strong></td><td style="padding:6px; border:1px solid #334155;">∑F = 0 → v = cte (o reposo).</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>2ª Ley</strong></td><td style="padding:6px; border:1px solid #334155;">∑F = m·a</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>3ª Ley</strong></td><td style="padding:6px; border:1px solid #334155;">F<sub>AB</sub> = −F<sub>BA</sub> (acción-reacción).</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Peso</strong></td><td style="padding:6px; border:1px solid #334155;">w = m·g (fuerza gravitacional).</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Fricción estática</strong></td><td style="padding:6px; border:1px solid #334155;">f<sub>s</sub> = μ<sub>s</sub>·N (reposo).</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Fricción cinética</strong></td><td style="padding:6px; border:1px solid #334155;">f<sub>k</sub> = μ<sub>k</sub>·N (movimiento).</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Diagrama de cuerpo libre</strong></td><td style="padding:6px; border:1px solid #334155;">Representación de todas las fuerzas sobre un cuerpo.</td></tr>
+                    </tbody>
+                </table>
+                <p style="text-align:center; color:#94a3b8; font-size:12px; margin-top:10px;">📋 Fuente: elaboración propia basada en el PDF</p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- REFERENCIAS BIBLIOGRÁFICAS                                 -->
+        <!-- ========================================================== -->
+        <section id="referencias">
+            <h2>📚 Referencias Bibliográficas</h2>
+            <div class="referencias">
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li>1. Serway, R. A., & Faughn, J. S. (2005). <em>Física. Volumen 1</em> (5ª ed.). México: Cengage Learning.</li>
+                    <li>2. Sears, Zemansky, Young, & Freedman. (2013). <em>Física Universitaria. Volumen I</em> (13ª ed.). México: Pearson Educación.</li>
+                    <li>3. Tipler, P. A., & Mosca, G. (2005). <em>Física para la ciencia y la tecnología. Volumen 1</em> (5ª ed.). Barcelona: Reverté.</li>
+                    <li>4. Giancoli, D. (2006). <em>Física, Principios con aplicaciones. Volumen 1</em> (6ª ed.). México: Pearson Educación.</li>
+                    <li>5. Hewitt, P. (2007). <em>Física conceptual</em> (10ª ed.). México: Pearson Educación.</li>
+                </ul>
+                <p style="color:#94a3b8; font-size:12px; margin-top:10px; text-align:center;">
+                    📖 Estas referencias sustentan el contenido desarrollado en esta página.
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- MENÚ DE TEMAS                                              -->
+        <!-- ========================================================== -->
+        <div style="text-align:center; margin-top:30px; padding:20px; border-top:2px solid #334155;">
+            <a href="../temas.html" class="btn-menu" style="
+                display:inline-block;
+                padding:12px 35px;
+                background:var(--primary-color);
+                color:white;
+                border-radius:10px;
+                font-weight:600;
+                text-decoration:none;
+                transition:0.3s;
+            ">📋 Menú de temas</a>
+        </div>
+
+    </main>
+</div>
+
+<!-- ============================================================ -->
+<!-- 4. FOOTER                                                     -->
+<!-- ============================================================ -->
+<footer class="footer-global">
+    <p>⚡ PhysStudy · Simulador de Estudio · 2026</p>
+</footer>
+
+<!-- ============================================================ -->
+<!-- 5. JAVASCRIPT                                                 -->
+<!-- ============================================================ -->
+<script>
+
+    // ========================================================
+    // 1. PROGRESO
+    // ========================================================
+    let progreso = 0;
+    const secciones = document.querySelectorAll('.contenido > section, .contenido > section section');
+    const barra = document.getElementById('barraProgreso');
+    const porcentajeTexto = document.getElementById('porcentajeProgreso');
+
+    function actualizarProgreso() {
+        let vistas = 0;
+        secciones.forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.7) vistas++;
+        });
+        progreso = Math.round((vistas / secciones.length) * 100);
+        barra.style.width = progreso + '%';
+        porcentajeTexto.textContent = progreso;
+    }
+
+    window.addEventListener('scroll', actualizarProgreso);
+    window.addEventListener('load', actualizarProgreso);
+
+    // ========================================================
+    // 2. FLASHCARDS (12 en total)
+    // ========================================================
+    let flashcardsAcertadas = 0;
+    let flashcardsTotales = 0;
+    let totalFlashcards = 12;
+
+    function actualizarFlashcardsGlobal() {
+        document.getElementById('flashcardsCompletadas').textContent = flashcardsAcertadas;
+        document.querySelectorAll('[id^="flashcardProgreso"]').forEach(el => {
+            el.textContent = flashcardsAcertadas;
+        });
+        document.querySelectorAll('[id^="flashcardTotal"]').forEach(el => {
+            el.textContent = totalFlashcards;
+        });
+    }
+
+    function flashcardAcertada() {
+        flashcardsAcertadas++;
+        flashcardsTotales++;
+        actualizarFlashcardsGlobal();
+        alert('✅ ¡Bien!');
+    }
+
+    function flashcardFallada() {
+        flashcardsTotales++;
+        actualizarFlashcardsGlobal();
+        alert('❌ Revísalo después.');
+    }
+
+    actualizarFlashcardsGlobal();
+
+    // ========================================================
+    // 3. FEYNMAN
+    // ========================================================
+    function guardarFeynman() {
+        const texto = document.getElementById('feynmanTexto').value;
+        if (texto.trim().length > 0) {
+            localStorage.setItem('feynman_dinamica', texto);
+            document.getElementById('feynmanGuardado').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('feynmanGuardado').style.display = 'none';
+            }, 3000);
+        } else {
+            alert('✍️ Escribe algo antes de guardar.');
+        }
+    }
+
+    // ========================================================
+    // 4. MINI EXAMEN
+    // ========================================================
+    function corregirExamen() {
+        const preguntas = document.querySelectorAll('.pregunta');
+        let correctas = 0;
+        const respuestasCorrectas = [1, 0, 1, 1, 2, 1, 1, 1, 1, 1];
+
+        preguntas.forEach((p, i) => {
+            const seleccionada = p.querySelector('input:checked');
+            const respuestaDiv = p.querySelector('.respuesta-correcta');
+            respuestaDiv.style.display = 'block';
+
+            if (seleccionada && parseInt(seleccionada.value) === respuestasCorrectas[i]) {
+                correctas++;
+                seleccionada.parentElement.style.color = '#22c55e';
+            } else if (seleccionada) {
+                seleccionada.parentElement.style.color = '#ef4444';
+            }
+        });
+
+        document.getElementById('resultadoExamen').textContent =
+            `📊 Resultado: ${correctas}/10 correctas (${(correctas/10)*100}%)`;
+    }
+
+    // ========================================================
+    // 5. POMODORO
+    // ========================================================
+    let pomodoroActivo = false;
+    let pomodoroTiempo = 25 * 60;
+    let pomodoroIntervalo = null;
+    let pomodoroContador = 1;
+
+    function actualizarPomodoroDisplay() {
+        const min = String(Math.floor(pomodoroTiempo / 60)).padStart(2, '0');
+        const seg = String(pomodoroTiempo % 60).padStart(2, '0');
+        document.getElementById('pomodoroMinutos').textContent = min;
+        document.getElementById('pomodoroSegundos').textContent = seg;
+    }
+
+    function iniciarPomodoro() {
+        if (pomodoroActivo) return;
+        pomodoroActivo = true;
+        pomodoroIntervalo = setInterval(() => {
+            pomodoroTiempo--;
+            actualizarPomodoroDisplay();
+            if (pomodoroTiempo <= 0) {
+                clearInterval(pomodoroIntervalo);
+                pomodoroActivo = false;
+                alert('⏰ ¡Tiempo completado! Descansa 5 minutos.');
+                pomodoroContador++;
+                document.getElementById('pomodoroContador').textContent = pomodoroContador;
+                pomodoroTiempo = 25 * 60;
+                actualizarPomodoroDisplay();
+            }
+        }, 1000);
+    }
+
+    function pausarPomodoro() {
+        clearInterval(pomodoroIntervalo);
+        pomodoroActivo = false;
+    }
+
+    function reiniciarPomodoro() {
+        clearInterval(pomodoroIntervalo);
+        pomodoroActivo = false;
+        pomodoroTiempo = 25 * 60;
+        actualizarPomodoroDisplay();
+    }
+
+    // ========================================================
+    // 6. ÍNDICE - RESALTADO DE SECCIÓN ACTIVA
+    // ========================================================
+    const enlaces = document.querySelectorAll('.indice a');
+
+    window.addEventListener('scroll', () => {
+        let actual = '';
+        secciones.forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < 200) {
+                actual = sec.getAttribute('id');
+            }
+        });
+        enlaces.forEach(enlace => {
+            enlace.parentElement.classList.remove('activo');
+            if (enlace.getAttribute('href') === '#' + actual) {
+                enlace.parentElement.classList.add('activo');
+            }
+        });
+    });
+
+    // ========================================================
+    // 7. SCROLL SUAVE
+    // ========================================================
+    document.querySelectorAll('.indice a').forEach(enlace => {
+        enlace.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.querySelector(enlace.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // ========================================================
+    // 8. TIEMPO DE ESTUDIO (simulado)
+    // ========================================================
+    let tiempoEstudio = 0;
+    setInterval(() => {
+        tiempoEstudio++;
+        document.getElementById('tiempoEstudio').textContent = tiempoEstudio;
+    }, 60000);
+
+</script>
+
+</body>
+</html>

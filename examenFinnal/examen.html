@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Examen de Admisión</title>
+
+<link rel="stylesheet" href="examen.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="titulo">
+
+        <h2>SIMULADOR DE ADMISIÓN</h2>
+
+    </div>
+
+    <div class="temporizador">
+
+        ⏰
+        <span id="tiempo">
+            90:00
+        </span>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- PANEL IZQUIERDO -->
+
+    <aside class="panel">
+
+        <h3>Preguntas</h3>
+
+        <div id="listaPreguntas">
+
+        </div>
+
+        <button id="finalizar">
+
+            Finalizar examen
+
+        </button>
+        <div class="estadisticas">
+
+    <div class="dato">
+
+        <span>Respondidas</span>
+
+        <strong id="respondidas">
+            0
+        </strong>
+
+    </div>
+
+    <div class="dato">
+
+        <span>Sin responder</span>
+
+        <strong id="faltantes">
+            60
+        </strong>
+
+    </div>
+
+</div>
+
+    </aside>
+
+
+    <!-- CONTENIDO -->
+
+    <section class="contenido">
+
+        <div class="barra">
+
+            <div id="progreso">
+
+            </div>
+
+        </div>
+
+        <h3 id="contador">
+
+            Pregunta 1 de 60
+
+        </h3>
+
+        <div id="pregunta">
+
+        </div>
+
+        <div id="opciones">
+
+        </div>
+
+        <div class="botones">
+
+            <button id="anterior">
+
+                ← Anterior
+
+            </button>
+
+            <button id="marcar">
+
+                ⭐ Revisar
+
+            </button>
+
+            <button id="siguiente">
+
+                Siguiente →
+
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<script>
+    // Obtener el examen sorteado
+    const examenSorteado = JSON.parse(localStorage.getItem("examenSorteado"));
+    let archivoPreguntas = "preguntas.js";
+    if (examenSorteado) {
+        archivoPreguntas = `preguntas_examen${examenSorteado.id}.js`;
+    }
+
+    // 1. Cargar preguntas
+    const scriptPreg = document.createElement('script');
+    scriptPreg.src = archivoPreguntas;
+    scriptPreg.onload = function() {
+        // 2. Cuando las preguntas estén listas, cargar examen.js
+        const scriptExamen = document.createElement('script');
+        scriptExamen.src = "examen.js";
+        scriptExamen.onload = function() {
+            // 3. Iniciar el examen manualmente
+            if (typeof iniciarExamen === 'function') {
+                iniciarExamen();
+            } else {
+                console.error('No se encontró la función iniciarExamen');
+            }
+        };
+        scriptExamen.onerror = function() {
+            alert('Error al cargar el examen');
+        };
+        document.head.appendChild(scriptExamen);
+    };
+    scriptPreg.onerror = function() {
+        alert('Error al cargar las preguntas. Asegúrate de que el archivo existe.');
+        window.location.href = "examenGUjaja.html";
+    };
+    document.head.appendChild(scriptPreg);
+</script>
+<script src="examen.js"></script>
+</body>
+</html>

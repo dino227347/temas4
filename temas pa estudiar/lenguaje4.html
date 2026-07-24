@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenguaje - Tema 4: Morfología y Terminología Médica</title>
+    <link rel="stylesheet" href="tema-base.css">
+    <style>
+        /* ================================================================
+           PERSONALIZACIÓN PARA LENGUAJE (TEMA 4)
+           ================================================================ */
+        :root {
+            --primary-color: #ea580c;    /* Naranja */
+            --secondary-color: #fb923c;  /* Naranja claro */
+            --accent-color: #f97316;
+        }
+
+        .tema-header h1::before { content: "📖 "; }
+        .indice ul li.activo a { background: var(--primary-color); border-left-color: var(--secondary-color); }
+        .barra-interna { background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); }
+        .logo { color: var(--secondary-color); }
+        .nav-global a:hover { color: var(--secondary-color); background: #334155; }
+        .contenido h2 { color: var(--secondary-color); }
+        .indice h3 { color: var(--secondary-color); }
+        .flashcard h4 { color: var(--secondary-color); }
+        .examen button { background: var(--primary-color); }
+        .examen button:hover { background: #c2410c; }
+        .pomodoro h3 { color: var(--primary-color); }
+        .pomodoro-timer { color: var(--secondary-color); }
+        .mapa-mental h4 { color: var(--secondary-color); }
+        .mapa-nodo.principal { background: var(--primary-color); }
+
+        .definicion-destacada {
+            background: #1e293b;
+            border-left: 4px solid var(--secondary-color);
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin: 16px 0;
+        }
+        .definicion-destacada p { margin: 0; color: #f1f5f9; }
+        .definicion-destacada strong { color: var(--secondary-color); }
+
+        .dato-curioso {
+            background: #0f172a;
+            border: 1px solid var(--secondary-color);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin: 16px 0;
+        }
+        .dato-curioso p { margin: 0; color: #cbd5e1; }
+        .dato-curioso strong { color: var(--secondary-color); }
+
+        .autoevaluacion {
+            background: #1e293b;
+            border: 2px solid var(--secondary-color);
+            border-radius: 14px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .autoevaluacion h3 { color: var(--secondary-color); }
+        .autoevaluacion li { padding: 8px 0; border-bottom: 1px solid #334155; color: #cbd5e1; }
+        .autoevaluacion li:last-child { border-bottom: none; }
+        .autoevaluacion li strong { color: #f1f5f9; }
+
+        .referencias {
+            background: #0f172a;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 14px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .referencias li { font-size: 13px; color: #94a3b8; margin-bottom: 6px; }
+        .referencias h4 { color: var(--secondary-color); margin-bottom: 12px; }
+
+        .active-recall {
+            background: #0f172a;
+            border: 2px solid #ef4444;
+            border-radius: 14px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .active-recall h4 { color: #ef4444; }
+
+        .resumen-rapido { border-left: 5px solid var(--secondary-color) !important; }
+
+        .tabla-fila span:first-child { color: var(--secondary-color); min-width: 150px; }
+        .tabla-fila span:nth-child(2) { color: #e2e8f0; flex: 2; }
+
+        .tabla-compleja {
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+        .tabla-compleja table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            color: #e2e8f0;
+            background: #0f172a;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .tabla-compleja th {
+            background: #1e293b;
+            color: var(--secondary-color);
+            padding: 8px 10px;
+            text-align: left;
+            border-bottom: 2px solid #334155;
+        }
+        .tabla-compleja td {
+            padding: 6px 10px;
+            border-bottom: 1px solid #334155;
+        }
+        .tabla-compleja tr:last-child td { border-bottom: none; }
+        .tabla-compleja strong { color: var(--secondary-color); }
+
+        .nota {
+            background: #0f172a;
+            border-radius: 10px;
+            padding: 10px 16px;
+            border-left: 4px solid #f59e0b;
+            margin: 10px 0;
+            color: #cbd5e1;
+        }
+        .nota strong { color: var(--secondary-color); }
+
+        .ejemplo-palabra {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .tabla-fila { flex-direction: column; }
+            .tabla-fila span { min-width: auto; }
+        }
+
+        /* Estilo para lexema destacado */
+        .lexema {
+            color: #f59e0b;
+            font-weight: bold;
+        }
+        .morfema {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        .separador {
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- 1. HEADER GLOBAL                                              -->
+<!-- ============================================================ -->
+<header class="header-global">
+    <div class="logo">📖 LinguaStudy</div>
+    <nav class="nav-global">
+        <a href="../index.html">🏠 Inicio</a>
+        <a href="../temas.html">📚 Temas</a>
+        <a href="../Primer mini examen/examenGUjaja.html">📝 Examen</a>
+    </nav>
+</header>
+
+<!-- ============================================================ -->
+<!-- 2. PROGRESO DEL TEMA                                          -->
+<!-- ============================================================ -->
+<div class="tema-header">
+    <h1>Lenguaje - Tema 4: Morfología y Terminología Médica</h1>
+    <div class="progreso">
+        <span>Progreso: <span id="porcentajeProgreso">0</span>%</span>
+        <div class="barra">
+            <div class="barra-interna" id="barraProgreso" style="width: 0%;"></div>
+        </div>
+    </div>
+    <div class="tema-meta">
+        <span>⏱️ <span id="tiempoEstudio">0</span> min estudiados</span>
+        <span>📇 <span id="flashcardsCompletadas">0</span> flashcards</span>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 3. CUERPO: ÍNDICE + CONTENIDO                                -->
+<!-- ============================================================ -->
+<div class="contenedor-estudio">
+
+    <!-- ===================== -->
+    <!-- 3.1 ÍNDICE (sticky)   -->
+    <!-- ===================== -->
+    <aside class="indice">
+        <h3>📌 Índice</h3>
+        <ul>
+            <li class="activo"><a href="#resumen">⭐ Resumen</a></li>
+            <li><a href="#pomodoro">⏱️ Pomodoro</a></li>
+            <li><a href="#introduccion">1. Introducción</a></li>
+            <li><a href="#definicion">2. Definición</a></li>
+            <li><a href="#estructura">3. Estructura de la palabra</a></li>
+            <li><a href="#lexema">3.1 Lexema</a></li>
+            <li><a href="#morfemas">3.2 Morfemas</a></li>
+            <li><a href="#prefijos-sufijos">4. Prefijos y sufijos</a></li>
+            <li><a href="#prefijos-clasificacion">4.1 Clasificación de prefijos</a></li>
+            <li><a href="#prefijos-origen">4.2 Prefijos por origen</a></li>
+            <li><a href="#sufijos-origen">4.3 Sufijos por origen</a></li>
+            <li><a href="#terminologia-medica">5. Terminología médica</a></li>
+            <li><a href="#autoevaluacion">6. Autoevaluación</a></li>
+            <li><a href="#examen">7. Mini Examen</a></li>
+            <li><a href="#cuadro-resumen">📊 Cuadro resumen</a></li>
+            <li><a href="#referencias">📚 Referencias</a></li>
+        </ul>
+    </aside>
+
+    <!-- ===================== -->
+    <!-- 3.2 CONTENIDO          -->
+    <!-- ===================== -->
+    <main class="contenido">
+
+        <!-- ========================================================== -->
+        <!-- RESUMEN RÁPIDO                                              -->
+        <!-- ========================================================== -->
+        <section id="resumen" class="resumen-rapido">
+            <h2>⭐ Resumen Rápido</h2>
+            <p><strong>Morfología:</strong> estudio de la estructura y variaciones de las palabras.</p>
+            <ul>
+                <li><strong>Palabra:</strong> unidad lingüística formada por <strong>lexema</strong> (raíz, significado básico) + <strong>morfemas</strong> (flexivos o derivativos).</li>
+                <li><strong>Morfemas flexivos:</strong> aportan nociones gramaticales (género, número, tiempo, modo, persona, aspecto).</li>
+                <li><strong>Morfemas derivativos:</strong> forman nuevas palabras: <strong>prefijos</strong> (se anteponen) y <strong>sufijos</strong> (se posponen).</li>
+                <li><strong>Prefijos:</strong> locacionales, temporales, negativos, gradativos. Origen griego o latino.</li>
+                <li><strong>Sufijos:</strong> de origen griego o latino, forman sustantivos, adjetivos, verbos, etc.</li>
+                <li><strong>Terminología médica:</strong> usa lexemas, prefijos y sufijos del griego y latín para crear términos precisos.</li>
+            </ul>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- POMODORO                                                    -->
+        <!-- ========================================================== -->
+        <section id="pomodoro" class="pomodoro">
+            <h3>⏱️ Pomodoro · Enfoque de estudio</h3>
+            <p style="color:#94a3b8; font-size:14px; margin-bottom:12px;">
+                Estudia por 25 minutos, descansa 5. Repite 4 ciclos y toma un descanso largo de 15-30 min.
+            </p>
+            <div class="pomodoro-timer">
+                <span id="pomodoroMinutos">25</span>:<span id="pomodoroSegundos">00</span>
+            </div>
+            <div class="pomodoro-botones">
+                <button onclick="iniciarPomodoro()">▶ Iniciar</button>
+                <button onclick="pausarPomodoro()">⏸ Pausar</button>
+                <button onclick="reiniciarPomodoro()">⏹ Reiniciar</button>
+            </div>
+            <p>🍅 Pomodoro #<span id="pomodoroContador">1</span> de hoy</p>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 1. INTRODUCCIÓN                                            -->
+        <!-- ========================================================== -->
+        <section id="introduccion">
+            <h2>1. Introducción</h2>
+            <p>La <strong>morfología</strong> estudia la estructura de las palabras para identificar cómo operan, se relacionan, cambian y evolucionan. Esto permite entender el funcionamiento del idioma español y usarlo con precisión y eficacia.</p>
+            <p>Dentro de las ciencias de la salud, existe un vocabulario técnico muy extenso con términos muchas veces difíciles de entender. Los estudiantes deben ser capaces de interpretarlos al leer libros, revisar historias clínicas o realizar informes.</p>
+            <p>El objetivo de este tema es introducir al estudiante en la <strong>terminología médica</strong> a través de la interpretación de la estructura, formación y transformaciones de las palabras al añadirles morfemas derivativos.</p>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 2. DEFINICIÓN                                              -->
+        <!-- ========================================================== -->
+        <section id="definicion">
+            <h2>2. Definición de Morfología</h2>
+            <div class="definicion-destacada">
+                <p><strong>Morfología:</strong> del griego <em>morphé</em> = forma + <em>logos</em> = tratado. Es la parte de la gramática que estudia la <strong>estructura de las palabras</strong> y las <strong>variaciones</strong> que presentan.</p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 3. ESTRUCTURA DE LA PALABRA                                -->
+        <!-- ========================================================== -->
+        <section id="estructura">
+            <h2>3. Estructura de la palabra</h2>
+            <p>Desde el punto de vista morfológico, la palabra se considera como <strong>"una unidad lingüística conformada necesariamente por un lexema o por un lexema más uno o más morfemas gramaticales"</strong>.</p>
+
+            <!-- ========================================================== -->
+            <!-- 3.1 LEXEMA                                                -->
+            <!-- ========================================================== -->
+            <section id="lexema">
+                <h3>3.1 Lexema (raíz o base)</h3>
+                <div class="definicion-destacada">
+                    <p><strong>Lexema:</strong> unidad con <strong>significado básico o principal</strong> que permite la formación de otras palabras. Se repite invariablemente o con ligeras variaciones.</p>
+                </div>
+                <p><strong>Ejemplos:</strong></p>
+                <ul>
+                    <li><span class="lexema">am</span> <span class="separator">-</span> <span class="morfema">o</span>, <span class="lexema">am</span> <span class="separator">-</span> <span class="morfema">a</span>, <span class="lexema">am</span> <span class="separator">-</span> <span class="morfema">as</span>, <span class="lexema">am</span> <span class="separator">-</span> <span class="morfema">amos</span>...</li>
+                    <li><span class="lexema">lech</span> <span class="separator">-</span> <span class="morfema">e</span>, <span class="lexema">lech</span> <span class="separator">-</span> <span class="morfema">ero</span>, <span class="lexema">lech</span> <span class="separator">-</span> <span class="morfema">ería</span>, <span class="lexema">lech</span> <span class="separator">-</span> <span class="morfema">oso</span>...</li>
+                    <li><span class="lexema">cont</span> <span class="separator">-</span> <span class="morfema">ar</span>, <span class="lexema">cuent</span> <span class="separator">-</span> <span class="morfema">o</span>, <span class="lexema">cuent</span> <span class="separator">-</span> <span class="morfema">as</span>, <span class="lexema">cont</span> <span class="separator">-</span> <span class="morfema">amos</span>...</li>
+                </ul>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- 3.2 MORFEMAS                                              -->
+            <!-- ========================================================== -->
+            <section id="morfemas">
+                <h3>3.2 Morfemas</h3>
+                <div class="definicion-destacada">
+                    <p><strong>Morfema:</strong> unidad lingüística mínima o no segmentable dotada de significado. Se clasifican en <strong>flexivos</strong> y <strong>derivativos</strong>.</p>
+                </div>
+
+                <h4>a) Morfemas flexivos</h4>
+                <p>Carecen de significado léxico y no afectan al significado de la raíz, sino que aportan <strong>nociones gramaticales</strong> (género, número, tiempo, modo, persona, aspecto). Su función es presentar a los lexemas en el modo gramatical adecuado.</p>
+                <div class="tabla-compleja">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Palabra</th>
+                                <th>Lexema y morfemas flexivos</th>
+                                <th>Tiempo</th>
+                                <th>Modo</th>
+                                <th>Persona</th>
+                                <th>Número</th>
+                                <th>Género</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Imponen</strong> (verbo)</td><td><span class="lexema">Impo</span> + <span class="morfema">-en</span></td><td>Presente</td><td>Indicativo</td><td>Tercera</td><td>Plural</td><td>—</td></tr>
+                            <tr><td><strong>Vecinas</strong> (sustantivo)</td><td><span class="lexema">Vecin</span> + <span class="morfema">-a</span> + <span class="morfema">-s</span></td><td>—</td><td>—</td><td>—</td><td>Plural</td><td>Femenino</td></tr>
+                            <tr><td><strong>Guapo</strong> (adjetivo)</td><td><span class="lexema">Guap</span> + <span class="morfema">-o</span></td><td>—</td><td>—</td><td>—</td><td>Singular</td><td>Masculino</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>b) Morfemas derivativos</h4>
+                <p>Se unen a un lexema para formar <strong>nuevas palabras</strong>. Siempre van adheridos al lexema. Según su ubicación:</p>
+                <ul>
+                    <li><strong>Prefijos:</strong> se anteponen a la raíz. Ej: <span class="morfema">pre</span><span class="lexema">fijar</span>, <span class="morfema">des</span><span class="lexema">hacer</span>.</li>
+                    <li><strong>Sufijos:</strong> se posponen al lexema. Ej: <span class="lexema">flor</span><span class="morfema">-ero</span>, <span class="lexema">pan</span><span class="morfema">-adería</span>.</li>
+                </ul>
+
+                <!-- ========================================================== -->
+                <!-- FLASHCARD (1)                                               -->
+                <!-- ========================================================== -->
+                <div class="flashcard">
+                    <h4>📇 Flashcard · Repaso Rápido</h4>
+                    <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                    <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                        <p><strong>"Diferencia entre lexema y morfema"</strong></p>
+                        <p class="flashcard-respuesta" style="display:none;">Lexema: raíz con significado básico (ej. <em>am-</em>). Morfema: unidad mínima con significado gramatical o derivativo (ej. <em>-o</em>, <em>pre-</em>, <em>-ero</em>).</p>
+                    </div>
+                    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                        <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                        <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                    </div>
+                    <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                        📊 Progreso: <span id="flashcardProgreso1">0</span> de <span id="flashcardTotal1">12</span> flashcards
+                    </p>
+                </div>
+            </section>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 4. PREFIJOS Y SUFIJOS                                      -->
+        <!-- ========================================================== -->
+        <section id="prefijos-sufijos">
+            <h2>4. Prefijos y sufijos</h2>
+
+            <!-- ========================================================== -->
+            <!-- 4.1 CLASIFICACIÓN DE PREFIJOS                              -->
+            <!-- ========================================================== -->
+            <section id="prefijos-clasificacion">
+                <h3>4.1 Clasificación de los prefijos</h3>
+
+                <h4>a) Prefijos locacionales</h4>
+                <p>Transmiten un mayor número de significados relacionados con la ubicación espacial.</p>
+                <div class="tabla-compleja">
+                    <table>
+                        <thead>
+                            <tr><th>Prefijo</th><th>Significado</th><th>Ejemplos</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>a-, ad-</strong></td><td>a, hacia</td><td>abati, adjuntar, apegarse, aportar, adentro, adelante</td></tr>
+                            <tr><td><strong>ante-, pre-</strong></td><td>delante de</td><td>antebrazo, antecámara, antesala, prefijar, premolar, predorsal</td></tr>
+                            <tr><td><strong>anti-</strong></td><td>oposición</td><td>anticiclón</td></tr>
+                            <tr><td><strong>ex-</strong></td><td>fuera, persona que dejó el cargo, que ha dejado de ser</td><td>excarcelar, exculpar, expatriarse; ex director, ex ministro; excombatiente, exsocio, exmarido</td></tr>
+                            <tr><td><strong>extra-</strong></td><td>posición externa</td><td>extramuros, extrarradio, extralimitarse, extraviarse</td></tr>
+                            <tr><td><strong>intra-, intro-</strong></td><td>en el interior de, dentro de</td><td>intramuros, intracelular, introspección</td></tr>
+                            <tr><td><strong>pro-</strong></td><td>delante de, hacia adelante</td><td>proponer, proclamar, promover</td></tr>
+                            <tr><td><strong>pos(t)-, retro-, re-</strong></td><td>detrás, hacia atrás</td><td>postdorsal, retrovisor</td></tr>
+                            <tr><td><strong>sobre-</strong></td><td>encima, exceso</td><td>sobrenatural, sobrevolar, sobreproteger, sobrealimentar</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>b) Prefijos temporales</h4>
+                <p>Indican en qué momento se produce algo o con qué continuidad.</p>
+                <div class="tabla-compleja">
+                    <table>
+                        <thead><tr><th>Prefijo</th><th>Significado</th><th>Ejemplos</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>ante-</strong></td><td>anterioridad</td><td>anteayer, anteanoche, antepasado</td></tr>
+                            <tr><td><strong>pos(t)-</strong></td><td>posterioridad</td><td>posguerra, posgrado, postoperatorio, posmoderno</td></tr>
+                            <tr><td><strong>pre-</strong></td><td>con anterioridad</td><td>predeterminar, preoperatorio</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>c) Prefijos negativos</h4>
+                <p>Niegan algún significado e invierten el sentido de la palabra.</p>
+                <div class="tabla-compleja">
+                    <table>
+                        <thead><tr><th>Prefijo</th><th>Significado</th><th>Ejemplos</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>a(n)-</strong></td><td>contrariedad, privación</td><td>agramatical, acatólico, analérgico; anovulación, asimetría</td></tr>
+                            <tr><td><strong>anti-</strong></td><td>oposición o anulación</td><td>antiaborto, antideportivo, anticaspa, antiasmático</td></tr>
+                            <tr><td><strong>des-</strong></td><td>contrariedad, privación</td><td>desobedecer, desaprovechar, desleal, desigual, desconfiar, desestimar; desorden, desconfianza</td></tr>
+                            <tr><td><strong>in-</strong></td><td>contrariedad</td><td>incomunicar, incumplir, incapacitar, inhabilitar, inmoral</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>d) Prefijos gradativos</h4>
+                <p>Pueden utilizarse como intensivos y valorativos.</p>
+                <div class="tabla-compleja">
+                    <table>
+                        <thead><tr><th>Prefijo</th><th>Significado</th><th>Ejemplos</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>hiper-, macro-, maxi-, mega-, super-</strong></td><td>magnitud mayor</td><td>hipermercado, maxifalda, megaciudad, superpiso, hiperoferta, macrocefalo</td></tr>
+                            <tr><td><strong>hipo-</strong></td><td>déficit</td><td>hipotermia, hipoglucemia</td></tr>
+                            <tr><td><strong>micro-, mini-</strong></td><td>tamaño menor</td><td>microficha, minicadena</td></tr>
+                            <tr><td><strong>multi-</strong></td><td>mucho, varios</td><td>multimillonario, multicine, multicanal</td></tr>
+                            <tr><td><strong>nano-</strong></td><td>muy diminuto</td><td>nanosegundo, nanotecnología</td></tr>
+                            <tr><td><strong>pluri-</strong></td><td>varios</td><td>pluricultural, pluridimensional</td></tr>
+                            <tr><td><strong>poli-</strong></td><td>varios</td><td>polivalente, poliglota, polideportivo</td></tr>
+                            <tr><td><strong>ultra-</strong></td><td>mucho o radical</td><td>ultrarápido, ultraderecha, ultraconservador</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ========================================================== -->
+                <!-- FLASHCARD (2)                                               -->
+                <!-- ========================================================== -->
+                <div class="flashcard">
+                    <h4>📇 Flashcard · Repaso Rápido</h4>
+                    <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                    <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                        <p><strong>"Tipos de prefijos según su significado"</strong></p>
+                        <p class="flashcard-respuesta" style="display:none;">Locacionales (lugar), temporales (tiempo), negativos (negación), gradativos (intensidad o tamaño).</p>
+                    </div>
+                    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                        <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                        <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                    </div>
+                    <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                        📊 Progreso: <span id="flashcardProgreso2">0</span> de <span id="flashcardTotal2">12</span> flashcards
+                    </p>
+                </div>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- 4.2 PREFIJOS POR ORIGEN                                    -->
+            <!-- ========================================================== -->
+            <section id="prefijos-origen">
+                <h3>4.2 Prefijos de origen griego y latino</h3>
+
+                <h4>Prefijos de origen griego</h4>
+                <div class="tabla-compleja">
+                    <table>
+                        <thead><tr><th>Prefijo</th><th>Significado</th><th>Ejemplo</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>archi-</strong></td><td>el más, el mejor, el primero</td><td>archisabido: muy sabido</td></tr>
+                            <tr><td><strong>auto-</strong></td><td>uno mismo</td><td>autodidacta: quien se enseña a sí mismo</td></tr>
+                            <tr><td><strong>cata-</strong></td><td>hacia abajo, caída, degeneración</td><td>catabolismo: degradación de sustancias para obtener otras más simples</td></tr>
+                            <tr><td><strong>di-, dia-</strong></td><td>opuesto, contrario</td><td>disentir: con opinión contraria; diagonal: línea recta que va de un vértice a otro</td></tr>
+                            <tr><td><strong>ecto-</strong></td><td>fuera de</td><td>ectoplasma: citoplasma situado en la periferia de una célula</td></tr>
+                            <tr><td><strong>en-</strong></td><td>dentro</td><td>encarcelar: meter a alguien en la cárcel</td></tr>
+                            <tr><td><strong>endo-</strong></td><td>internamente</td><td>endocardio: membrana que recubre el interior del corazón</td></tr>
+                            <tr><td><strong>epi-</strong></td><td>sobre o por encima</td><td>epidermis: capa exterior de la piel situada por encima de la dermis</td></tr>
+                            <tr><td><strong>eu-</strong></td><td>bien</td><td>eutanasia: bien morir</td></tr>
+                            <tr><td><strong>exo-</strong></td><td>fuera de</td><td>exoesqueleto: esqueleto que se sitúa fuera del cuerpo</td></tr>
+                            <tr><td><strong>meta-</strong></td><td>cambio, mutación</td><td>metamorfosis: cambio de forma y/o función</td></tr>
+                            <tr><td><strong>para-</strong></td><td>junto a o contra</td><td>paranormal: fuera de lo normal</td></tr>
+                            <tr><td><strong>peri-</strong></td><td>alrededor</td><td>pericardio: saco membranoso que envuelve al corazón</td></tr>
+                            <tr><td><strong>sin-</strong></td><td>en unión con, junto o simultáneamente</td><td>sincronía: coincidencia de hechos o fenómenos en el tiempo</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Prefijos de origen latino</h4>
+                <div class="tabla-compleja">
+                    <table>
+                        <thead><tr><th>Prefijo</th><th>Significado</th><th>Ejemplo</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>ab-, abs-</strong></td><td>separar, evitar</td><td>abstemio: quien no consume bebidas alcohólicas</td></tr>
+                            <tr><td><strong>bi-, bis-</strong></td><td>dos o doble</td><td>bifurcación: la división en dos partes o ramales</td></tr>
+                            <tr><td><strong>circun-</strong></td><td>alrededor</td><td>circundar: alrededor de algo o alguien</td></tr>
+                            <tr><td><strong>cuadri-, cuatri-</strong></td><td>cuatro</td><td>cuádriceps: que tiene cuatro cabezas como algunos músculos</td></tr>
+                            <tr><td><strong>deci-</strong></td><td>diez</td><td>decigramo: décima parte de un gramo</td></tr>
+                            <tr><td><strong>extra-</strong></td><td>que rebasa, excede o está fuera</td><td>extramuros: fuera del recinto de una población amurallada</td></tr>
+                            <tr><td><strong>infra-</strong></td><td>por debajo de</td><td>infrahumano: menos o más bajo que humano</td></tr>
+                            <tr><td><strong>inter-</strong></td><td>dentro de, en medio o entre</td><td>interacción: acción que se ejerce recíprocamente entre dos o más agentes</td></tr>
+                            <tr><td><strong>intra-</strong></td><td>dentro</td><td>intramuros: dentro de una ciudad</td></tr>
+                            <tr><td><strong>octa-, octo-</strong></td><td>ocho</td><td>octava: que sigue en orden al séptimo</td></tr>
+                            <tr><td><strong>omni-</strong></td><td>que abarca todo</td><td>omnipresente: que está en todas partes</td></tr>
+                            <tr><td><strong>pen-</strong></td><td>casi</td><td>penúltimo: ocupa el lugar anterior al último</td></tr>
+                            <tr><td><strong>pro-</strong></td><td>en lugar de, delante de</td><td>pronombre: en lugar del nombre</td></tr>
+                            <tr><td><strong>quinqu-</strong></td><td>de cinco</td><td>quinquenal: que dura cinco años</td></tr>
+                            <tr><td><strong>retro-</strong></td><td>hacia atrás</td><td>retroactivo: que obra sobre lo pasado</td></tr>
+                            <tr><td><strong>sub-</strong></td><td>bajo</td><td>subsuelo: terreno que está debajo de una capa de tierra</td></tr>
+                            <tr><td><strong>trans-, tras-</strong></td><td>que atraviesa, más allá de, al otro lado</td><td>transoceánico: que atraviesa un océano; traslúcido: que deja atravesar la luz</td></tr>
+                            <tr><td><strong>tri-</strong></td><td>tres</td><td>tríceps: que tiene tres lugares de origen</td></tr>
+                            <tr><td><strong>uni-</strong></td><td>uno</td><td>unicelular: de una sola célula</td></tr>
+                            <tr><td><strong>viz-, vice-</strong></td><td>en lugar de, que hace las veces de</td><td>vicepresidente: persona que suple al presidente</td></tr>
+                            <tr><td><strong>yuxta-</strong></td><td>junto a, cerca de</td><td>yuxtaposición: poner algo junto o inmediato a otra cosa</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- 4.3 SUFIJOS POR ORIGEN                                     -->
+            <!-- ========================================================== -->
+            <section id="sufijos-origen">
+                <h3>4.3 Sufijos de origen griego y latino</h3>
+
+                <h4>Sufijos de origen griego</h4>
+                <div class="tabla-compleja">
+                    <table>
+                        <thead><tr><th>Sufijo</th><th>Significado</th><th>Ejemplo</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>-agónico</strong></td><td>lucha, combate</td><td>antagónico: contrariedad, rivalidad</td></tr>
+                            <tr><td><strong>-atra, -atría</strong></td><td>curación, estudio especializado en medicina</td><td>pediatra: médico que se ocupa de la salud y enfermedades de los niños; geriatría: especialidad médica dedicada al estudio de la prevención, diagnóstico, tratamiento y rehabilitación de enfermedades en adultos mayores</td></tr>
+                            <tr><td><strong>-céfalo</strong></td><td>cabeza</td><td>acéfalo: desprovisto de cabeza</td></tr>
+                            <tr><td><strong>-ciclo</strong></td><td>algo circular</td><td>hemiciclo: salón de forma semicircular</td></tr>
+                            <tr><td><strong>-cosmo</strong></td><td>mundo, universo</td><td>macrocosmos: el universo considerado como un todo organizado y armónico</td></tr>
+                            <tr><td><strong>-sofía</strong></td><td>sabiduría</td><td>filosofía: conjunto de saberes para establecer, de manera racional, los principios más generales que organizan y orientan el conocimiento de la realidad</td></tr>
+                            <tr><td><strong>-teca</strong></td><td>caja o archivo</td><td>videoteca: lugar o archivo donde se almacenan videos</td></tr>
+                            <tr><td><strong>-tecnia</strong></td><td>arte o ciencia</td><td>mercadotecnia: política comercial de una empresa</td></tr>
+                            <tr><td><strong>-teo</strong></td><td>Dios</td><td>ateo: que no cree en Dios</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Sufijos de origen latino</h4>
+                <div class="tabla-compleja">
+                    <table>
+                        <thead><tr><th>Sufijo</th><th>Significado</th><th>Ejemplo</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>-áceo</strong></td><td>pertenencia</td><td>crustáceos: clase de animales pertenecientes a los artrópodos</td></tr>
+                            <tr><td><strong>-cida</strong></td><td>que mata</td><td>homicida: que causa la muerte a una persona</td></tr>
+                            <tr><td><strong>-cola</strong></td><td>cultivo</td><td>agrícola: relativo al cultivo de la tierra</td></tr>
+                            <tr><td><strong>-cultura</strong></td><td>arte de cultivar</td><td>agricultura: cultivo de la tierra</td></tr>
+                            <tr><td><strong>-ducción</strong></td><td>que conduce</td><td>deducción: método por el cual se procede lógicamente de lo universal a lo particular</td></tr>
+                            <tr><td><strong>-forme</strong></td><td>que tiene forma de</td><td>deforme: desproporcionado o irregular en la forma</td></tr>
+                            <tr><td><strong>-fuga o -fugo</strong></td><td>que huye</td><td>prófugo: persona que huye de la justicia</td></tr>
+                            <tr><td><strong>-or</strong></td><td>formación de nombres</td><td>doctor: persona que ha recibido el más alto grado académico universitario</td></tr>
+                            <tr><td><strong>-pedo</strong></td><td>indica que tiene pies</td><td>bípedo: de dos pies</td></tr>
+                            <tr><td><strong>-voro</strong></td><td>comer</td><td>herbívoro: animal que se alimenta de hierbas</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- FLASHCARD (3)                                               -->
+            <!-- ========================================================== -->
+            <div class="flashcard">
+                <h4>📇 Flashcard · Repaso Rápido</h4>
+                <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                    <p><strong>"Diferencia entre prefijo y sufijo"</strong></p>
+                    <p class="flashcard-respuesta" style="display:none;">Prefijo: morfema derivativo que se <strong>antepone</strong> a la raíz (ej. <em>pre-</em>fijo). Sufijo: morfema derivativo que se <strong>pospone</strong> a la raíz (ej. flor-<em>ero</em>).</p>
+                </div>
+                <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                    <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                    <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                </div>
+                <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                    📊 Progreso: <span id="flashcardProgreso3">0</span> de <span id="flashcardTotal3">12</span> flashcards
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 5. TERMINOLOGÍA MÉDICA                                     -->
+        <!-- ========================================================== -->
+        <section id="terminologia-medica">
+            <h2>5. Terminología médica</h2>
+            <p>Toda ciencia necesita una terminología propia y adecuada a sus necesidades de expresión e información. En las ciencias de la salud, la terminología médica tiene como objetivo utilizar términos precisos de los conceptos e ideas del mundo de la medicina. Cada término debe poseer un significado único aceptado por la comunidad científica, que facilite el intercambio de información a nivel internacional.</p>
+            <p>Las palabras o términos médicos están formados por un <strong>lexema</strong> (raíz) y por <strong>morfemas derivativos</strong> (prefijos y sufijos que proceden del griego y latín) que permiten la formación de nuevas palabras.</p>
+
+            <h3>5.1 Lexemas o raíces en medicina</h3>
+            <div class="tabla-compleja">
+                <table>
+                    <thead><tr><th>Lexema</th><th>Significado</th><th>Ejemplo</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Antro</strong></td><td>ser humano</td><td>antropofagia: canibalismo</td></tr>
+                        <tr><td><strong>Bio</strong></td><td>vida</td><td>biopsia: examen y extirpación de una porción de tejido de un cuerpo vivo con fines diagnósticos</td></tr>
+                        <tr><td><strong>Fisio</strong></td><td>función</td><td>fisiología: estudio de los procesos y funciones del cuerpo humano</td></tr>
+                        <tr><td><strong>Hidra</strong></td><td>agua, sudor</td><td>hidrocéfalo: acumulación de líquido en los ventrículos cerebrales del encéfalo</td></tr>
+                        <tr><td><strong>Histo</strong></td><td>tejido</td><td>histología: estudio de los tejidos orgánicos</td></tr>
+                        <tr><td><strong>Lip-, adip-, esteato-</strong></td><td>grasa</td><td>lipemia: presencia anormal de lípidos en la sangre; esteatorrea: cantidades de grasa mayores a lo normal en las heces</td></tr>
+                        <tr><td><strong>Mico</strong></td><td>hongo</td><td>micosis: afección producida por hongos</td></tr>
+                        <tr><td><strong>Organo</strong></td><td>estructura del cuerpo que realiza una función específica</td><td>organoide: semejante o parecido a un órgano</td></tr>
+                        <tr><td><strong>Tanato</strong></td><td>muerte</td><td>tanatología: conjunto de conocimientos relativos a la muerte y las alteraciones que produce en el cuerpo</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>5.2 Prefijos utilizados en medicina</h3>
+            <div class="tabla-compleja">
+                <table>
+                    <thead><tr><th>Prefijo</th><th>Significado</th><th>Ejemplo</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>a-</strong></td><td>privación, negación</td><td>afonía: pérdida o disminución de la voz</td></tr>
+                        <tr><td><strong>aden-</strong></td><td>glándula</td><td>adenoma: tumor glandular</td></tr>
+                        <tr><td><strong>aero-</strong></td><td>aire</td><td>aerobio: organismo que vive en presencia de aire</td></tr>
+                        <tr><td><strong>angio-</strong></td><td>vaso</td><td>angiotomía: disección del vaso</td></tr>
+                        <tr><td><strong>artr-</strong></td><td>articulación</td><td>artralgia: dolor en una articulación</td></tr>
+                        <tr><td><strong>apo-</strong></td><td>fuera de, alejado</td><td>apósito: material o preparación aplicada sobre una herida</td></tr>
+                        <tr><td><strong>cardio-</strong></td><td>corazón</td><td>cardiomegalia: aumento de tamaño del corazón</td></tr>
+                        <tr><td><strong>cefalo-</strong></td><td>cabeza</td><td>cefalea: dolor de cabeza</td></tr>
+                        <tr><td><strong>cisto-</strong></td><td>vejiga urinaria</td><td>cistoscopia: examen visual del interior de la vejiga urinaria</td></tr>
+                        <tr><td><strong>cito-</strong></td><td>célula</td><td>citocida: que destruye células</td></tr>
+                        <tr><td><strong>eritro-</strong></td><td>rojo</td><td>eritrocito: glóbulo rojo</td></tr>
+                        <tr><td><strong>cole-</strong></td><td>bilis o vías biliares</td><td>coledocolitiasis: presencia de cálculos en el conducto biliar</td></tr>
+                        <tr><td><strong>condro-</strong></td><td>cartílago</td><td>condroblasto: célula productora de cartílago</td></tr>
+                        <tr><td><strong>corio-</strong></td><td>membrana</td><td>corioamnionitis: inflamación de las membranas fetales</td></tr>
+                        <tr><td><strong>dacrio-</strong></td><td>lágrimas</td><td>dacriohemorrea: secreción de lágrimas mezcladas con sangre</td></tr>
+                        <tr><td><strong>carcino-</strong></td><td>cáncer</td><td>carcinoma: tumor celular maligno</td></tr>
+                        <tr><td><strong>crio-</strong></td><td>frío</td><td>crioterapia: procedimiento terapéutico basado en el empleo de bajas temperaturas</td></tr>
+                        <tr><td><strong>etio-</strong></td><td>causa, origen</td><td>etiología: estudio de las causas de la enfermedad</td></tr>
+                        <tr><td><strong>faco-</strong></td><td>lente, cristalino</td><td>facoele: hernia del cristalino</td></tr>
+                        <tr><td><strong>fleb-</strong></td><td>vena</td><td>fleborrexis: rotura de una vena; flebosclerosis: endurecimiento fibroso de las venas</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>5.3 Sufijos utilizados en medicina</h3>
+            <div class="tabla-compleja">
+                <table>
+                    <thead><tr><th>Sufijo</th><th>Significado</th><th>Ejemplo</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>-algia</strong></td><td>dolor</td><td>gastralgia: dolor en el estómago</td></tr>
+                        <tr><td><strong>-blasto</strong></td><td>célula generadora</td><td>eritroblasto: glóbulo rojo joven en su estado inmaduro, nucleado</td></tr>
+                        <tr><td><strong>-ectomía</strong></td><td>extirpación quirúrgica de una estructura u órgano</td><td>apendicectomía: extirpación quirúrgica del apéndice</td></tr>
+                        <tr><td><strong>-emia</strong></td><td>relativo a la sangre</td><td>glucemia: presencia de azúcar en sangre</td></tr>
+                        <tr><td><strong>-(e)stasia</strong></td><td>detención</td><td>hemostasia: detención de la emanación de sangre</td></tr>
+                        <tr><td><strong>-(e)stesia</strong></td><td>sensibilidad</td><td>anestesia: falta de sensibilidad</td></tr>
+                        <tr><td><strong>-fagia</strong></td><td>comer, deglutir</td><td>coprofagia: ingestión de heces</td></tr>
+                        <tr><td><strong>-fasia</strong></td><td>palabra, lenguaje</td><td>afasia: deficiencia en la capacidad de hablar o escribir</td></tr>
+                        <tr><td><strong>-fobia</strong></td><td>temor</td><td>agorafobia: temor por hallarse solo en un espacio extenso y libre</td></tr>
+                        <tr><td><strong>-gnosia</strong></td><td>conocimiento, percepción</td><td>agnosia: imposibilidad de reconocer personas u objetos</td></tr>
+                        <tr><td><strong>-grafía</strong></td><td>representación gráfica</td><td>electrocardiografía: registro gráfico de las corrientes eléctricas provocadas por la actividad del corazón</td></tr>
+                        <tr><td><strong>-itis</strong></td><td>inflamación</td><td>hepatitis: inflamación del hígado</td></tr>
+                        <tr><td><strong>-lisis</strong></td><td>disolución, liberación, destrucción</td><td>hemólisis: destrucción de los glóbulos rojos y liberación de hemoglobina</td></tr>
+                        <tr><td><strong>-logía</strong></td><td>ciencia, estudio de</td><td>hematología: ciencia que estudia la sangre</td></tr>
+                        <tr><td><strong>-malacia</strong></td><td>reblandecimiento</td><td>osteomalacia: reblandecimiento de los huesos</td></tr>
+                        <tr><td><strong>-megalia</strong></td><td>agrandamiento</td><td>esplenomegalia: agrandamiento del bazo</td></tr>
+                        <tr><td><strong>-odinia</strong></td><td>dolor</td><td>miodinia: dolor muscular</td></tr>
+                        <tr><td><strong>-oma</strong></td><td>tumor</td><td>fibroma: tumor de carácter fibroso</td></tr>
+                        <tr><td><strong>-osis</strong></td><td>degeneración de estructuras</td><td>artrosis: enfermedad degenerativa de la articulación</td></tr>
+                        <tr><td><strong>-ostomía</strong></td><td>abertura artificial</td><td>colostomía: abertura quirúrgica permanente en el colon a través de la pared abdominal</td></tr>
+                        <tr><td><strong>-penia</strong></td><td>deficiencia, disminución</td><td>leucocitopenia: reducción del número de leucocitos en la sangre</td></tr>
+                        <tr><td><strong>-plastia</strong></td><td>reconstrucción</td><td>rinoplastia: reconstrucción de la nariz</td></tr>
+                        <tr><td><strong>-pnea</strong></td><td>respiración</td><td>apnea: falta de respiración</td></tr>
+                        <tr><td><strong>-poyesis</strong></td><td>formación de</td><td>hematopoyesis: formación de hematíes</td></tr>
+                        <tr><td><strong>-rafia</strong></td><td>reparación, sutura de</td><td>herniorrafia: sutura de una hernia</td></tr>
+                        <tr><td><strong>-ragia</strong></td><td>flujo, salida de</td><td>hemorragia: salida de sangre</td></tr>
+                        <tr><td><strong>-rea</strong></td><td>descarga abundante</td><td>rinorrea: descarga de secreciones nasales</td></tr>
+                        <tr><td><strong>-ritmia</strong></td><td>ritmo</td><td>arritmia: sin ritmo</td></tr>
+                        <tr><td><strong>-scopia</strong></td><td>visualización</td><td>endoscopia: visualización interna</td></tr>
+                        <tr><td><strong>-terapia</strong></td><td>curación, tratamiento</td><td>oxigenoterapia: tratamiento con oxígeno</td></tr>
+                        <tr><td><strong>-térmico</strong></td><td>calor</td><td>hipotérmico: temperatura inferior a la normal</td></tr>
+                        <tr><td><strong>-tomía</strong></td><td>acción de cortar</td><td>gastrectomía: intervención quirúrgica del estómago</td></tr>
+                        <tr><td><strong>-tomo</strong></td><td>sección</td><td>tomografía: radiografía de una sección del cuerpo</td></tr>
+                        <tr><td><strong>-trofia</strong></td><td>desarrollo, crecimiento</td><td>atrofia: sin desarrollo</td></tr>
+                        <tr><td><strong>-ultación</strong></td><td>acto de</td><td>auscultación: examinar escuchando los sonidos producidos por los órganos</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ========================================================== -->
+            <!-- FLASHCARD (4)                                               -->
+            <!-- ========================================================== -->
+            <div class="flashcard">
+                <h4>📇 Flashcard · Repaso Rápido</h4>
+                <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                    <p><strong>"Sufijos médicos comunes"</strong></p>
+                    <p class="flashcard-respuesta" style="display:none;">-itis (inflamación), -ectomía (extirpación), -algia (dolor), -logía (estudio), -emia (sangre), -oma (tumor).</p>
+                </div>
+                <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                    <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                    <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                </div>
+                <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                    📊 Progreso: <span id="flashcardProgreso4">0</span> de <span id="flashcardTotal4">12</span> flashcards
+                </p>
+            </div>
+
+            <!-- Active Recall -->
+            <div class="active-recall">
+                <h4>❓ Active Recall</h4>
+                <p style="color:#cbd5e1;"><strong>¿Qué significa el sufijo "-ectomía" y qué ejemplo de término médico lo utiliza?</strong></p>
+                <details style="margin-top:10px; cursor:pointer; color:#94a3b8;">
+                    <summary style="font-weight:bold; color:#38bdf8;">👆 Ver respuesta</summary>
+                    <p style="color:#22c55e; margin-top:8px; padding:12px; background:#1e293b; border-radius:8px;">
+                        <strong>-ectomía</strong> significa "extirpación quirúrgica de una estructura u órgano". Ejemplo: <strong>apendicectomía</strong> (extirpación del apéndice), <strong>gastrectomía</strong> (extirpación del estómago).
+                    </p>
+                </details>
+            </div>
+
+            <!-- Mapa Mental -->
+            <div class="mapa-mental">
+                <h4>🧠 Mapa Mental: Morfología y Terminología Médica</h4>
+                <div class="mapa">
+                    <div class="mapa-nodo principal">📖 MORFOLOGÍA</div>
+                    <div class="mapa-hijos" style="flex-wrap: wrap; gap: 15px;">
+                        <div class="mapa-nodo" style="min-width: 100px;">Palabra<br><small>Lexema + Morfemas</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">Morfemas flexivos<br><small>Género, número, tiempo</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">Morfemas derivativos<br><small>Prefijos (antes) y Sufijos (después)</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">Prefijos<br><small>Locacionales, temporales, negativos, gradativos</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">Terminología médica<br><small>Lexemas + prefijos/sufijos griegos y latinos</small></div>
+                    </div>
+                </div>
+                <p style="text-align:center; color:#94a3b8; font-size:13px; margin-top:10px;">
+                    🔹 La morfología permite entender la estructura y formación de las palabras, clave para la terminología médica.
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 6. AUTOEVALUACIÓN                                          -->
+        <!-- ========================================================== -->
+        <section id="autoevaluacion">
+            <h2>6. Preguntas de Autoevaluación</h2>
+
+            <div class="autoevaluacion">
+                <h3>📝 Preguntas del PDF</h3>
+                <ol style="list-style-type: decimal; padding-left: 20px;">
+                    <li><strong>La morfología estudia:</strong><br>
+                        a) Los elementos del sintagma<br>
+                        b) La estructura de las palabras y sus variaciones<br>
+                        c) El significado y significado de las palabras<br>
+                        d) Las funciones que cumplen las palabras<br>
+                        e) La palabra como unidad indivisible
+                    </li>
+                    <li><strong>Desde el punto de vista morfológico, la palabra está formada por:</strong><br>
+                        a) significante y significado<br>
+                        b) lexema y morfemas<br>
+                        c) sujeto y predicado<br>
+                        d) morfema y prefijos<br>
+                        e) sílabas e hiatos
+                    </li>
+                    <li><strong>Los morfemas derivativos son:</strong><br>
+                        a) afijos y lexemas<br>
+                        b) locacionales y temporales<br>
+                        c) prefijos y sufijos<br>
+                        d) interfijos y locacionales<br>
+                        e) lexemas e interfijos
+                    </li>
+                    <li><strong>El prefijo pre- significa:</strong><br>
+                        a) posterioridad<br>
+                        b) con anterioridad<br>
+                        c) contrariedad<br>
+                        d) después de<br>
+                        e) delante de
+                    </li>
+                    <li><strong>El prefijo que denota "contrariedad" es:</strong><br>
+                        a) des-<br>
+                        b) anti-<br>
+                        c) a-<br>
+                        d) an-<br>
+                        e) ante-
+                    </li>
+                    <li><strong>"mega-" es un prefijo que significa:</strong><br>
+                        a) déficit<br>
+                        b) varios<br>
+                        c) mucho<br>
+                        d) magnitud mayor<br>
+                        e) muy diminuto
+                    </li>
+                    <li><strong>La capa exterior de la piel situada por encima de la dermis es la:</strong><br>
+                        a) epidermis<br>
+                        b) endodermis<br>
+                        c) exodermis<br>
+                        d) hipodermis<br>
+                        e) hiperdermis
+                    </li>
+                    <li><strong>El sufijo "-cosmo" hace referencia a:</strong><br>
+                        a) universo<br>
+                        b) ciudad<br>
+                        c) población<br>
+                        d) metrópoli<br>
+                        e) galaxia
+                    </li>
+                    <li><strong>El prefijo "crio-" significa:</strong><br>
+                        a) tibio<br>
+                        b) templado<br>
+                        c) frío<br>
+                        d) congelado<br>
+                        e) gélido
+                    </li>
+                    <li><strong>La palabra "fleborrexis" significa:</strong><br>
+                        a) rotura de una vena<br>
+                        b) sutura de una hernia<br>
+                        c) intervención quirúrgica del estómago<br>
+                        d) sin desarrollo<br>
+                        e) que destruye células
+                    </li>
+                </ol>
+
+                <details style="margin-top:15px; cursor:pointer; color:#94a3b8;">
+                    <summary style="font-weight:bold; color:#38bdf8;">👆 Ver respuestas sugeridas</summary>
+                    <div style="background:#0f172a; padding:15px; border-radius:10px; margin-top:10px; color:#e2e8f0; font-size:14px;">
+                        <p><strong>1.</strong> b) La estructura de las palabras y sus variaciones</p>
+                        <p><strong>2.</strong> b) lexema y morfemas</p>
+                        <p><strong>3.</strong> c) prefijos y sufijos</p>
+                        <p><strong>4.</strong> b) con anterioridad</p>
+                        <p><strong>5.</strong> a) des- (también anti-, pero des- es el ejemplo del PDF)</p>
+                        <p><strong>6.</strong> d) magnitud mayor</p>
+                        <p><strong>7.</strong> a) epidermis</p>
+                        <p><strong>8.</strong> a) universo</p>
+                        <p><strong>9.</strong> c) frío</p>
+                        <p><strong>10.</strong> a) rotura de una vena</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Feynman -->
+            <div class="feynman" style="margin-top:30px;">
+                <h4>🗣️ Explica este tema (Método Feynman)</h4>
+                <p><em>"Imagina que le enseñas a un niño de 5 años: ¿cómo se forman las palabras y qué significan los prefijos y sufijos?"</em></p>
+                <textarea id="feynmanTexto" placeholder="Escribe tu explicación aquí..."></textarea>
+                <button onclick="guardarFeynman()">💾 Guardar explicación</button>
+                <p id="feynmanGuardado" style="color:#22c55e; margin-top:8px; display:none;">✅ Explicación guardada</p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 7. MINI EXAMEN                                             -->
+        <!-- ========================================================== -->
+        <section id="examen">
+            <h2>7. Mini Examen (10 preguntas)</h2>
+            <p>Responde y haz clic en <strong>"Ver respuestas"</strong>.</p>
+
+            <div class="examen">
+                <!-- Pregunta 1 -->
+                <div class="pregunta">
+                    <p><strong>1. ¿Qué estudia la morfología?</strong></p>
+                    <label><input type="radio" name="q1" value="0"> A) El significado de las palabras</label>
+                    <label><input type="radio" name="q1" value="1"> B) La estructura y variaciones de las palabras</label>
+                    <label><input type="radio" name="q1" value="2"> C) La pronunciación de las palabras</label>
+                    <label><input type="radio" name="q1" value="3"> D) El origen de las palabras</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) La estructura y variaciones de las palabras</div>
+                </div>
+                <!-- Pregunta 2 -->
+                <div class="pregunta">
+                    <p><strong>2. La raíz o base de una palabra se llama:</strong></p>
+                    <label><input type="radio" name="q2" value="0"> A) Morfema</label>
+                    <label><input type="radio" name="q2" value="1"> B) Lexema</label>
+                    <label><input type="radio" name="q2" value="2"> C) Prefijo</label>
+                    <label><input type="radio" name="q2" value="3"> D) Sufijo</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) Lexema</div>
+                </div>
+                <!-- Pregunta 3 -->
+                <div class="pregunta">
+                    <p><strong>3. Los morfemas que aportan nociones gramaticales (género, número, tiempo) son:</strong></p>
+                    <label><input type="radio" name="q3" value="0"> A) Derivativos</label>
+                    <label><input type="radio" name="q3" value="1"> B) Flexivos</label>
+                    <label><input type="radio" name="q3" value="2"> C) Prefijos</label>
+                    <label><input type="radio" name="q3" value="3"> D) Sufijos</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) Flexivos</div>
+                </div>
+                <!-- Pregunta 4 -->
+                <div class="pregunta">
+                    <p><strong>4. El prefijo "ante-" significa:</strong></p>
+                    <label><input type="radio" name="q4" value="0"> A) Detrás de</label>
+                    <label><input type="radio" name="q4" value="1"> B) Delante de</label>
+                    <label><input type="radio" name="q4" value="2"> C) Contrariedad</label>
+                    <label><input type="radio" name="q4" value="3"> D) Exceso</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) Delante de</div>
+                </div>
+                <!-- Pregunta 5 -->
+                <div class="pregunta">
+                    <p><strong>5. El sufijo "-itis" en medicina indica:</strong></p>
+                    <label><input type="radio" name="q5" value="0"> A) Tumor</label>
+                    <label><input type="radio" name="q5" value="1"> B) Dolor</label>
+                    <label><input type="radio" name="q5" value="2"> C) Inflamación</label>
+                    <label><input type="radio" name="q5" value="3"> D) Extirpación</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: C) Inflamación</div>
+                </div>
+                <!-- Pregunta 6 -->
+                <div class="pregunta">
+                    <p><strong>6. ¿Qué prefijo significa "magnitud mayor"?</strong></p>
+                    <label><input type="radio" name="q6" value="0"> A) micro-</label>
+                    <label><input type="radio" name="q6" value="1"> B) mega-</label>
+                    <label><input type="radio" name="q6" value="2"> C) hipo-</label>
+                    <label><input type="radio" name="q6" value="3"> D) mini-</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) mega-</div>
+                </div>
+                <!-- Pregunta 7 -->
+                <div class="pregunta">
+                    <p><strong>7. "Epidermis" significa:</strong></p>
+                    <label><input type="radio" name="q7" value="0"> A) Capa interior de la piel</label>
+                    <label><input type="radio" name="q7" value="1"> B) Capa exterior de la piel</label>
+                    <label><input type="radio" name="q7" value="2"> C) Capa media de la piel</label>
+                    <label><input type="radio" name="q7" value="3"> D) Músculo de la piel</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) Capa exterior de la piel</div>
+                </div>
+                <!-- Pregunta 8 -->
+                <div class="pregunta">
+                    <p><strong>8. El sufijo "-logía" significa:</strong></p>
+                    <label><input type="radio" name="q8" value="0"> A) Estudio de</label>
+                    <label><input type="radio" name="q8" value="1"> B) Dolor</label>
+                    <label><input type="radio" name="q8" value="2"> C) Inflamación</label>
+                    <label><input type="radio" name="q8" value="3"> D) Tumor</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: A) Estudio de</div>
+                </div>
+                <!-- Pregunta 9 -->
+                <div class="pregunta">
+                    <p><strong>9. "Hepatitis" significa:</strong></p>
+                    <label><input type="radio" name="q9" value="0"> A) Dolor de hígado</label>
+                    <label><input type="radio" name="q9" value="1"> B) Inflamación del hígado</label>
+                    <label><input type="radio" name="q9" value="2"> C) Tumor del hígado</label>
+                    <label><input type="radio" name="q9" value="3"> D) Extirpación del hígado</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) Inflamación del hígado</div>
+                </div>
+                <!-- Pregunta 10 -->
+                <div class="pregunta">
+                    <p><strong>10. El prefijo "cardio-" se refiere a:</strong></p>
+                    <label><input type="radio" name="q10" value="0"> A) Cabeza</label>
+                    <label><input type="radio" name="q10" value="1"> B) Pulmón</label>
+                    <label><input type="radio" name="q10" value="2"> C) Corazón</label>
+                    <label><input type="radio" name="q10" value="3"> D) Riñón</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: C) Corazón</div>
+                </div>
+
+                <button onclick="corregirExamen()">✅ Ver respuestas</button>
+                <div id="resultadoExamen" style="margin-top:15px; font-weight:bold;"></div>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- CUADRO RESUMEN                                              -->
+        <!-- ========================================================== -->
+        <section id="cuadro-resumen" style="margin-top:30px;">
+            <h2>📊 Cuadro Resumen: Morfología y Terminología Médica</h2>
+            <div style="background:#1e293b; border-radius:14px; padding:16px; overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; color:#e2e8f0; font-size:13px;">
+                    <thead>
+                        <tr style="background:#0f172a; color:#38bdf8;">
+                            <th style="padding:8px; border:1px solid #334155;">Concepto</th>
+                            <th style="padding:8px; border:1px solid #334155;">Definición</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Morfología</strong></td><td style="padding:6px; border:1px solid #334155;">Estudio de la estructura y variaciones de las palabras.</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Lexema</strong></td><td style="padding:6px; border:1px solid #334155;">Raíz o base con significado principal (ej. <em>am-</em>).</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Morfemas flexivos</strong></td><td style="padding:6px; border:1px solid #334155;">Aportan género, número, tiempo, modo, persona, aspecto.</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Morfemas derivativos</strong></td><td style="padding:6px; border:1px solid #334155;">Forman nuevas palabras: prefijos (antes) y sufijos (después).</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Prefijos</strong></td><td style="padding:6px; border:1px solid #334155;">Locacionales, temporales, negativos, gradativos. Origen griego/latino.</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Sufijos</strong></td><td style="padding:6px; border:1px solid #334155;">Origen griego o latino, forman sustantivos, adjetivos, etc.</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Terminología médica</strong></td><td style="padding:6px; border:1px solid #334155;">Usa lexemas, prefijos y sufijos del griego y latín para términos precisos.</td></tr>
+                    </tbody>
+                </table>
+                <p style="text-align:center; color:#94a3b8; font-size:12px; margin-top:10px;">📋 Fuente: elaboración propia basada en el PDF</p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- REFERENCIAS BIBLIOGRÁFICAS                                 -->
+        <!-- ========================================================== -->
+        <section id="referencias">
+            <h2>📚 Referencias Bibliográficas</h2>
+            <div class="referencias">
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li>1. Fernández Meléndez, W. (2005). <em>Curso completo de Lengua Española</em> (2ª ed.). Lima: San Marcos.</li>
+                    <li>2. Llorens Camp, M. J. (1998). <em>Gramática española</em>. España: EDIMAT LIBROS S.A.</li>
+                    <li>3. García-Page Sánchez, M. (2011). <em>Cuestiones de Morfología Española. Prácticas de Morfología</em> (2ª ed.). Madrid: Universitaria Ramón Areces.</li>
+                    <li>4. García-Page Sánchez, M. (2014). <em>Cuestiones de Morfología Española</em> (3ª ed.). Madrid: Universitaria Ramón Areces.</li>
+                    <li>5. Kipus editores. (2011). <em>Razonamiento Verbal</em> (4ª de Secundaria, 3ª ed.). Cochabamba: Grupo Editorial Kipus.</li>
+                    <li>6. Cáceres Chaupín, J. <em>Gramática Descriptiva y Funcional</em>. Lima: SAN MARCOS.</li>
+                    <li>7. Saldaña Ambulodegui, E. (2012). <em>Manual de Terminología Médica</em>.</li>
+                    <li>8. Dox, I. G., Melloni, D. J., Eisner, G. M., & Melloni, J. L. (2016). <em>Diccionario Médico Ilustrado</em>. España: MARBAN.</li>
+                </ul>
+                <p style="color:#94a3b8; font-size:12px; margin-top:10px; text-align:center;">
+                    📖 Estas referencias sustentan el contenido desarrollado en esta página.
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- MENÚ DE TEMAS                                              -->
+        <!-- ========================================================== -->
+        <div style="text-align:center; margin-top:30px; padding:20px; border-top:2px solid #334155;">
+            <a href="../temas.html" class="btn-menu" style="
+                display:inline-block;
+                padding:12px 35px;
+                background:var(--primary-color);
+                color:white;
+                border-radius:10px;
+                font-weight:600;
+                text-decoration:none;
+                transition:0.3s;
+            ">📋 Menú de temas</a>
+        </div>
+
+    </main>
+</div>
+
+<!-- ============================================================ -->
+<!-- 4. FOOTER                                                     -->
+<!-- ============================================================ -->
+<footer class="footer-global">
+    <p>📖 LinguaStudy · Simulador de Estudio · 2026</p>
+</footer>
+
+<!-- ============================================================ -->
+<!-- 5. JAVASCRIPT                                                 -->
+<!-- ============================================================ -->
+<script>
+
+    // ========================================================
+    // 1. PROGRESO
+    // ========================================================
+    let progreso = 0;
+    const secciones = document.querySelectorAll('.contenido > section, .contenido > section section');
+    const barra = document.getElementById('barraProgreso');
+    const porcentajeTexto = document.getElementById('porcentajeProgreso');
+
+    function actualizarProgreso() {
+        let vistas = 0;
+        secciones.forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.7) vistas++;
+        });
+        progreso = Math.round((vistas / secciones.length) * 100);
+        barra.style.width = progreso + '%';
+        porcentajeTexto.textContent = progreso;
+    }
+
+    window.addEventListener('scroll', actualizarProgreso);
+    window.addEventListener('load', actualizarProgreso);
+
+    // ========================================================
+    // 2. FLASHCARDS (12 en total)
+    // ========================================================
+    let flashcardsAcertadas = 0;
+    let flashcardsTotales = 0;
+    let totalFlashcards = 12;
+
+    function actualizarFlashcardsGlobal() {
+        document.getElementById('flashcardsCompletadas').textContent = flashcardsAcertadas;
+        document.querySelectorAll('[id^="flashcardProgreso"]').forEach(el => {
+            el.textContent = flashcardsAcertadas;
+        });
+        document.querySelectorAll('[id^="flashcardTotal"]').forEach(el => {
+            el.textContent = totalFlashcards;
+        });
+    }
+
+    function flashcardAcertada() {
+        flashcardsAcertadas++;
+        flashcardsTotales++;
+        actualizarFlashcardsGlobal();
+        alert('✅ ¡Bien!');
+    }
+
+    function flashcardFallada() {
+        flashcardsTotales++;
+        actualizarFlashcardsGlobal();
+        alert('❌ Revísalo después.');
+    }
+
+    actualizarFlashcardsGlobal();
+
+    // ========================================================
+    // 3. FEYNMAN
+    // ========================================================
+    function guardarFeynman() {
+        const texto = document.getElementById('feynmanTexto').value;
+        if (texto.trim().length > 0) {
+            localStorage.setItem('feynman_morfologia_medica', texto);
+            document.getElementById('feynmanGuardado').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('feynmanGuardado').style.display = 'none';
+            }, 3000);
+        } else {
+            alert('✍️ Escribe algo antes de guardar.');
+        }
+    }
+
+    // ========================================================
+    // 4. MINI EXAMEN
+    // ========================================================
+    function corregirExamen() {
+        const preguntas = document.querySelectorAll('.pregunta');
+        let correctas = 0;
+        const respuestasCorrectas = [1, 1, 1, 1, 2, 1, 1, 0, 1, 2];
+
+        preguntas.forEach((p, i) => {
+            const seleccionada = p.querySelector('input:checked');
+            const respuestaDiv = p.querySelector('.respuesta-correcta');
+            respuestaDiv.style.display = 'block';
+
+            if (seleccionada && parseInt(seleccionada.value) === respuestasCorrectas[i]) {
+                correctas++;
+                seleccionada.parentElement.style.color = '#22c55e';
+            } else if (seleccionada) {
+                seleccionada.parentElement.style.color = '#ef4444';
+            }
+        });
+
+        document.getElementById('resultadoExamen').textContent =
+            `📊 Resultado: ${correctas}/10 correctas (${(correctas/10)*100}%)`;
+    }
+
+    // ========================================================
+    // 5. POMODORO
+    // ========================================================
+    let pomodoroActivo = false;
+    let pomodoroTiempo = 25 * 60;
+    let pomodoroIntervalo = null;
+    let pomodoroContador = 1;
+
+    function actualizarPomodoroDisplay() {
+        const min = String(Math.floor(pomodoroTiempo / 60)).padStart(2, '0');
+        const seg = String(pomodoroTiempo % 60).padStart(2, '0');
+        document.getElementById('pomodoroMinutos').textContent = min;
+        document.getElementById('pomodoroSegundos').textContent = seg;
+    }
+
+    function iniciarPomodoro() {
+        if (pomodoroActivo) return;
+        pomodoroActivo = true;
+        pomodoroIntervalo = setInterval(() => {
+            pomodoroTiempo--;
+            actualizarPomodoroDisplay();
+            if (pomodoroTiempo <= 0) {
+                clearInterval(pomodoroIntervalo);
+                pomodoroActivo = false;
+                alert('⏰ ¡Tiempo completado! Descansa 5 minutos.');
+                pomodoroContador++;
+                document.getElementById('pomodoroContador').textContent = pomodoroContador;
+                pomodoroTiempo = 25 * 60;
+                actualizarPomodoroDisplay();
+            }
+        }, 1000);
+    }
+
+    function pausarPomodoro() {
+        clearInterval(pomodoroIntervalo);
+        pomodoroActivo = false;
+    }
+
+    function reiniciarPomodoro() {
+        clearInterval(pomodoroIntervalo);
+        pomodoroActivo = false;
+        pomodoroTiempo = 25 * 60;
+        actualizarPomodoroDisplay();
+    }
+
+    // ========================================================
+    // 6. ÍNDICE - RESALTADO DE SECCIÓN ACTIVA
+    // ========================================================
+    const enlaces = document.querySelectorAll('.indice a');
+
+    window.addEventListener('scroll', () => {
+        let actual = '';
+        secciones.forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < 200) {
+                actual = sec.getAttribute('id');
+            }
+        });
+        enlaces.forEach(enlace => {
+            enlace.parentElement.classList.remove('activo');
+            if (enlace.getAttribute('href') === '#' + actual) {
+                enlace.parentElement.classList.add('activo');
+            }
+        });
+    });
+
+    // ========================================================
+    // 7. SCROLL SUAVE
+    // ========================================================
+    document.querySelectorAll('.indice a').forEach(enlace => {
+        enlace.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.querySelector(enlace.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // ========================================================
+    // 8. TIEMPO DE ESTUDIO (simulado)
+    // ========================================================
+    let tiempoEstudio = 0;
+    setInterval(() => {
+        tiempoEstudio++;
+        document.getElementById('tiempoEstudio').textContent = tiempoEstudio;
+    }, 60000);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Simulador de Examen de Admisión</title>
+
+<link rel="stylesheet" href="estilos.css">
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <h1>Examen por que si </h1>
+
+    <h2>Aqui reprobar es proibido</h2>
+
+    <p class="descripcion">
+        Este simulador contiene preguntas de selección múltiple para ayudarte
+        a prepararte animooooo.
+    </p>
+    <p>posd el examen final sera solo de 60 minutos pero eso mas adelante esto es solo un mensaje</p>
+
+    <div class="info">
+
+        <div class="dato">
+            <h3>Preguntas</h3>
+            <p>60</p>
+        </div>
+
+        <div class="dato">
+            <h3>Tiempo</h3>
+            <p>90 minutos</p>
+        </div>
+
+        <div class="dato">
+            <h3>Intentos</h3>
+            <p>Ilimitados</p>
+        </div>
+
+    </div>
+
+    <div class="instrucciones">
+
+        <h3>Instrucciones</h3>
+
+        <ul>
+            <li>Lee cuidadosamente cada pregunta.</li>
+            <li>Solo existe una respuesta correcta.</li>
+            <li>Puedes cambiar tus respuestas antes de finalizar.</li>
+            <li>El examen finalizará automáticamente cuando el tiempo termine.</li>
+            <li>Al finalizar podrás ver tu puntaje.</li>
+        </ul>
+
+    </div>
+
+    <button id="btnIniciar">
+        Iniciar Examen
+    </button>
+
+</div>
+
+<script>
+
+document.getElementById("btnIniciar").addEventListener("click",function(){
+
+    // Reiniciar examen anterior
+    localStorage.removeItem("respuestasExamen");
+
+
+    // Entrar al examen
+    window.location.href="examen.html";
+
+});
+
+</script>
+
+</body>
+</html>

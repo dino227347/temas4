@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biología - Tema 5: Fisiología Celular</title>
+    <link rel="stylesheet" href="tema-base.css">
+    <style>
+        /* ================================================================
+           PERSONALIZACIÓN PARA BIOLOGÍA (TEMA 5)
+           ================================================================ */
+        :root {
+            --primary-color: #059669;    /* Verde oscuro */
+            --secondary-color: #34d399;  /* Verde claro */
+            --accent-color: #10b981;
+        }
+
+        .tema-header h1::before { content: "🧬 "; }
+        .indice ul li.activo a { background: var(--primary-color); border-left-color: var(--secondary-color); }
+        .barra-interna { background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); }
+        .logo { color: var(--secondary-color); }
+        .nav-global a:hover { color: var(--secondary-color); background: #334155; }
+        .contenido h2 { color: var(--secondary-color); }
+        .indice h3 { color: var(--secondary-color); }
+        .flashcard h4 { color: var(--secondary-color); }
+        .examen button { background: var(--primary-color); }
+        .examen button:hover { background: #047857; }
+        .pomodoro h3 { color: var(--primary-color); }
+        .pomodoro-timer { color: var(--secondary-color); }
+        .mapa-mental h4 { color: var(--secondary-color); }
+        .mapa-nodo.principal { background: var(--primary-color); }
+
+        .definicion-destacada {
+            background: #1e293b;
+            border-left: 4px solid var(--secondary-color);
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin: 16px 0;
+        }
+        .definicion-destacada p { margin: 0; color: #f1f5f9; }
+        .definicion-destacada strong { color: var(--secondary-color); }
+
+        .dato-curioso {
+            background: #0f172a;
+            border: 1px solid var(--secondary-color);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin: 16px 0;
+        }
+        .dato-curioso p { margin: 0; color: #cbd5e1; }
+        .dato-curioso strong { color: var(--secondary-color); }
+
+        .autoevaluacion {
+            background: #1e293b;
+            border: 2px solid var(--secondary-color);
+            border-radius: 14px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .autoevaluacion h3 { color: var(--secondary-color); }
+        .autoevaluacion li { padding: 8px 0; border-bottom: 1px solid #334155; color: #cbd5e1; }
+        .autoevaluacion li:last-child { border-bottom: none; }
+        .autoevaluacion li strong { color: #f1f5f9; }
+
+        .referencias {
+            background: #0f172a;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 14px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .referencias li { font-size: 13px; color: #94a3b8; margin-bottom: 6px; }
+        .referencias h4 { color: var(--secondary-color); margin-bottom: 12px; }
+
+        .active-recall {
+            background: #0f172a;
+            border: 2px solid #ef4444;
+            border-radius: 14px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .active-recall h4 { color: #ef4444; }
+
+        .resumen-rapido { border-left: 5px solid var(--secondary-color) !important; }
+
+        .tabla-fila span:first-child { color: var(--secondary-color); min-width: 150px; }
+        .tabla-fila span:nth-child(2) { color: #e2e8f0; flex: 2; }
+
+        .tabla-compleja {
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+        .tabla-compleja table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            color: #e2e8f0;
+            background: #0f172a;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .tabla-compleja th {
+            background: #1e293b;
+            color: var(--secondary-color);
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 2px solid #334155;
+        }
+        .tabla-compleja td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #334155;
+        }
+        .tabla-compleja tr:last-child td { border-bottom: none; }
+        .tabla-compleja strong { color: var(--secondary-color); }
+
+        .formula-destacada {
+            background: #0f172a;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin: 10px 0;
+            text-align: center;
+            font-size: 18px;
+            color: #f1f5f9;
+            border: 1px solid var(--secondary-color);
+            font-family: 'Courier New', monospace;
+        }
+        .formula-destacada .highlight { color: var(--secondary-color); font-weight: bold; }
+
+        .ejercicio-resuelto {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 16px 0;
+            border-left: 4px solid var(--secondary-color);
+        }
+        .ejercicio-resuelto p { margin: 4px 0; color: #cbd5e1; }
+        .ejercicio-resuelto strong { color: var(--secondary-color); }
+        .ejercicio-resuelto .solucion {
+            background: #0f172a;
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-top: 8px;
+            color: #e2e8f0;
+        }
+
+        .nota {
+            background: #0f172a;
+            border-radius: 10px;
+            padding: 10px 16px;
+            border-left: 4px solid #f59e0b;
+            margin: 10px 0;
+            color: #cbd5e1;
+        }
+        .nota strong { color: var(--secondary-color); }
+
+        @media (max-width: 768px) {
+            .tabla-fila { flex-direction: column; }
+            .tabla-fila span { min-width: auto; }
+        }
+
+        /* Estilo para rutas metabólicas */
+        .ruta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 12px;
+            background: #0f172a;
+            border-radius: 12px;
+            margin: 12px 0;
+        }
+        .ruta .paso {
+            background: #1e293b;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            font-size: 14px;
+            color: #e2e8f0;
+        }
+        .ruta .flecha {
+            color: var(--secondary-color);
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- 1. HEADER GLOBAL                                              -->
+<!-- ============================================================ -->
+<header class="header-global">
+    <div class="logo">🧬 BioStudy</div>
+    <nav class="nav-global">
+        <a href="../index.html">🏠 Inicio</a>
+        <a href="../temas.html">📚 Temas</a>
+        <a href="../Primer mini examen/examenGUjaja.html">📝 Examen</a>
+    </nav>
+</header>
+
+<!-- ============================================================ -->
+<!-- 2. PROGRESO DEL TEMA                                          -->
+<!-- ============================================================ -->
+<div class="tema-header">
+    <h1>Biología - Tema 5: Fisiología Celular</h1>
+    <div class="progreso">
+        <span>Progreso: <span id="porcentajeProgreso">0</span>%</span>
+        <div class="barra">
+            <div class="barra-interna" id="barraProgreso" style="width: 0%;"></div>
+        </div>
+    </div>
+    <div class="tema-meta">
+        <span>⏱️ <span id="tiempoEstudio">0</span> min estudiados</span>
+        <span>📇 <span id="flashcardsCompletadas">0</span> flashcards</span>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 3. CUERPO: ÍNDICE + CONTENIDO                                -->
+<!-- ============================================================ -->
+<div class="contenedor-estudio">
+
+    <!-- ===================== -->
+    <!-- 3.1 ÍNDICE (sticky)   -->
+    <!-- ===================== -->
+    <aside class="indice">
+        <h3>📌 Índice</h3>
+        <ul>
+            <li class="activo"><a href="#resumen">⭐ Resumen</a></li>
+            <li><a href="#pomodoro">⏱️ Pomodoro</a></li>
+            <li><a href="#introduccion">1. Introducción</a></li>
+            <li><a href="#metabolismo-absorcion">2. Metabolismo durante la absorción</a></li>
+            <li><a href="#metabolismo-celular">3. Metabolismo celular</a></li>
+            <li><a href="#catabolismo-glucosa">4. Catabolismo de la glucosa</a></li>
+            <li><a href="#glucolisis">4.1 Glucólisis</a></li>
+            <li><a href="#glucolisis-aerobica">4.1.1 Glucólisis aeróbica</a></li>
+            <li><a href="#decarboxilacion">5. Decarboxilación oxidativa</a></li>
+            <li><a href="#ciclo-krebs">6. Ciclo de Krebs</a></li>
+            <li><a href="#cadena-transporte">7. Cadena de transporte de electrones</a></li>
+            <li><a href="#rendimiento">8. Rendimiento energético</a></li>
+            <li><a href="#autoevaluacion">9. Autoevaluación</a></li>
+            <li><a href="#examen">10. Mini Examen</a></li>
+            <li><a href="#cuadro-resumen">📊 Cuadro resumen</a></li>
+            <li><a href="#referencias">📚 Referencias</a></li>
+        </ul>
+    </aside>
+
+    <!-- ===================== -->
+    <!-- 3.2 CONTENIDO          -->
+    <!-- ===================== -->
+    <main class="contenido">
+
+        <!-- ========================================================== -->
+        <!-- RESUMEN RÁPIDO                                              -->
+        <!-- ========================================================== -->
+        <section id="resumen" class="resumen-rapido">
+            <h2>⭐ Resumen Rápido</h2>
+            <p><strong>Fisiología celular:</strong> estudio de los procesos metabólicos que ocurren en la célula para obtener energía (ATP) a partir de nutrientes.</p>
+            <ul>
+                <li><strong>Metabolismo:</strong> conjunto de reacciones químicas que transforman nutrientes en energía y componentes celulares.</li>
+                <li><strong>Catabolismo:</strong> degradación de moléculas complejas a simples, liberando energía (exergónico). Incluye glucólisis, decarboxilación oxidativa, ciclo de Krebs y cadena de transporte de electrones.</li>
+                <li><strong>Anabolismo:</strong> síntesis de moléculas complejas a partir de simples, consumiendo energía (endergónico).</li>
+                <li><strong>Glucólisis:</strong> degradación de glucosa (6C) a 2 piruvatos (3C). Ocurre en el citoplasma. Produce 2 ATP netos y 2 NADH.</li>
+                <li><strong>Decarboxilación oxidativa:</strong> conversión de piruvato a acetil CoA en la matriz mitocondrial. Produce 1 NADH por piruvato.</li>
+                <li><strong>Ciclo de Krebs:</strong> oxidación completa del acetil CoA a CO₂ y H₂O. Produce 3 NADH, 1 FADH₂ y 1 GTP por vuelta.</li>
+                <li><strong>Cadena de transporte de electrones:</strong> proteínas en la membrana mitocondrial interna que generan un gradiente de protones y producen ATP (fosforilación oxidativa).</li>
+                <li><strong>Rendimiento total:</strong> de una glucosa se obtienen 36-38 ATP.</li>
+            </ul>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- POMODORO                                                    -->
+        <!-- ========================================================== -->
+        <section id="pomodoro" class="pomodoro">
+            <h3>⏱️ Pomodoro · Enfoque de estudio</h3>
+            <p style="color:#94a3b8; font-size:14px; margin-bottom:12px;">
+                Estudia por 25 minutos, descansa 5. Repite 4 ciclos y toma un descanso largo de 15-30 min.
+            </p>
+            <div class="pomodoro-timer">
+                <span id="pomodoroMinutos">25</span>:<span id="pomodoroSegundos">00</span>
+            </div>
+            <div class="pomodoro-botones">
+                <button onclick="iniciarPomodoro()">▶ Iniciar</button>
+                <button onclick="pausarPomodoro()">⏸ Pausar</button>
+                <button onclick="reiniciarPomodoro()">⏹ Reiniciar</button>
+            </div>
+            <p>🍅 Pomodoro #<span id="pomodoroContador">1</span> de hoy</p>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 1. INTRODUCCIÓN                                            -->
+        <!-- ========================================================== -->
+        <section id="introduccion">
+            <h2>1. Introducción</h2>
+            <p>Posterior a la ingesta y digestión de los nutrientes, viene la <strong>absorción</strong>. Durante el estado de absorción, los nutrientes digeridos pasan al torrente sanguíneo. Una comida típica requiere alrededor de <strong>4 horas</strong> para su absorción completa. Durante este proceso, los niveles de glucosa sanguínea se mantienen entre <strong>70 y 110 mg/dL</strong>.</p>
+            <p>Pasado este tiempo, los niveles de glucosa y otros nutrientes comienzan a bajar, ya sea porque son utilizados por las células para generar <strong>ATP</strong> o porque son almacenados en hígado, músculo y tejido adiposo. Por esta razón, existe:</p>
+            <ul>
+                <li><strong>Metabolismo durante el estado de absorción</strong></li>
+                <li><strong>Metabolismo durante el estado de post absorción</strong></li>
+            </ul>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 2. METABOLISMO DURANTE LA ABSORCIÓN                       -->
+        <!-- ========================================================== -->
+        <section id="metabolismo-absorcion">
+            <h2>2. Metabolismo durante el estado de absorción</h2>
+            <p>Durante esta etapa acontecen las siguientes reacciones:</p>
+            <ul>
+                <li>Del <strong>100%</strong> de la glucosa absorbida:
+                    <ul>
+                        <li><strong>50%</strong> es oxidada por las células para producir ATP mediante el catabolismo de la glucosa (glucólisis, decarboxilación oxidativa, ciclo de Krebs y cadena de transporte de electrones).</li>
+                        <li>Del restante <strong>50%</strong>:
+                            <ul>
+                                <li><strong>40%</strong> se convierte en triglicéridos y se almacena en el tejido adiposo.</li>
+                                <li><strong>10%</strong> se almacena como glucógeno en el músculo esquelético y en el hígado.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>Casi todos los <strong>lípidos</strong> absorbidos de la dieta son transportados por los quilomicrones (VLDL, LDL) para su almacenaje en el tejido adiposo. Una pequeña proporción se utiliza para reacciones de síntesis (ej. hormonas, membranas).</li>
+                <li>Los <strong>aminoácidos</strong> absorbidos que entran a los hepatocitos se desaminan (pierden su grupo amino) para poder entrar al ciclo de Krebs y producir ATP. Los que no entran a los hepatocitos son captados por otras células (ej. musculares) para la síntesis de proteínas, enzimas u hormonas.</li>
+            </ul>
+            <div class="dato-curioso">
+                <p>📊 <strong>Dato:</strong> La glucosa es el principal combustible del cerebro. El cerebro consume aproximadamente 120 g de glucosa al día, lo que representa el 60% del consumo total de glucosa del cuerpo en reposo.</p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 3. METABOLISMO CELULAR                                     -->
+        <!-- ========================================================== -->
+        <section id="metabolismo-celular">
+            <h2>3. Metabolismo celular</h2>
+            <div class="definicion-destacada">
+                <p><strong>Metabolismo celular:</strong> conjunto de reacciones químicas que transforman los nutrientes (glucosa, lípidos, aminoácidos) en <strong>ATP</strong>, la molécula energética que impulsa todas las funciones celulares (transporte activo, reacciones enzimáticas, etc.).</p>
+            </div>
+
+            <!-- IMAGEN: Esquema metabolismo -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/bio1.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                🖼️ <strong>IMAGEN:</strong> Esquema del metabolismo celular (fig. 1 del PDF) - <em>Fuente: Elaboración propia, Mendoza Marcelino</em></p>
+            </div>
+
+            <h3>3.1 Catabolismo</h3>
+            <div class="definicion-destacada" style="border-left-color: #ef4444;">
+                <p><strong>Catabolismo:</strong> conjunto de procesos químicos por medio del cual las <strong>moléculas grandes o complejas</strong> son descompuestas o transformadas a <strong>moléculas más simples</strong>. Ocurre en el interior de la <strong>mitocondria</strong>.</p>
+                <p>Es la vía por la que los nutrientes principales (proteínas, carbohidratos y lípidos) se descomponen a moléculas más simples (<strong>Acetil CoA</strong>), que ingresan al ciclo de Krebs y la cadena de transporte de electrones para formar ATP.</p>
+                <p>El catabolismo es <strong>exergónico</strong>: produce más energía (ATP) de la que consume.</p>
+            </div>
+            <p><strong>Ejemplo:</strong> La glucosa (C₆H₁₂O₆) se degrada a CO₂ y H₂O, liberando energía que se captura en forma de ATP.</p>
+
+            <h3>3.2 Anabolismo</h3>
+            <div class="definicion-destacada" style="border-left-color: #3b82f6;">
+                <p><strong>Anabolismo:</strong> conjunto de reacciones químicas que <strong>combina moléculas simples</strong> para formar elementos <strong>estructurales y funcionales</strong> complejos. Ocurre en el <strong>retículo endoplasmático rugoso (RER)</strong> y el <strong>aparato de Golgi</strong>.</p>
+                <p><strong>Ejemplos:</strong> enlazado de aminoácidos para sintetizar proteínas; integración de ácidos grasos para formar fosfolípidos.</p>
+                <p>El anabolismo es <strong>endergónico</strong>: consume más energía de la que produce.</p>
+            </div>
+            <p>De los tres nutrientes que ingresan a la vía catabólica, el más importante es el de los <strong>carbohidratos</strong>, porque es el que ingresa en mayor cantidad (debido a su alto consumo en la dieta) y su descomposición aporta más Acetil CoA que los restantes nutrientes, por consiguiente es el que más aporta energía (ATP).</p>
+            <p>En conjunto, el catabolismo de la glucosa comprende <strong>cuatro reacciones</strong>: <strong>glucólisis, decarboxilación oxidativa (formación de acetil CoA), ciclo de Krebs y cadena de transporte de electrones</strong>.</p>
+
+            <!-- ========================================================== -->
+            <!-- FLASHCARD (1)                                               -->
+            <!-- ========================================================== -->
+            <div class="flashcard">
+                <h4>📇 Flashcard · Repaso Rápido</h4>
+                <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                    <p><strong>"Diferencia entre catabolismo y anabolismo"</strong></p>
+                    <p class="flashcard-respuesta" style="display:none;">Catabolismo: degrada moléculas complejas a simples, libera energía (exergónico). Anabolismo: sintetiza moléculas complejas a partir de simples, consume energía (endergónico).</p>
+                </div>
+                <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                    <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                    <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                </div>
+                <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                    📊 Progreso: <span id="flashcardProgreso1">0</span> de <span id="flashcardTotal1">12</span> flashcards
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 4. CATABOLISMO DE LA GLUCOSA                               -->
+        <!-- ========================================================== -->
+        <section id="catabolismo-glucosa">
+            <h2>4. Catabolismo de la glucosa</h2>
+
+            <!-- ========================================================== -->
+            <!-- 4.1 GLUCÓLISIS                                             -->
+            <!-- ========================================================== -->
+            <section id="glucolisis">
+                <h3>4.1 Glucólisis</h3>
+                <div class="definicion-destacada">
+                    <p><strong>Glucólisis:</strong> proceso de descomposición de la glucosa (6 carbonos) a <strong>ácido pirúvico o piruvato</strong> (3 carbonos). Ocurre en el <strong>citoplasma</strong> celular.</p>
+                </div>
+                <p>Los carbohidratos (hidratos de carbono o almidones) son la fuente de energía que más utiliza el cuerpo para la síntesis de ATP. Los órganos que utilizan más glucosa son el <strong>músculo, el cerebro y el hígado</strong>.</p>
+                <p>La mayor parte de los hidratos de carbono de la dieta se descomponen en glucosa y otros azúcares. Ejemplos: de los lácteos en galactosa; de la azúcar refinada en sacarosa. Todos son absorbidos en la mucosa intestinal y, al llegar al hígado, son convertidos en su mayoría en glucosa.</p>
+                <p>El <strong>hígado</strong> se encarga de la repartición de la glucosa a todos los tejidos y órganos. Cuando todos los órganos están satisfechos, la glucosa se almacena combinándose con otras moléculas de glucosa para formar <strong>glucógeno</strong> (proceso llamado <strong>glucogénesis</strong>). El glucógeno se almacena en el hígado y músculo. Cuando las reservas de glucógeno son rebasadas, el hígado transforma la glucosa en ácidos grasos, contribuyendo al acumulo de grasa.</p>
+
+                <h4>Rutas de la glucólisis</h4>
+                <ul>
+                    <li><strong>Forma aeróbica:</strong> con presencia de O₂. La glucosa se descompone en ácido pirúvico (piruvato).</li>
+                    <li><strong>Forma anaeróbica:</strong> con ausencia de O₂. La glucosa se descompone en escaso ácido pirúvico y buena cantidad de <strong>ácido láctico</strong> (lactato). Normalmente la glucosa utilizada en este proceso proviene de la degradación de glucógeno.</li>
+                </ul>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- 4.1.1 GLUCÓLISIS AERÓBICA                                 -->
+            <!-- ========================================================== -->
+            <section id="glucolisis-aerobica">
+                <h4>4.1.1 Secuencia de reacciones en la glucólisis aeróbica</h4>
+                <p>La glucólisis se lleva a cabo en <strong>dos fases</strong>:</p>
+
+                <h5>Primera fase (inversión de energía)</h5>
+                <p>Ocurre en el <strong>citoplasma</strong>:</p>
+                <ol style="padding-left:20px;">
+                    <li><strong>Fosforilación de la glucosa:</strong> La glucosa recibe un grupo fosfato de un ATP, formando glucosa-6-fosfato (enzima: <strong>hexocinasa</strong>).</li>
+                    <li><strong>Conversión a fructosa-6-fosfato:</strong> Glucosa-6-fosfato → fructosa-6-fosfato (enzima: <strong>fosfatoglucoisomerasa</strong>).</li>
+                    <li><strong>Segunda fosforilación:</strong> Fructosa-6-fosfato gana otro fosfato de otro ATP, formando fructosa-1,6-difosfato (enzima: <strong>fosfofructocinasa</strong>).</li>
+                    <li><strong>División:</strong> Fructosa-1,6-difosfato se divide en dos moléculas de 3 carbonos: <strong>fosfato de dihidroxiacetona</strong> y <strong>gliceraldeído 3-fosfato (G3P)</strong> (enzima: <strong>aldolasa</strong>).</li>
+                    <li><strong>Conversión:</strong> El fosfato de dihidroxiacetona se convierte en G3P (enzima: <strong>isomerasa</strong>).</li>
+                </ol>
+
+                <h5>Segunda fase (glucólisis en la mitocondria)</h5>
+                <p>Ocurre en el interior de la <strong>mitocondria</strong>:</p>
+                <ol style="padding-left:20px;" start="6">
+                    <li><strong>Oxidación:</strong> El G3P gana un fósforo inorgánico, convirtiéndose en 1,3-difosfoglicerato, y cede un electrón para formar <strong>NADH</strong> (enzima: <strong>gliceraldeído 3-fosfato deshidrogenasa</strong>).</li>
+                    <li><strong>Primera producción de ATP:</strong> El 1,3-difosfoglicerato pierde un fósforo para convertirse en 3-difosfoglicerato, formando un ATP (enzima: <strong>fosfatoglicerocinasa</strong>).</li>
+                    <li><strong>Conversión:</strong> 3-difosfoglicerato → 2-difosfoglicerato (enzima: <strong>fosfatogliceromutasa</strong>).</li>
+                    <li><strong>Conversión:</strong> 2-difosfoglicerato → fosfoenolpiruvato, liberando una molécula de agua (enzima: <strong>enolasa</strong>).</li>
+                    <li><strong>Segunda producción de ATP:</strong> El fosfoenolpiruvato cede su fosfato para generar un ATP y se convierte en ácido pirúvico (enzima: <strong>piruvatocinasa</strong>).</li>
+                </ol>
+
+                <!-- IMAGEN: Glucólisis -->
+                <div class="imagen-placeholder">
+                    <img src="Nueva carpeta/bio2.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                    🖼️ <strong>IMAGEN:</strong> Glucólisis en el citoplasma y matriz mitocondrial (fig. 3 del PDF) - <em>Fuente: Biblioteca virtual del Curso Prefacultativo, Fac. Medicina UMSA. Gestión 2009. Modificado Mendoza - Velásquez</em></p>
+                </div>
+
+                <div class="nota">
+                    <p><strong>Resumen de la glucólisis:</strong> Utiliza 2 ATP (inversión) y produce 4 ATP (2 en la segunda fase). Ganancia neta = <strong>2 ATP</strong> por molécula de glucosa. También produce <strong>2 NADH</strong>.</p>
+                </div>
+
+                <!-- ========================================================== -->
+                <!-- FLASHCARD (2)                                               -->
+                <!-- ========================================================== -->
+                <div class="flashcard">
+                    <h4>📇 Flashcard · Repaso Rápido</h4>
+                    <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                    <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                        <p><strong>"Glucólisis aeróbica"</strong></p>
+                        <p class="flashcard-respuesta" style="display:none;">Degradación de glucosa (6C) a 2 piruvatos (3C) en el citoplasma. Produce 2 ATP netos y 2 NADH. Consta de 10 reacciones en dos fases.</p>
+                    </div>
+                    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                        <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                        <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                    </div>
+                    <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                        📊 Progreso: <span id="flashcardProgreso2">0</span> de <span id="flashcardTotal2">12</span> flashcards
+                    </p>
+                </div>
+            </section>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 5. DECARBOXILACIÓN OXIDATIVA                               -->
+        <!-- ========================================================== -->
+        <section id="decarboxilacion">
+            <h2>5. Decarboxilación oxidativa</h2>
+            <div class="definicion-destacada">
+                <p><strong>Decarboxilación oxidativa:</strong> proceso en el que el <strong>ácido pirúvico</strong> pierde un átomo de carbono en forma de <strong>CO₂</strong> (decarboxilación) y dos átomos de hidrógeno (en forma de H⁺ y H⁺) para convertirse en <strong>Acetil CoA</strong>. Ocurre en la <strong>matriz mitocondrial</strong>.</p>
+            </div>
+            <p>Pasos:</p>
+            <ol>
+                <li>El ácido pirúvico (3C) pierde un carbono como CO₂ (1ª reacción de la respiración celular que libera CO₂).</li>
+                <li>Pierde 2 átomos de hidrógeno (un ion hidruro H⁺ y un ion H⁺). La coenzima <strong>NAD</strong> (Nicotin Adenín Dinucleótido, derivado de la vitamina B3) capta el ion H⁺ para formar <strong>NADH + H⁺</strong>.</li>
+                <li>El fragmento de dos carbonos (grupo acetil) se une a la <strong>coenzima A</strong> para formar <strong>Acetil CoA</strong>, listo para ingresar al ciclo de Krebs.</li>
+            </ol>
+            <div class="formula-destacada">
+                Piruvato (3C) + CoA + NAD⁺ → Acetil CoA (2C) + CO₂ + NADH + H⁺
+            </div>
+            <p><strong>Rendimiento:</strong> Por cada molécula de glucosa (que da 2 piruvatos), se producen <strong>2 Acetil CoA</strong>, <strong>2 CO₂</strong> y <strong>2 NADH</strong>.</p>
+
+            <!-- IMAGEN: Decarboxilación oxidativa -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/bio3.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                🖼️ <strong>IMAGEN:</strong> Decarboxilación oxidativa del ácido pirúvico - <em>Fuente: Elaboración propia</em></p>
+            </div>
+
+            <!-- ========================================================== -->
+            <!-- FLASHCARD (3)                                               -->
+            <!-- ========================================================== -->
+            <div class="flashcard">
+                <h4>📇 Flashcard · Repaso Rápido</h4>
+                <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                    <p><strong>"Decarboxilación oxidativa"</strong></p>
+                    <p class="flashcard-respuesta" style="display:none;">Conversión de piruvato (3C) a Acetil CoA (2C) en la matriz mitocondrial. Se libera CO₂ y se reduce NAD⁺ a NADH + H⁺.</p>
+                </div>
+                <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                    <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                    <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                </div>
+                <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                    📊 Progreso: <span id="flashcardProgreso3">0</span> de <span id="flashcardTotal3">12</span> flashcards
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 6. CICLO DE KREBS                                          -->
+        <!-- ========================================================== -->
+        <section id="ciclo-krebs">
+            <h2>6. Ciclo de Krebs (ciclo del ácido tricarboxílico)</h2>
+            <div class="definicion-destacada">
+                <p><strong>Ciclo de Krebs:</strong> sucesión de reacciones químicas que ocurren en la <strong>matriz mitocondrial</strong>, donde el <strong>Acetil CoA</strong> se oxida completamente a <strong>CO₂</strong> y <strong>H₂O</strong>, liberando energía y produciendo <strong>NADH</strong>, <strong>FADH₂</strong> y <strong>GTP</strong>.</p>
+                <p>Descubierto por <strong>Hans Adolf Krebs</strong> en 1937. Ocurre en todos los animales, plantas superiores y en la mayoría de las bacterias.</p>
+            </div>
+            <p>Características principales:</p>
+            <ul>
+                <li>El ciclo comienza con la unión del <strong>Acetil CoA</strong> (2C) con el <strong>ácido oxalacético</strong> (4C) para formar <strong>ácido cítrico</strong> (6C).</li>
+                <li>Se pierden <strong>2 átomos de carbono</strong> en forma de CO₂ (2ª y 3ª reacciones de la respiración celular que liberan CO₂).</li>
+                <li>Se generan <strong>3 NADH</strong>, <strong>1 FADH₂</strong> y <strong>1 GTP</strong> (equivalente a ATP) por cada vuelta del ciclo.</li>
+                <li>El ciclo termina con la regeneración del <strong>ácido oxalacético</strong>, que puede combinarse con otra molécula de Acetil CoA.</li>
+                <li>Los compuestos intermedios del ciclo se usan también para la síntesis de aminoácidos, hidratos de carbono y otros productos celulares (anabolismo).</li>
+            </ul>
+
+            <h3>6.1 Pasos del ciclo de Krebs</h3>
+            <p>La siguiente tabla resume los pasos más importantes y su rendimiento energético por vuelta:</p>
+            <div class="tabla-compleja">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Paso</th>
+                            <th>Reacción</th>
+                            <th>Número de ATP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>3</strong></td><td>Isocitrato → Oxalosuccínico (NADH + H⁺)</td><td>3</td></tr>
+                        <tr><td><strong>5</strong></td><td>α-cetoglutarato → Succinil CoA (NADH + H⁺)</td><td>3</td></tr>
+                        <tr><td><strong>9</strong></td><td>Malato → Oxalacetato (NADH + H⁺)</td><td>3</td></tr>
+                        <tr><td><strong>7</strong></td><td>Succinato → Fumarato (FADH₂)</td><td>2</td></tr>
+                        <tr><td><strong>6</strong></td><td>Succinil CoA → Succinato (GDP + Pi)</td><td>1</td></tr>
+                        <tr><td colspan="2"><strong>TOTAL DE MOLÉCULAS SINTETIZADAS</strong></td><td><strong>12</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><strong>Nota:</strong> Dado que cada molécula de glucosa produce 2 piruvatos y, por tanto, 2 Acetil CoA, el ciclo de Krebs da <strong>2 vueltas por glucosa</strong>. Por lo tanto, el rendimiento del ciclo de Krebs por glucosa es de <strong>6 NADH, 2 FADH₂ y 2 GTP</strong> (equivalentes a 24 ATP aproximadamente).</p>
+
+            <!-- IMAGEN: Ciclo de Krebs -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/bio4.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                🖼️ <strong>IMAGEN:</strong> Resumen del ciclo de Krebs con sus pasos más importantes - <em>Fuente: Elaboración propia</em></p>
+            </div>
+
+            <!-- ========================================================== -->
+            <!-- FLASHCARD (4)                                               -->
+            <!-- ========================================================== -->
+            <div class="flashcard">
+                <h4>📇 Flashcard · Repaso Rápido</h4>
+                <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                    <p><strong>"Ciclo de Krebs"</strong></p>
+                    <p class="flashcard-respuesta" style="display:none;">Vía metabólica en la matriz mitocondrial que oxida Acetil CoA a CO₂ y H₂O, produciendo 3 NADH, 1 FADH₂ y 1 GTP por vuelta. Descubierto por Hans Krebs en 1937.</p>
+                </div>
+                <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                    <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                    <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                </div>
+                <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                    📊 Progreso: <span id="flashcardProgreso4">0</span> de <span id="flashcardTotal4">12</span> flashcards
+                </p>
+            </div>
+
+            <!-- Active Recall -->
+            <div class="active-recall">
+                <h4>❓ Active Recall</h4>
+                <p style="color:#cbd5e1;"><strong>¿Cuántos ATP se producen en una vuelta del ciclo de Krebs y cuáles son los productos?</strong></p>
+                <details style="margin-top:10px; cursor:pointer; color:#94a3b8;">
+                    <summary style="font-weight:bold; color:#38bdf8;">👆 Ver respuesta</summary>
+                    <p style="color:#22c55e; margin-top:8px; padding:12px; background:#1e293b; border-radius:8px;">
+                        Por cada vuelta: <strong>3 NADH + H⁺</strong> (3 ATP cada uno), <strong>1 FADH₂</strong> (2 ATP), <strong>1 GTP</strong> (1 ATP). Total = <strong>12 ATP</strong> por vuelta. Por glucosa (2 vueltas) = 24 ATP.
+                    </p>
+                </details>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 7. CADENA DE TRANSPORTE DE ELECTRONES                      -->
+        <!-- ========================================================== -->
+        <section id="cadena-transporte">
+            <h2>7. Cadena de transporte de electrones</h2>
+            <div class="definicion-destacada">
+                <p><strong>Cadena de transporte de electrones:</strong> conjunto de proteínas integradas en la <strong>membrana mitocondrial interna</strong> que captan y transportan electrones (e⁻) para generar un <strong>gradiente de protones</strong> que impulsa la síntesis de ATP (<strong>fosforilación oxidativa</strong>).</p>
+            </div>
+
+            <h3>7.1 Transportadores de electrones</h3>
+            <ul>
+                <li><strong>Mononucleótido de flavina (FMN):</strong> flavoproteína derivada de la vitamina B2, similar al FAD.</li>
+                <li><strong>Citocromos:</strong> proteínas con un grupo hem que contiene Fe²⁺ o Fe³⁺. Tipos: citocromo a, b, c, etc.</li>
+                <li><strong>Centros hierro-azufre (Fe-S):</strong> contienen dos o cuatro átomos de hierro unidos a azufre.</li>
+                <li><strong>Átomos de cobre (Cu):</strong> enlazados a proteínas, participan en la transferencia de electrones.</li>
+                <li><strong>Coenzima Q (ubiquinona):</strong> transportador no proteico.</li>
+            </ul>
+
+            <h3>7.2 Secuencia de pasos y generación quimiosmótica de ATP</h3>
+            <p>Los transportadores de electrones se agrupan en <strong>tres complejos</strong> (bombas de protones) en la membrana mitocondrial interna:</p>
+            <ol>
+                <li><strong>Complejo I (NADH deshidrogenasa):</strong> contiene FMN y centros Fe-S. Capta electrones del NADH + H⁺ y los pasa al complejo II.</li>
+                <li><strong>Complejo II (Citocromo b-c1):</strong> contiene citocromos y un centro Fe-S. Recibe electrones del complejo I y los pasa al complejo III.</li>
+                <li><strong>Complejo III (Citocromo oxidasa):</strong> contiene citocromos a y a3, y dos átomos de cobre. Recibe electrones del complejo II y los transfiere al <strong>oxígeno</strong> (O₂), formando <strong>H₂O</strong> (esta es la única parte de la respiración celular en la que se consume O₂).</li>
+            </ol>
+            <p>A medida que los electrones son transportados, los tres complejos <strong>bombean iones H⁺</strong> desde la matriz mitocondrial al espacio intermembranoso. Esta alta concentración de H⁺ crea un <strong>gradiente electroquímico</strong> (fuerza protón-motriz).</p>
+            <p>Los H⁺ vuelven a la matriz a través de canales específicos (ATP sintasa), generando ATP a partir de ADP + Pi. Este proceso se llama <strong>efecto quimiosmótico</strong> y la síntesis de ATP se denomina <strong>fosforilación oxidativa</strong>.</p>
+
+            <div class="dato-curioso">
+                <p>⚡ <strong>Dato:</strong> La cadena de transporte de electrones es responsable de la producción del <strong>90%</strong> del ATP celular. Sin oxígeno, la cadena se detiene y la célula debe recurrir a la fermentación (glucólisis anaeróbica).</p>
+            </div>
+
+            <!-- ========================================================== -->
+            <!-- FLASHCARD (5)                                               -->
+            <!-- ========================================================== -->
+            <div class="flashcard">
+                <h4>📇 Flashcard · Repaso Rápido</h4>
+                <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                    <p><strong>"Fosforilación oxidativa"</strong></p>
+                    <p class="flashcard-respuesta" style="display:none;">Proceso en la membrana mitocondrial interna donde el flujo de electrones (cadena de transporte) genera un gradiente de protones que impulsa la ATP sintasa para producir ATP a partir de ADP + Pi.</p>
+                </div>
+                <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                    <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                    <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                </div>
+                <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                    📊 Progreso: <span id="flashcardProgreso5">0</span> de <span id="flashcardTotal5">12</span> flashcards
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 8. RENDIMIENTO ENERGÉTICO                                  -->
+        <!-- ========================================================== -->
+        <section id="rendimiento">
+            <h2>8. Rendimiento energético total</h2>
+            <p>La respiración celular completa de una molécula de glucosa produce:</p>
+            <div class="tabla-compleja">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Etapa</th>
+                            <th>Productos (por glucosa)</th>
+                            <th>ATP generado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Glucólisis</strong></td><td>2 ATP (netos) + 2 NADH</td><td>2 ATP + 2×3 = 6 ATP → 8 ATP</td></tr>
+                        <tr><td><strong>Decarboxilación oxidativa</strong></td><td>2 NADH</td><td>2×3 = 6 ATP</td></tr>
+                        <tr><td><strong>Ciclo de Krebs (2 vueltas)</strong></td><td>6 NADH + 2 FADH₂ + 2 GTP</td><td>6×3 + 2×2 + 2×1 = 24 ATP</td></tr>
+                        <tr><td colspan="2"><strong>TOTAL</strong></td><td><strong>36-38 ATP</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="nota">
+                <p><strong>Nota:</strong> El rendimiento varía entre 36 y 38 ATP dependiendo del sistema de transporte de los NADH producidos en la glucólisis (lanzadera de malato-aspartato vs lanzadera de glicerol-fosfato).</p>
+            </div>
+            <div class="dato-curioso">
+                <p>📊 <strong>Dato:</strong> Una molécula de glucosa contiene aproximadamente 686 kcal de energía. El ATP almacena unas 7.3 kcal por mol. La eficiencia de la respiración celular es de aproximadamente el 40%.</p>
+            </div>
+
+            <!-- Mapa Mental -->
+            <div class="mapa-mental">
+                <h4>🧠 Mapa Mental: Catabolismo de la glucosa</h4>
+                <div class="mapa">
+                    <div class="mapa-nodo principal">🍞 GLUCOSA (6C)</div>
+                    <div class="mapa-hijos" style="flex-wrap: wrap; gap: 15px;">
+                        <div class="mapa-nodo" style="min-width: 100px;">Glucólisis<br><small>2 ATP netos + 2 NADH</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">Decarboxilación<br><small>2 Acetil CoA + 2 NADH</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">Ciclo de Krebs<br><small>6 NADH + 2 FADH₂ + 2 GTP</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">Cadena de transporte<br><small>32-34 ATP</small></div>
+                    </div>
+                </div>
+                <p style="text-align:center; color:#94a3b8; font-size:13px; margin-top:10px;">
+                    🔹 Total: <strong>36-38 ATP</strong> por molécula de glucosa.
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 9. AUTOEVALUACIÓN                                          -->
+        <!-- ========================================================== -->
+        <section id="autoevaluacion">
+            <h2>9. Preguntas de Autoevaluación</h2>
+
+            <div class="autoevaluacion">
+                <h3>📝 Preguntas del PDF</h3>
+                <ol style="list-style-type: decimal; padding-left: 20px;">
+                    <li><strong>¿Qué es el metabolismo celular?</strong></li>
+                    <li><strong>El catabolismo de la glucosa comprende cuatro reacciones. ¿Cuáles son?</strong></li>
+                    <li><strong>Mencione la secuencia de reacciones en la glucólisis aeróbica.</strong></li>
+                    <li><strong>¿Qué es el ciclo de Krebs o ciclo del ácido tricarboxílico?</strong></li>
+                    <li><strong>¿Qué es la cadena de transporte de electrones?</strong></li>
+                </ol>
+
+                <details style="margin-top:15px; cursor:pointer; color:#94a3b8;">
+                    <summary style="font-weight:bold; color:#38bdf8;">👆 Ver respuestas sugeridas</summary>
+                    <div style="background:#0f172a; padding:15px; border-radius:10px; margin-top:10px; color:#e2e8f0; font-size:14px;">
+                        <p><strong>1.</strong> El metabolismo celular es el conjunto de reacciones químicas que transforman los nutrientes en ATP (energía) y en componentes estructurales. Incluye catabolismo (degradación) y anabolismo (síntesis).</p>
+                        <p><strong>2.</strong> Glucólisis, decarboxilación oxidativa (formación de Acetil CoA), ciclo de Krebs y cadena de transporte de electrones.</p>
+                        <p><strong>3.</strong> Primera fase (citoplasma): fosforilación de glucosa, conversión a fructosa-6-fosfato, segunda fosforilación, división en G3P y fosfato de dihidroxiacetona, conversión a G3P. Segunda fase (mitocondria): oxidación a 1,3-difosfoglicerato con formación de NADH, producción de ATP, conversiones hasta fosfoenolpiruvato y segunda producción de ATP.</p>
+                        <p><strong>4.</strong> El ciclo de Krebs es una sucesión de reacciones en la matriz mitocondrial donde el Acetil CoA se oxida a CO₂ y H₂O, produciendo NADH, FADH₂ y GTP. Descubierto por Hans Krebs en 1937.</p>
+                        <p><strong>5.</strong> La cadena de transporte de electrones es un conjunto de proteínas en la membrana mitocondrial interna que transportan electrones, bombean protones y generan un gradiente electroquímico que impulsa la síntesis de ATP (fosforilación oxidativa).</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Feynman -->
+            <div class="feynman" style="margin-top:30px;">
+                <h4>🗣️ Explica este tema (Método Feynman)</h4>
+                <p><em>"Imagina que le enseñas a un niño de 5 años: ¿cómo obtiene energía nuestro cuerpo a partir de la comida?"</em></p>
+                <textarea id="feynmanTexto" placeholder="Escribe tu explicación aquí..."></textarea>
+                <button onclick="guardarFeynman()">💾 Guardar explicación</button>
+                <p id="feynmanGuardado" style="color:#22c55e; margin-top:8px; display:none;">✅ Explicación guardada</p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 10. MINI EXAMEN                                            -->
+        <!-- ========================================================== -->
+        <section id="examen">
+            <h2>10. Mini Examen (10 preguntas)</h2>
+            <p>Responde y haz clic en <strong>"Ver respuestas"</strong>.</p>
+
+            <div class="examen">
+                <!-- Pregunta 1 -->
+                <div class="pregunta">
+                    <p><strong>1. ¿Qué molécula es la principal fuente de energía celular?</strong></p>
+                    <label><input type="radio" name="q1" value="0"> A) Glucosa</label>
+                    <label><input type="radio" name="q1" value="1"> B) ATP</label>
+                    <label><input type="radio" name="q1" value="2"> C) Acetil CoA</label>
+                    <label><input type="radio" name="q1" value="3"> D) NADH</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) ATP</div>
+                </div>
+                <!-- Pregunta 2 -->
+                <div class="pregunta">
+                    <p><strong>2. ¿Dónde ocurre la glucólisis?</strong></p>
+                    <label><input type="radio" name="q2" value="0"> A) Matriz mitocondrial</label>
+                    <label><input type="radio" name="q2" value="1"> B) Citoplasma</label>
+                    <label><input type="radio" name="q2" value="2"> C) Membrana mitocondrial interna</label>
+                    <label><input type="radio" name="q2" value="3"> D) Núcleo</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) Citoplasma</div>
+                </div>
+                <!-- Pregunta 3 -->
+                <div class="pregunta">
+                    <p><strong>3. ¿Cuántos ATP netos se producen en la glucólisis por molécula de glucosa?</strong></p>
+                    <label><input type="radio" name="q3" value="0"> A) 1</label>
+                    <label><input type="radio" name="q3" value="1"> B) 2</label>
+                    <label><input type="radio" name="q3" value="2"> C) 3</label>
+                    <label><input type="radio" name="q3" value="3"> D) 4</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) 2</div>
+                </div>
+                <!-- Pregunta 4 -->
+                <div class="pregunta">
+                    <p><strong>4. ¿Qué coenzima se reduce en la decarboxilación oxidativa?</strong></p>
+                    <label><input type="radio" name="q4" value="0"> A) FAD</label>
+                    <label><input type="radio" name="q4" value="1"> B) Coenzima A</label>
+                    <label><input type="radio" name="q4" value="2"> C) NAD⁺</label>
+                    <label><input type="radio" name="q4" value="3"> D) FMN</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: C) NAD⁺</div>
+                </div>
+                <!-- Pregunta 5 -->
+                <div class="pregunta">
+                    <p><strong>5. ¿Dónde ocurre el ciclo de Krebs?</strong></p>
+                    <label><input type="radio" name="q5" value="0"> A) Citoplasma</label>
+                    <label><input type="radio" name="q5" value="1"> B) Membrana mitocondrial interna</label>
+                    <label><input type="radio" name="q5" value="2"> C) Matriz mitocondrial</label>
+                    <label><input type="radio" name="q5" value="3"> D) Espacio intermembranoso</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: C) Matriz mitocondrial</div>
+                </div>
+                <!-- Pregunta 6 -->
+                <div class="pregunta">
+                    <p><strong>6. ¿Cuántos CO₂ se liberan por vuelta del ciclo de Krebs?</strong></p>
+                    <label><input type="radio" name="q6" value="0"> A) 1</label>
+                    <label><input type="radio" name="q6" value="1"> B) 2</label>
+                    <label><input type="radio" name="q6" value="2"> C) 3</label>
+                    <label><input type="radio" name="q6" value="3"> D) 4</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) 2</div>
+                </div>
+                <!-- Pregunta 7 -->
+                <div class="pregunta">
+                    <p><strong>7. ¿Qué proceso consume oxígeno en la respiración celular?</strong></p>
+                    <label><input type="radio" name="q7" value="0"> A) Glucólisis</label>
+                    <label><input type="radio" name="q7" value="1"> B) Ciclo de Krebs</label>
+                    <label><input type="radio" name="q7" value="2"> C) Cadena de transporte de electrones</label>
+                    <label><input type="radio" name="q7" value="3"> D) Decarboxilación oxidativa</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: C) Cadena de transporte de electrones</div>
+                </div>
+                <!-- Pregunta 8 -->
+                <div class="pregunta">
+                    <p><strong>8. ¿Cuántos ATP produce una molécula de glucosa en total (teórico)?</strong></p>
+                    <label><input type="radio" name="q8" value="0"> A) 30</label>
+                    <label><input type="radio" name="q8" value="1"> B) 36-38</label>
+                    <label><input type="radio" name="q8" value="2"> C) 40</label>
+                    <label><input type="radio" name="q8" value="3"> D) 25</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) 36-38</div>
+                </div>
+                <!-- Pregunta 9 -->
+                <div class="pregunta">
+                    <p><strong>9. ¿Qué enzima cataliza la formación de ATP en la cadena de transporte?</strong></p>
+                    <label><input type="radio" name="q9" value="0"> A) Hexocinasa</label>
+                    <label><input type="radio" name="q9" value="1"> B) Piruvatocinasa</label>
+                    <label><input type="radio" name="q9" value="2"> C) ATP sintasa</label>
+                    <label><input type="radio" name="q9" value="3"> D) Aldolasa</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: C) ATP sintasa</div>
+                </div>
+                <!-- Pregunta 10 -->
+                <div class="pregunta">
+                    <p><strong>10. ¿Qué producto final de la glucólisis anaeróbica se acumula en el músculo?</strong></p>
+                    <label><input type="radio" name="q10" value="0"> A) Piruvato</label>
+                    <label><input type="radio" name="q10" value="1"> B) Ácido láctico</label>
+                    <label><input type="radio" name="q10" value="2"> C) Acetil CoA</label>
+                    <label><input type="radio" name="q10" value="3"> D) Etanol</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) Ácido láctico</div>
+                </div>
+
+                <button onclick="corregirExamen()">✅ Ver respuestas</button>
+                <div id="resultadoExamen" style="margin-top:15px; font-weight:bold;"></div>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- CUADRO RESUMEN                                              -->
+        <!-- ========================================================== -->
+        <section id="cuadro-resumen" style="margin-top:30px;">
+            <h2>📊 Cuadro Resumen: Catabolismo de la glucosa</h2>
+            <div style="background:#1e293b; border-radius:14px; padding:16px; overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; color:#e2e8f0; font-size:13px;">
+                    <thead>
+                        <tr style="background:#0f172a; color:#38bdf8;">
+                            <th style="padding:8px; border:1px solid #334155;">Etapa</th>
+                            <th style="padding:8px; border:1px solid #334155;">Ubicación</th>
+                            <th style="padding:8px; border:1px solid #334155;">Sustrato</th>
+                            <th style="padding:8px; border:1px solid #334155;">Productos (por glucosa)</th>
+                            <th style="padding:8px; border:1px solid #334155;">ATP (aprox.)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Glucólisis</strong></td><td style="padding:6px; border:1px solid #334155;">Citoplasma</td><td style="padding:6px; border:1px solid #334155;">Glucosa (6C)</td><td style="padding:6px; border:1px solid #334155;">2 piruvatos + 2 ATP + 2 NADH</td><td style="padding:6px; border:1px solid #334155;">2-8</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Decarboxilación oxidativa</strong></td><td style="padding:6px; border:1px solid #334155;">Matriz mitocondrial</td><td style="padding:6px; border:1px solid #334155;">2 piruvatos</td><td style="padding:6px; border:1px solid #334155;">2 Acetil CoA + 2 CO₂ + 2 NADH</td><td style="padding:6px; border:1px solid #334155;">6</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Ciclo de Krebs (2 vueltas)</strong></td><td style="padding:6px; border:1px solid #334155;">Matriz mitocondrial</td><td style="padding:6px; border:1px solid #334155;">2 Acetil CoA</td><td style="padding:6px; border:1px solid #334155;">4 CO₂ + 6 NADH + 2 FADH₂ + 2 GTP</td><td style="padding:6px; border:1px solid #334155;">24</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Cadena de transporte</strong></td><td style="padding:6px; border:1px solid #334155;">Membrana mitocondrial interna</td><td style="padding:6px; border:1px solid #334155;">NADH, FADH₂, O₂</td><td style="padding:6px; border:1px solid #334155;">H₂O + ATP (por gradiente)</td><td style="padding:6px; border:1px solid #334155;">~26-28</td></tr>
+                        <tr><td colspan="4" style="padding:6px; border:1px solid #334155; text-align:right;"><strong>TOTAL</strong></td><td style="padding:6px; border:1px solid #334155;"><strong>36-38</strong></td></tr>
+                    </tbody>
+                </table>
+                <p style="text-align:center; color:#94a3b8; font-size:12px; margin-top:10px;">📋 Fuente: elaboración propia basada en el PDF</p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- REFERENCIAS BIBLIOGRÁFICAS                                 -->
+        <!-- ========================================================== -->
+        <section id="referencias">
+            <h2>📚 Referencias Bibliográficas</h2>
+            <div class="referencias">
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li>1. Robertis, E. (2019). <em>Fundamentos de Biología Celular y Molecular</em> (16ª ed.). Madrid: El Ateneo.</li>
+                    <li>2. Tortora, G. J., & Derrickson, B. (2010). <em>Principios de Anatomía y Fisiología</em> (11a. ed.). Buenos Aires: Médica Panamericana.</li>
+                    <li>3. Alberts, B., et al. (2015). <em>Biología Molecular de la Célula</em> (6ª ed.). Barcelona: Omega.</li>
+                    <li>4. Lodish, H., et al. (2016). <em>Biología Celular y Molecular</em> (7ª ed.). Buenos Aires: Médica Panamericana.</li>
+                    <li>5. Audesirk, G. (2005). <em>Biología: La vida en la Tierra</em>. México D.F.: McGraw-Hill.</li>
+                    <li>6. Libro-Biologia 2024 psa-45-53 (material de estudio).</li>
+                </ul>
+                <p style="color:#94a3b8; font-size:12px; margin-top:10px; text-align:center;">
+                    📖 Estas referencias sustentan el contenido desarrollado en esta página.
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- MENÚ DE TEMAS                                              -->
+        <!-- ========================================================== -->
+        <div style="text-align:center; margin-top:30px; padding:20px; border-top:2px solid #334155;">
+            <a href="../temas.html" class="btn-menu" style="
+                display:inline-block;
+                padding:12px 35px;
+                background:var(--primary-color);
+                color:white;
+                border-radius:10px;
+                font-weight:600;
+                text-decoration:none;
+                transition:0.3s;
+            ">📋 Menú de temas</a>
+        </div>
+
+    </main>
+</div>
+
+<!-- ============================================================ -->
+<!-- 4. FOOTER                                                     -->
+<!-- ============================================================ -->
+<footer class="footer-global">
+    <p>🧬 BioStudy · Simulador de Estudio · 2026</p>
+</footer>
+
+<!-- ============================================================ -->
+<!-- 5. JAVASCRIPT                                                 -->
+<!-- ============================================================ -->
+<script>
+
+    // ========================================================
+    // 1. PROGRESO
+    // ========================================================
+    let progreso = 0;
+    const secciones = document.querySelectorAll('.contenido > section, .contenido > section section');
+    const barra = document.getElementById('barraProgreso');
+    const porcentajeTexto = document.getElementById('porcentajeProgreso');
+
+    function actualizarProgreso() {
+        let vistas = 0;
+        secciones.forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.7) vistas++;
+        });
+        progreso = Math.round((vistas / secciones.length) * 100);
+        barra.style.width = progreso + '%';
+        porcentajeTexto.textContent = progreso;
+    }
+
+    window.addEventListener('scroll', actualizarProgreso);
+    window.addEventListener('load', actualizarProgreso);
+
+    // ========================================================
+    // 2. FLASHCARDS (12 en total)
+    // ========================================================
+    let flashcardsAcertadas = 0;
+    let flashcardsTotales = 0;
+    let totalFlashcards = 12;
+
+    function actualizarFlashcardsGlobal() {
+        document.getElementById('flashcardsCompletadas').textContent = flashcardsAcertadas;
+        document.querySelectorAll('[id^="flashcardProgreso"]').forEach(el => {
+            el.textContent = flashcardsAcertadas;
+        });
+        document.querySelectorAll('[id^="flashcardTotal"]').forEach(el => {
+            el.textContent = totalFlashcards;
+        });
+    }
+
+    function flashcardAcertada() {
+        flashcardsAcertadas++;
+        flashcardsTotales++;
+        actualizarFlashcardsGlobal();
+        alert('✅ ¡Bien!');
+    }
+
+    function flashcardFallada() {
+        flashcardsTotales++;
+        actualizarFlashcardsGlobal();
+        alert('❌ Revísalo después.');
+    }
+
+    actualizarFlashcardsGlobal();
+
+    // ========================================================
+    // 3. FEYNMAN
+    // ========================================================
+    function guardarFeynman() {
+        const texto = document.getElementById('feynmanTexto').value;
+        if (texto.trim().length > 0) {
+            localStorage.setItem('feynman_fisiologia_celular', texto);
+            document.getElementById('feynmanGuardado').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('feynmanGuardado').style.display = 'none';
+            }, 3000);
+        } else {
+            alert('✍️ Escribe algo antes de guardar.');
+        }
+    }
+
+    // ========================================================
+    // 4. MINI EXAMEN
+    // ========================================================
+    function corregirExamen() {
+        const preguntas = document.querySelectorAll('.pregunta');
+        let correctas = 0;
+        const respuestasCorrectas = [1, 1, 1, 2, 2, 1, 2, 1, 2, 1];
+
+        preguntas.forEach((p, i) => {
+            const seleccionada = p.querySelector('input:checked');
+            const respuestaDiv = p.querySelector('.respuesta-correcta');
+            respuestaDiv.style.display = 'block';
+
+            if (seleccionada && parseInt(seleccionada.value) === respuestasCorrectas[i]) {
+                correctas++;
+                seleccionada.parentElement.style.color = '#22c55e';
+            } else if (seleccionada) {
+                seleccionada.parentElement.style.color = '#ef4444';
+            }
+        });
+
+        document.getElementById('resultadoExamen').textContent =
+            `📊 Resultado: ${correctas}/10 correctas (${(correctas/10)*100}%)`;
+    }
+
+    // ========================================================
+    // 5. POMODORO
+    // ========================================================
+    let pomodoroActivo = false;
+    let pomodoroTiempo = 25 * 60;
+    let pomodoroIntervalo = null;
+    let pomodoroContador = 1;
+
+    function actualizarPomodoroDisplay() {
+        const min = String(Math.floor(pomodoroTiempo / 60)).padStart(2, '0');
+        const seg = String(pomodoroTiempo % 60).padStart(2, '0');
+        document.getElementById('pomodoroMinutos').textContent = min;
+        document.getElementById('pomodoroSegundos').textContent = seg;
+    }
+
+    function iniciarPomodoro() {
+        if (pomodoroActivo) return;
+        pomodoroActivo = true;
+        pomodoroIntervalo = setInterval(() => {
+            pomodoroTiempo--;
+            actualizarPomodoroDisplay();
+            if (pomodoroTiempo <= 0) {
+                clearInterval(pomodoroIntervalo);
+                pomodoroActivo = false;
+                alert('⏰ ¡Tiempo completado! Descansa 5 minutos.');
+                pomodoroContador++;
+                document.getElementById('pomodoroContador').textContent = pomodoroContador;
+                pomodoroTiempo = 25 * 60;
+                actualizarPomodoroDisplay();
+            }
+        }, 1000);
+    }
+
+    function pausarPomodoro() {
+        clearInterval(pomodoroIntervalo);
+        pomodoroActivo = false;
+    }
+
+    function reiniciarPomodoro() {
+        clearInterval(pomodoroIntervalo);
+        pomodoroActivo = false;
+        pomodoroTiempo = 25 * 60;
+        actualizarPomodoroDisplay();
+    }
+
+    // ========================================================
+    // 6. ÍNDICE - RESALTADO DE SECCIÓN ACTIVA
+    // ========================================================
+    const enlaces = document.querySelectorAll('.indice a');
+
+    window.addEventListener('scroll', () => {
+        let actual = '';
+        secciones.forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < 200) {
+                actual = sec.getAttribute('id');
+            }
+        });
+        enlaces.forEach(enlace => {
+            enlace.parentElement.classList.remove('activo');
+            if (enlace.getAttribute('href') === '#' + actual) {
+                enlace.parentElement.classList.add('activo');
+            }
+        });
+    });
+
+    // ========================================================
+    // 7. SCROLL SUAVE
+    // ========================================================
+    document.querySelectorAll('.indice a').forEach(enlace => {
+        enlace.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.querySelector(enlace.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // ========================================================
+    // 8. TIEMPO DE ESTUDIO (simulado)
+    // ========================================================
+    let tiempoEstudio = 0;
+    setInterval(() => {
+        tiempoEstudio++;
+        document.getElementById('tiempoEstudio').textContent = tiempoEstudio;
+    }, 60000);
+
+</script>
+
+</body>
+</html>

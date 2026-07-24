@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Examen de Admisión</title>
+
+<link rel="stylesheet" href="examen.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="titulo">
+
+        <h2>SIMULADOR DE ADMISIÓN</h2>
+
+    </div>
+
+    <div class="temporizador">
+
+        ⏰
+        <span id="tiempo">
+            90:00
+        </span>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- PANEL IZQUIERDO -->
+
+    <aside class="panel">
+
+        <h3>Preguntas</h3>
+
+        <div id="listaPreguntas">
+
+        </div>
+
+        <button id="finalizar">
+
+            Finalizar examen
+
+        </button>
+        <div class="estadisticas">
+
+    <div class="dato">
+
+        <span>Respondidas</span>
+
+        <strong id="respondidas">
+            0
+        </strong>
+
+    </div>
+
+    <div class="dato">
+
+        <span>Sin responder</span>
+
+        <strong id="faltantes">
+            60
+        </strong>
+
+    </div>
+
+</div>
+
+    </aside>
+
+
+    <!-- CONTENIDO -->
+
+    <section class="contenido">
+
+        <div class="barra">
+
+            <div id="progreso">
+
+            </div>
+
+        </div>
+
+        <h3 id="contador">
+
+            Pregunta 1 de 60
+
+        </h3>
+
+        <div id="pregunta">
+
+        </div>
+
+        <div id="opciones">
+
+        </div>
+
+        <div class="botones">
+
+            <button id="anterior">
+
+                ← Anterior
+
+            </button>
+
+            <button id="marcar">
+
+                ⭐ Revisar
+
+            </button>
+
+            <button id="siguiente">
+
+                Siguiente →
+
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="preguntas.js"></script>
+<script src="examen.js"></script>
+
+</body>
+</html>

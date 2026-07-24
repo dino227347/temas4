@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anatomía - Tema 4: Miología</title>
+    <link rel="stylesheet" href="tema-base.css">
+    <style>
+        /* ================================================================
+           PERSONALIZACIÓN PARA ANATOMÍA (TEMA 4 - MIOLOGÍA)
+           ================================================================ */
+        :root {
+            --primary-color: #2563eb;    /* Azul */
+            --secondary-color: #60a5fa;  /* Azul claro */
+            --accent-color: #3b82f6;
+        }
+
+        .tema-header h1::before { content: "🩺 "; }
+        .indice ul li.activo a { background: var(--primary-color); border-left-color: var(--secondary-color); }
+        .barra-interna { background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); }
+        .logo { color: var(--secondary-color); }
+        .nav-global a:hover { color: var(--secondary-color); background: #334155; }
+        .contenido h2 { color: var(--secondary-color); }
+        .indice h3 { color: var(--secondary-color); }
+        .flashcard h4 { color: var(--secondary-color); }
+        .examen button { background: var(--primary-color); }
+        .examen button:hover { background: #1d4ed8; }
+        .pomodoro h3 { color: var(--primary-color); }
+        .pomodoro-timer { color: var(--secondary-color); }
+        .mapa-mental h4 { color: var(--secondary-color); }
+        .mapa-nodo.principal { background: var(--primary-color); }
+
+        .definicion-destacada {
+            background: #1e293b;
+            border-left: 4px solid var(--secondary-color);
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin: 16px 0;
+        }
+        .definicion-destacada p { margin: 0; color: #f1f5f9; }
+        .definicion-destacada strong { color: var(--secondary-color); }
+
+        .dato-curioso {
+            background: #0f172a;
+            border: 1px solid var(--secondary-color);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin: 16px 0;
+        }
+        .dato-curioso p { margin: 0; color: #cbd5e1; }
+        .dato-curioso strong { color: var(--secondary-color); }
+
+        .autoevaluacion {
+            background: #1e293b;
+            border: 2px solid var(--secondary-color);
+            border-radius: 14px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .autoevaluacion h3 { color: var(--secondary-color); }
+        .autoevaluacion li { padding: 8px 0; border-bottom: 1px solid #334155; color: #cbd5e1; }
+        .autoevaluacion li:last-child { border-bottom: none; }
+        .autoevaluacion li strong { color: #f1f5f9; }
+
+        .referencias {
+            background: #0f172a;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 14px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .referencias li { font-size: 13px; color: #94a3b8; margin-bottom: 6px; }
+        .referencias h4 { color: var(--secondary-color); margin-bottom: 12px; }
+
+        .active-recall {
+            background: #0f172a;
+            border: 2px solid #ef4444;
+            border-radius: 14px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .active-recall h4 { color: #ef4444; }
+
+        .resumen-rapido { border-left: 5px solid var(--secondary-color) !important; }
+
+        .tabla-fila span:first-child { color: var(--secondary-color); min-width: 150px; }
+        .tabla-fila span:nth-child(2) { color: #e2e8f0; flex: 2; }
+
+        .tabla-compleja {
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+        .tabla-compleja table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            color: #e2e8f0;
+            background: #0f172a;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .tabla-compleja th {
+            background: #1e293b;
+            color: var(--secondary-color);
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 2px solid #334155;
+        }
+        .tabla-compleja td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #334155;
+        }
+        .tabla-compleja tr:last-child td { border-bottom: none; }
+        .tabla-compleja strong { color: var(--secondary-color); }
+
+        .nota {
+            background: #0f172a;
+            border-radius: 10px;
+            padding: 10px 16px;
+            border-left: 4px solid #f59e0b;
+            margin: 10px 0;
+            color: #cbd5e1;
+        }
+        .nota strong { color: var(--secondary-color); }
+
+        @media (max-width: 768px) {
+            .tabla-fila { flex-direction: column; }
+            .tabla-fila span { min-width: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- 1. HEADER GLOBAL                                              -->
+<!-- ============================================================ -->
+<header class="header-global">
+    <div class="logo">🩺 MedStudy</div>
+    <nav class="nav-global">
+        <a href="../index.html">🏠 Inicio</a>
+        <a href="../temas.html">📚 Temas</a>
+        <a href="../Primer mini examen/examenGUjaja.html">📝 Examen</a>
+    </nav>
+</header>
+
+<!-- ============================================================ -->
+<!-- 2. PROGRESO DEL TEMA                                          -->
+<!-- ============================================================ -->
+<div class="tema-header">
+    <h1>Anatomía - Tema 4: Miología</h1>
+    <div class="progreso">
+        <span>Progreso: <span id="porcentajeProgreso">0</span>%</span>
+        <div class="barra">
+            <div class="barra-interna" id="barraProgreso" style="width: 0%;"></div>
+        </div>
+    </div>
+    <div class="tema-meta">
+        <span>⏱️ <span id="tiempoEstudio">0</span> min estudiados</span>
+        <span>📇 <span id="flashcardsCompletadas">0</span> flashcards</span>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 3. CUERPO: ÍNDICE + CONTENIDO                                -->
+<!-- ============================================================ -->
+<div class="contenedor-estudio">
+
+    <!-- ===================== -->
+    <!-- 3.1 ÍNDICE (sticky)   -->
+    <!-- ===================== -->
+    <aside class="indice">
+        <h3>📌 Índice</h3>
+        <ul>
+            <li class="activo"><a href="#resumen">⭐ Resumen</a></li>
+            <li><a href="#pomodoro">⏱️ Pomodoro</a></li>
+            <li><a href="#definicion">1. Definición</a></li>
+            <li><a href="#generalidades">2. Generalidades</a></li>
+            <li><a href="#tipos">3. Tipos de tejido muscular</a></li>
+            <li><a href="#esqueletico">3.1 Músculo esquelético</a></li>
+            <li><a href="#cardiaco">3.2 Músculo cardíaco</a></li>
+            <li><a href="#liso">3.3 Músculo liso</a></li>
+            <li><a href="#funciones">4. Funciones del tejido muscular</a></li>
+            <li><a href="#propiedades">5. Propiedades del tejido muscular</a></li>
+            <li><a href="#clasificacion">6. Clasificación de los músculos</a></li>
+            <li><a href="#estructuras-anexas">7. Estructuras anexas</a></li>
+            <li><a href="#autoevaluacion">8. Autoevaluación</a></li>
+            <li><a href="#examen">9. Mini Examen</a></li>
+            <li><a href="#cuadro-resumen">📊 Cuadro resumen</a></li>
+            <li><a href="#referencias">📚 Referencias</a></li>
+        </ul>
+    </aside>
+
+    <!-- ===================== -->
+    <!-- 3.2 CONTENIDO          -->
+    <!-- ===================== -->
+    <main class="contenido">
+
+        <!-- ========================================================== -->
+        <!-- RESUMEN RÁPIDO                                              -->
+        <!-- ========================================================== -->
+        <section id="resumen" class="resumen-rapido">
+            <h2>⭐ Resumen Rápido</h2>
+            <p><strong>Miología:</strong> estudio de los músculos, tejido contráctil que permite el movimiento y otras funciones vitales.</p>
+            <ul>
+                <li><strong>Tejido muscular:</strong> 40-50% del peso corporal. Función: transformar energía química en mecánica.</li>
+                <li><strong>Tipos:</strong> esquelético (estriado, voluntario), cardíaco (estriado, involuntario), liso (no estriado, involuntario).</li>
+                <li><strong>Funciones:</strong> movimiento, estabilización postural, almacenamiento/movilización de sustancias, producción de calor.</li>
+                <li><strong>Propiedades:</strong> excitabilidad eléctrica, contractilidad, extensibilidad, elasticidad.</li>
+                <li><strong>Clasificación:</strong> por situación (superficiales/profundos), dimensiones (largos/cortos/planos/orbiculares), inserción de fibras (unipenniformes, bipenniformes, multipenniformes), función (agonistas/antagonistas), número de vientres (bíceps, tríceps, cuádriceps).</li>
+                <li><strong>Estructuras anexas:</strong> bolsas serosas (sinoviales) y aponeurosis (fascias).</li>
+            </ul>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- POMODORO                                                    -->
+        <!-- ========================================================== -->
+        <section id="pomodoro" class="pomodoro">
+            <h3>⏱️ Pomodoro · Enfoque de estudio</h3>
+            <p style="color:#94a3b8; font-size:14px; margin-bottom:12px;">
+                Estudia por 25 minutos, descansa 5. Repite 4 ciclos y toma un descanso largo de 15-30 min.
+            </p>
+            <div class="pomodoro-timer">
+                <span id="pomodoroMinutos">25</span>:<span id="pomodoroSegundos">00</span>
+            </div>
+            <div class="pomodoro-botones">
+                <button onclick="iniciarPomodoro()">▶ Iniciar</button>
+                <button onclick="pausarPomodoro()">⏸ Pausar</button>
+                <button onclick="reiniciarPomodoro()">⏹ Reiniciar</button>
+            </div>
+            <p>🍅 Pomodoro #<span id="pomodoroContador">1</span> de hoy</p>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 1. DEFINICIÓN                                              -->
+        <!-- ========================================================== -->
+        <section id="definicion">
+            <h2>1. Definición de Miología</h2>
+            <div class="definicion-destacada">
+                <p><strong>Miología:</strong> del griego <em>mys</em> = músculo, <em>logos</em> = estudio. Es la ciencia que estudia los músculos y el tejido muscular.</p>
+            </div>
+            <p><strong>Tejido muscular:</strong> tejido contráctil con características estriadas y lisas, cuyo origen y terminación es ósea, o estructurando órganos viscerales (músculo liso de la tráquea, tubo intestinal, etc.).</p>
+            <div class="dato-curioso">
+                <p>📊 <strong>Dato:</strong> El tejido muscular representa entre el <strong>40-50%</strong> del peso corporal de un adulto. La fuerza muscular es la función primaria: transformar energía química en energía mecánica para generar fuerza, realizar trabajo y producir movimiento.</p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 2. GENERALIDADES                                           -->
+        <!-- ========================================================== -->
+        <section id="generalidades">
+            <h2>2. Generalidades de los músculos</h2>
+            <p>Si bien los huesos forman el sistema de palanca y el armazón o esqueleto, no pueden mover por sí solos las partes del cuerpo. El movimiento se debe a la <strong>contracción y relajación alternantes</strong> de los músculos.</p>
+            <p>Además de generar movimiento, los tejidos musculares:</p>
+            <ul>
+                <li><strong>Estabilizan la postura</strong></li>
+                <li><strong>Regulan el volumen</strong> de los órganos</li>
+                <li><strong>Generan calor</strong></li>
+                <li><strong>Impulsan líquidos y materia alimenticia</strong> a través de diversos aparatos y sistemas corporales</li>
+            </ul>
+            <p>SAPPEY estima que el cuerpo humano tiene <strong>501 músculos estriados</strong>. En un sujeto de talla normal, los músculos equivaldrían entre el <strong>35 al 45%</strong> de su peso total.</p>
+            <p>En cuanto a la <strong>dirección</strong>, los músculos tienen por lo general un trayecto rectilíneo, paralelo al eje mayor del cuerpo. Aquellos que tienen trayectoria perpendicular al eje mayor del cuerpo se denominan <strong>músculos transversos u oblicuos</strong>.</p>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 3. TIPOS DE TEJIDO MUSCULAR                                -->
+        <!-- ========================================================== -->
+        <section id="tipos">
+            <h2>3. Tipos de tejido muscular</h2>
+            <p>Se dividen en tres tipos principales:</p>
+            <ul>
+                <li><strong>Músculos rojos, estriados, voluntarios o de la vida animal</strong> (esquelético)</li>
+                <li><strong>Músculos blancos, lisos, involuntarios o de la vida vegetativa</strong> (liso)</li>
+                <li><strong>Músculo cardíaco</strong></li>
+            </ul>
+
+            <!-- ========================================================== -->
+            <!-- 3.1 MÚSCULO ESQUELÉTICO                                    -->
+            <!-- ========================================================== -->
+            <section id="esqueletico">
+                <h3>3.1 Tejido muscular esquelético</h3>
+                <div class="definicion-destacada">
+                    <p><strong>Descripción:</strong> fibras largas cilíndricas, <strong>estriadas</strong> (bandas claras y oscuras alternadas visibles al microscopio). Las fibras varían en longitud desde pocos centímetros hasta 30-40 cm. Son células <strong>multinucleadas</strong> con núcleos periféricos.</p>
+                    <p><strong>Control:</strong> voluntario (consciente).</p>
+                    <p><strong>Localización:</strong> se insertan en los huesos a través de los tendones.</p>
+                    <p><strong>Funciones:</strong> movimiento, postura, producción de calor y protección.</p>
+                </div>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- 3.2 MÚSCULO CARDÍACO                                      -->
+            <!-- ========================================================== -->
+            <section id="cardiaco">
+                <h3>3.2 Tejido muscular cardíaco</h3>
+                <div class="definicion-destacada" style="border-left-color: #ef4444;">
+                    <p><strong>Descripción:</strong> fibras estriadas ramificadas con uno o más núcleos centrales. Unidas por sus extremos a través de engrosamientos transversales de la membrana plasmática denominados <strong>discos intercalares</strong>.</p>
+                    <p><strong>Control:</strong> involuntario (inconsciente).</p>
+                    <p><strong>Localización:</strong> pared del corazón.</p>
+                    <p><strong>Función:</strong> bombea la sangre hacia todas las partes del cuerpo.</p>
+                </div>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- 3.3 MÚSCULO LISO                                           -->
+            <!-- ========================================================== -->
+            <section id="liso">
+                <h3>3.3 Tejido muscular liso</h3>
+                <div class="definicion-destacada" style="border-left-color: #f59e0b;">
+                    <p><strong>Descripción:</strong> fibras <strong>no estriadas</strong> (lisas). Células fusiformes (más gruesas en el medio y más delgadas en los extremos) con un único núcleo central.</p>
+                    <p><strong>Control:</strong> involuntario.</p>
+                    <p><strong>Localización:</strong> iris del ojo, pared de estructuras internas huecas como vasos sanguíneos, vías aéreas pulmonares, tubo digestivo, vías urinarias.</p>
+                    <p><strong>Función:</strong> movimiento (constricción de vasos sanguíneos y vías aéreas, propulsión de alimentos a lo largo del tubo digestivo).</p>
+                </div>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- FLASHCARD (1)                                               -->
+            <!-- ========================================================== -->
+            <div class="flashcard">
+                <h4>📇 Flashcard · Repaso Rápido</h4>
+                <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                    <p><strong>"Diferencia entre músculo esquelético, cardíaco y liso"</strong></p>
+                    <p class="flashcard-respuesta" style="display:none;">Esquelético: estriado, voluntario, multinucleado, unido a huesos. Cardíaco: estriado, involuntario, discos intercalares. Liso: no estriado, involuntario, células fusiformes.</p>
+                </div>
+                <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                    <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                    <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                </div>
+                <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                    📊 Progreso: <span id="flashcardProgreso1">0</span> de <span id="flashcardTotal1">12</span> flashcards
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 4. FUNCIONES DEL TEJIDO MUSCULAR                           -->
+        <!-- ========================================================== -->
+        <section id="funciones">
+            <h2>4. Funciones del tejido muscular</h2>
+            <p>Mediante la contracción sostenida (o la contracción y relajación alternantes), el tejido muscular cumple <strong>cuatro funciones clave</strong>:</p>
+            <div class="tabla-compleja">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Función</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Movimiento corporal</strong></td><td>Contracción de músculos esqueléticos para mover huesos y partes del cuerpo.</td></tr>
+                        <tr><td><strong>Estabilización postural</strong></td><td>Contracción sostenida de músculos para mantener la posición del cuerpo (ej. músculos antigravitatorios).</td></tr>
+                        <tr><td><strong>Almacenamiento y movilización</strong></td><td>Movimiento de sustancias dentro del cuerpo (ej. sangre en vasos, alimentos en tubo digestivo).</td></tr>
+                        <tr><td><strong>Generación de calor</strong></td><td>La contracción muscular produce calor (termogénesis), ayudando a mantener la temperatura corporal.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 5. PROPIEDADES DEL TEJIDO MUSCULAR                         -->
+        <!-- ========================================================== -->
+        <section id="propiedades">
+            <h2>5. Propiedades del tejido muscular</h2>
+            <p>El tejido muscular tiene <strong>cuatro propiedades especiales</strong> que le permiten funcionar:</p>
+            <div class="tabla-compleja">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Propiedad</th>
+                            <th>Definición</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Excitabilidad eléctrica</strong></td><td>Capacidad de responder a estímulos (químicos, eléctricos, mecánicos) generando potenciales de acción.</td></tr>
+                        <tr><td><strong>Contractilidad</strong></td><td>Capacidad de acortarse y generar tensión (fuerza) al ser estimulado.</td></tr>
+                        <tr><td><strong>Extensibilidad</strong></td><td>Capacidad de estirarse sin dañarse (dentro de ciertos límites).</td></tr>
+                        <tr><td><strong>Elasticidad</strong></td><td>Capacidad de volver a su longitud original después de ser estirado.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ========================================================== -->
+            <!-- FLASHCARD (2)                                               -->
+            <!-- ========================================================== -->
+            <div class="flashcard">
+                <h4>📇 Flashcard · Repaso Rápido</h4>
+                <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                    <p><strong>"Propiedades del tejido muscular"</strong></p>
+                    <p class="flashcard-respuesta" style="display:none;">Excitabilidad eléctrica (respuesta a estímulos), contractilidad (capacidad de acortarse), extensibilidad (capacidad de estirarse), elasticidad (volver a la longitud original).</p>
+                </div>
+                <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                    <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                    <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                </div>
+                <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                    📊 Progreso: <span id="flashcardProgreso2">0</span> de <span id="flashcardTotal2">12</span> flashcards
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 6. CLASIFICACIÓN DE LOS MÚSCULOS                           -->
+        <!-- ========================================================== -->
+        <section id="clasificacion">
+            <h2>6. Clasificación de los músculos</h2>
+
+            <h3>6.1 Según su situación</h3>
+            <ul>
+                <li><strong>Músculos superficiales:</strong> situados debajo de la piel (cabeza, cara y cuello). Son los llamados <strong>músculos cutáneos</strong>.</li>
+                <li><strong>Músculos profundos:</strong> se encuentran sobre el esqueleto, sobre el cual se insertan. Son los <strong>músculos esqueléticos</strong>.</li>
+            </ul>
+
+            <h3>6.2 Según las tres dimensiones del espacio (longitud, espesor, anchura)</h3>
+            <ul>
+                <li><strong>Músculos largos:</strong> mayoría en las extremidades. Ej: <em>bíceps braquial, músculo crural</em>.</li>
+                <li><strong>Músculos cortos:</strong> por lo general profundos, producen movimientos de poca extensión. Ej: <em>músculos intervertebrales</em>.</li>
+                <li><strong>Músculos anchos:</strong> planos y delgados, situados en paredes de cavidades. Ej: <em>músculo diafragma</em>.</li>
+                <li><strong>Músculos orbiculares:</strong> forman esfínteres, aseguran el cierre de orificios.</li>
+            </ul>
+
+            <!-- IMAGEN: Clasificación por dimensiones -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/anato1.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                🖼️ <strong>IMAGEN:</strong> Clasificación de los músculos según las tres dimensiones del espacio - <em>Fuente: Michael Schuenke, M.D., Ph.D. THIEME Atlas of anatomy</em></p>
+            </div>
+
+            <h3>6.3 Según la inserción de las fibras musculares sobre el tendón</h3>
+            <ul>
+                <li><strong>Músculos unipenniformes:</strong> las fibras musculares se insertan en una sola cara del tendón.</li>
+                <li><strong>Músculos bipenniformes:</strong> las fibras musculares se insertan en las dos caras del tendón.</li>
+                <li><strong>Músculos multipenniformes:</strong> las fibras musculares se dirigen desde varias direcciones hacia varios tendones.</li>
+            </ul>
+
+            <h3>6.4 Según la función muscular</h3>
+            <ul>
+                <li><strong>Músculos agonistas:</strong> realizan una determinada función. Ej: <em>bíceps braquial</em> (agonista del músculo braquial anterior, ambos participan en la flexión del antebrazo).</li>
+                <li><strong>Músculos antagonistas:</strong> se oponen a determinados movimientos. Ej: <em>tríceps braquial</em> es antagonista del bíceps braquial (el tríceps es extensor, el bíceps es flexor del antebrazo).</li>
+            </ul>
+
+            <h3>6.5 Según el número de vientres</h3>
+            <ul>
+                <li><strong>Bíceps:</strong> dos cuerpos musculares (origen distinto, se reúnen en un solo extremo).</li>
+                <li><strong>Tríceps:</strong> tres cuerpos musculares.</li>
+                <li><strong>Cuádriceps:</strong> cuatro cuerpos musculares.</li>
+            </ul>
+            <p>Ejemplo: <em>bíceps braquial, tríceps braquial, cuádriceps femoral</em>.</p>
+
+            <div class="dato-curioso">
+                <p>📌 <strong>Dato clínico:</strong> Los músculos agonistas y antagonistas trabajan en pares para producir movimientos coordinados. La contracción de un agonista se acompaña de la relajación del antagonista (inervación recíproca).</p>
+            </div>
+
+            <!-- ========================================================== -->
+            <!-- FLASHCARD (3)                                               -->
+            <!-- ========================================================== -->
+            <div class="flashcard">
+                <h4>📇 Flashcard · Repaso Rápido</h4>
+                <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                    <p><strong>"Diferencia entre músculos agonistas y antagonistas"</strong></p>
+                    <p class="flashcard-respuesta" style="display:none;">Agonistas: músculos que realizan una función determinada (ej. bíceps flexiona). Antagonistas: músculos que se oponen a esa función (ej. tríceps extiende).</p>
+                </div>
+                <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                    <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                    <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                </div>
+                <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                    📊 Progreso: <span id="flashcardProgreso3">0</span> de <span id="flashcardTotal3">12</span> flashcards
+                </p>
+            </div>
+
+            <!-- Active Recall -->
+            <div class="active-recall">
+                <h4>❓ Active Recall</h4>
+                <p style="color:#cbd5e1;"><strong>¿Cuál es la diferencia entre músculos unipenniformes, bipenniformes y multipenniformes?</strong></p>
+                <details style="margin-top:10px; cursor:pointer; color:#94a3b8;">
+                    <summary style="font-weight:bold; color:#38bdf8;">👆 Ver respuesta</summary>
+                    <p style="color:#22c55e; margin-top:8px; padding:12px; background:#1e293b; border-radius:8px;">
+                        <strong>Unipenniformes:</strong> fibras se insertan en una sola cara del tendón. <strong>Bipenniformes:</strong> fibras se insertan en las dos caras. <strong>Multipenniformes:</strong> fibras se dirigen desde varias direcciones hacia varios tendones.
+                    </p>
+                </details>
+            </div>
+
+            <!-- Mapa Mental -->
+            <div class="mapa-mental">
+                <h4>🧠 Mapa Mental: Clasificación de los Músculos</h4>
+                <div class="mapa">
+                    <div class="mapa-nodo principal">💪 MÚSCULOS</div>
+                    <div class="mapa-hijos" style="flex-wrap: wrap; gap: 15px;">
+                        <div class="mapa-nodo" style="min-width: 100px;">Por situación<br><small>Superficiales · Profundos</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">Por dimensiones<br><small>Largos · Cortos · Anchos · Orbiculares</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">Por inserción<br><small>Unipenniformes · Bipenniformes · Multipenniformes</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">Por función<br><small>Agonistas · Antagonistas</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">Por vientres<br><small>Bíceps · Tríceps · Cuádriceps</small></div>
+                    </div>
+                </div>
+                <p style="text-align:center; color:#94a3b8; font-size:13px; margin-top:10px;">
+                    🔹 La clasificación muscular es clave para entender la biomecánica del cuerpo humano.
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 7. ESTRUCTURAS ANEXAS                                      -->
+        <!-- ========================================================== -->
+        <section id="estructuras-anexas">
+            <h2>7. Estructuras anexas a los músculos</h2>
+
+            <h3>7.1 Bolsas serosas (sinoviales)</h3>
+            <div class="definicion-destacada">
+                <p>Son membranas conjuntivas cerradas por todas partes. Se desarrollan entre un músculo y una superficie dura, y <strong>favorecen el deslizamiento</strong> de los músculos, reduciendo la fricción.</p>
+            </div>
+
+            <h3>7.2 Aponeurosis (fascias)</h3>
+            <div class="definicion-destacada" style="border-left-color: #f59e0b;">
+                <p>Son membranas fibrosas que envuelven a los músculos (perimisio y endomisio), separándolos de los órganos vecinos. Además de <strong>contener al músculo</strong> durante su contracción.</p>
+            </div>
+            <p>Las fascias son importantes para la transmisión de la fuerza muscular y para mantener la integridad estructural de los compartimentos musculares.</p>
+
+            <!-- IMAGEN: Estructuras anexas -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/anato2.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                🖼️ <strong>IMAGEN:</strong> Estructuras anexas a los músculos (bolsas serosas y aponeurosis) - <em>Fuente: J.A. García Porrero; J.M. Hurle. ANATOMIA HUMANA, 2ª Edición; Tórtora, Grabowski. Principios de Anatomía y Fisiología. 9ª edición</em></p>
+            </div>
+
+            <!-- ========================================================== -->
+            <!-- FLASHCARD (4)                                               -->
+            <!-- ========================================================== -->
+            <div class="flashcard">
+                <h4>📇 Flashcard · Repaso Rápido</h4>
+                <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                    <p><strong>"Estructuras anexas a los músculos"</strong></p>
+                    <p class="flashcard-respuesta" style="display:none;">Bolsas serosas (sinoviales): membranas que facilitan el deslizamiento. Aponeurosis (fascias): membranas fibrosas que envuelven y contienen a los músculos.</p>
+                </div>
+                <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                    <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                    <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                </div>
+                <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                    📊 Progreso: <span id="flashcardProgreso4">0</span> de <span id="flashcardTotal4">12</span> flashcards
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 8. AUTOEVALUACIÓN                                          -->
+        <!-- ========================================================== -->
+        <section id="autoevaluacion">
+            <h2>8. Preguntas de Autoevaluación</h2>
+
+            <div class="autoevaluacion">
+                <h3>📝 Preguntas del PDF</h3>
+                <ol style="list-style-type: decimal; padding-left: 20px;">
+                    <li><strong>¿Qué características presentan los tres tipos de tejido muscular?</strong></li>
+                    <li><strong>Cite las funciones generales del tejido muscular.</strong></li>
+                    <li><strong>¿Cuáles son las estructuras anexas a los músculos?</strong></li>
+                    <li><strong>Cite un ejemplo de músculos antagonistas.</strong></li>
+                    <li><strong>El tejido que envuelve a los músculos, se lo conoce como:</strong></li>
+                </ol>
+
+                <details style="margin-top:15px; cursor:pointer; color:#94a3b8;">
+                    <summary style="font-weight:bold; color:#38bdf8;">👆 Ver respuestas sugeridas</summary>
+                    <div style="background:#0f172a; padding:15px; border-radius:10px; margin-top:10px; color:#e2e8f0; font-size:14px;">
+                        <p><strong>1.</strong> Esquelético: estriado, voluntario, multinucleado, unido a huesos. Cardíaco: estriado, involuntario, discos intercalares. Liso: no estriado, involuntario, células fusiformes.</p>
+                        <p><strong>2.</strong> Movimiento corporal, estabilización postural, almacenamiento y movilización de sustancias, generación de calor.</p>
+                        <p><strong>3.</strong> Bolsas serosas (sinoviales) y aponeurosis (fascias).</p>
+                        <p><strong>4.</strong> Bíceps braquial (flexor) y tríceps braquial (extensor).</p>
+                        <p><strong>5.</strong> Aponeurosis o fascia.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Feynman -->
+            <div class="feynman" style="margin-top:30px;">
+                <h4>🗣️ Explica este tema (Método Feynman)</h4>
+                <p><em>"Imagina que le enseñas a un niño de 5 años: ¿qué son los músculos y para qué sirven?"</em></p>
+                <textarea id="feynmanTexto" placeholder="Escribe tu explicación aquí..."></textarea>
+                <button onclick="guardarFeynman()">💾 Guardar explicación</button>
+                <p id="feynmanGuardado" style="color:#22c55e; margin-top:8px; display:none;">✅ Explicación guardada</p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 9. MINI EXAMEN                                             -->
+        <!-- ========================================================== -->
+        <section id="examen">
+            <h2>9. Mini Examen (10 preguntas)</h2>
+            <p>Responde y haz clic en <strong>"Ver respuestas"</strong>.</p>
+
+            <div class="examen">
+                <!-- Pregunta 1 -->
+                <div class="pregunta">
+                    <p><strong>1. ¿Qué tipo de músculo es estriado y voluntario?</strong></p>
+                    <label><input type="radio" name="q1" value="0"> A) Liso</label>
+                    <label><input type="radio" name="q1" value="1"> B) Cardíaco</label>
+                    <label><input type="radio" name="q1" value="2"> C) Esquelético</label>
+                    <label><input type="radio" name="q1" value="3"> D) Todos los anteriores</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: C) Esquelético</div>
+                </div>
+                <!-- Pregunta 2 -->
+                <div class="pregunta">
+                    <p><strong>2. ¿Qué estructura une las fibras del músculo cardíaco?</strong></p>
+                    <label><input type="radio" name="q2" value="0"> A) Discos intercalares</label>
+                    <label><input type="radio" name="q2" value="1"> B) Sarcómeros</label>
+                    <label><input type="radio" name="q2" value="2"> C) Mioglobina</label>
+                    <label><input type="radio" name="q2" value="3"> D) Aponeurosis</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: A) Discos intercalares</div>
+                </div>
+                <!-- Pregunta 3 -->
+                <div class="pregunta">
+                    <p><strong>3. ¿Qué propiedad del músculo le permite volver a su longitud original después de estirarse?</strong></p>
+                    <label><input type="radio" name="q3" value="0"> A) Excitabilidad</label>
+                    <label><input type="radio" name="q3" value="1"> B) Contractilidad</label>
+                    <label><input type="radio" name="q3" value="2"> C) Extensibilidad</label>
+                    <label><input type="radio" name="q3" value="3"> D) Elasticidad</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: D) Elasticidad</div>
+                </div>
+                <!-- Pregunta 4 -->
+                <div class="pregunta">
+                    <p><strong>4. ¿Cómo se llaman los músculos que se oponen a una acción determinada?</strong></p>
+                    <label><input type="radio" name="q4" value="0"> A) Agonistas</label>
+                    <label><input type="radio" name="q4" value="1"> B) Antagonistas</label>
+                    <label><input type="radio" name="q4" value="2"> C) Sinérgicos</label>
+                    <label><input type="radio" name="q4" value="3"> D) Fijadores</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) Antagonistas</div>
+                </div>
+                <!-- Pregunta 5 -->
+                <div class="pregunta">
+                    <p><strong>5. ¿Qué porcentaje del peso corporal representa el tejido muscular en un adulto?</strong></p>
+                    <label><input type="radio" name="q5" value="0"> A) 10-20%</label>
+                    <label><input type="radio" name="q5" value="1"> B) 20-30%</label>
+                    <label><input type="radio" name="q5" value="2"> C) 40-50%</label>
+                    <label><input type="radio" name="q5" value="3"> D) 60-70%</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: C) 40-50%</div>
+                </div>
+                <!-- Pregunta 6 -->
+                <div class="pregunta">
+                    <p><strong>6. ¿Cuál es la función principal del músculo liso?</strong></p>
+                    <label><input type="radio" name="q6" value="0"> A) Bombeo de sangre</label>
+                    <label><input type="radio" name="q6" value="1"> B) Movimiento de órganos internos</label>
+                    <label><input type="radio" name="q6" value="2"> C) Movimiento de huesos</label>
+                    <label><input type="radio" name="q6" value="3"> D) Generación de calor</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) Movimiento de órganos internos</div>
+                </div>
+                <!-- Pregunta 7 -->
+                <div class="pregunta">
+                    <p><strong>7. ¿Qué tipo de músculo tiene discos intercalares?</strong></p>
+                    <label><input type="radio" name="q7" value="0"> A) Esquelético</label>
+                    <label><input type="radio" name="q7" value="1"> B) Liso</label>
+                    <label><input type="radio" name="q7" value="2"> C) Cardíaco</label>
+                    <label><input type="radio" name="q7" value="3"> D) Ninguno</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: C) Cardíaco</div>
+                </div>
+                <!-- Pregunta 8 -->
+                <div class="pregunta">
+                    <p><strong>8. ¿Cómo se llaman las membranas fibrosas que envuelven a los músculos?</strong></p>
+                    <label><input type="radio" name="q8" value="0"> A) Bolsas serosas</label>
+                    <label><input type="radio" name="q8" value="1"> B) Aponeurosis</label>
+                    <label><input type="radio" name="q8" value="2"> C) Tendones</label>
+                    <label><input type="radio" name="q8" value="3"> D) Ligamentos</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) Aponeurosis</div>
+                </div>
+                <!-- Pregunta 9 -->
+                <div class="pregunta">
+                    <p><strong>9. ¿Qué músculo es agonista en la flexión del antebrazo?</strong></p>
+                    <label><input type="radio" name="q9" value="0"> A) Tríceps braquial</label>
+                    <label><input type="radio" name="q9" value="1"> B) Bíceps braquial</label>
+                    <label><input type="radio" name="q9" value="2"> C) Deltoides</label>
+                    <label><input type="radio" name="q9" value="3"> D) Pectoral mayor</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) Bíceps braquial</div>
+                </div>
+                <!-- Pregunta 10 -->
+                <div class="pregunta">
+                    <p><strong>10. ¿Cuántos músculos estriados se estima que tiene el cuerpo humano según SAPPEY?</strong></p>
+                    <label><input type="radio" name="q10" value="0"> A) 206</label>
+                    <label><input type="radio" name="q10" value="1"> B) 501</label>
+                    <label><input type="radio" name="q10" value="2"> C) 639</label>
+                    <label><input type="radio" name="q10" value="3"> D) 400</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B) 501</div>
+                </div>
+
+                <button onclick="corregirExamen()">✅ Ver respuestas</button>
+                <div id="resultadoExamen" style="margin-top:15px; font-weight:bold;"></div>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- CUADRO RESUMEN                                              -->
+        <!-- ========================================================== -->
+        <section id="cuadro-resumen" style="margin-top:30px;">
+            <h2>📊 Cuadro Resumen: Miología</h2>
+            <div style="background:#1e293b; border-radius:14px; padding:16px; overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; color:#e2e8f0; font-size:13px;">
+                    <thead>
+                        <tr style="background:#0f172a; color:#38bdf8;">
+                            <th style="padding:8px; border:1px solid #334155;">Aspecto</th>
+                            <th style="padding:8px; border:1px solid #334155;">Detalle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Definición</strong></td><td style="padding:6px; border:1px solid #334155;">Estudio de los músculos y tejido muscular (contráctil, estriado o liso).</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Tipos de músculo</strong></td><td style="padding:6px; border:1px solid #334155;">Esquelético (estriado, voluntario), cardíaco (estriado, involuntario), liso (no estriado, involuntario).</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Funciones</strong></td><td style="padding:6px; border:1px solid #334155;">Movimiento, estabilización postural, almacenamiento/movilización, producción de calor.</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Propiedades</strong></td><td style="padding:6px; border:1px solid #334155;">Excitabilidad eléctrica, contractilidad, extensibilidad, elasticidad.</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Clasificación (por situación)</strong></td><td style="padding:6px; border:1px solid #334155;">Superficiales (cutáneos) y profundos (esqueléticos).</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Clasificación (por dimensiones)</strong></td><td style="padding:6px; border:1px solid #334155;">Largos, cortos, anchos, orbiculares.</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Clasificación (por inserción de fibras)</strong></td><td style="padding:6px; border:1px solid #334155;">Unipenniformes, bipenniformes, multipenniformes.</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Clasificación (por función)</strong></td><td style="padding:6px; border:1px solid #334155;">Agonistas y antagonistas.</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Estructuras anexas</strong></td><td style="padding:6px; border:1px solid #334155;">Bolsas serosas (sinoviales) y aponeurosis (fascias).</td></tr>
+                    </tbody>
+                </table>
+                <p style="text-align:center; color:#94a3b8; font-size:12px; margin-top:10px;">📋 Fuente: elaboración propia basada en el PDF</p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- REFERENCIAS BIBLIOGRÁFICAS                                 -->
+        <!-- ========================================================== -->
+        <section id="referencias">
+            <h2>📚 Referencias Bibliográficas</h2>
+            <div class="referencias">
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li>1. Tortora, G. J., & Derrickson, B. (2013). <em>Principios de Anatomía y Fisiología</em> (13a. ed.). Buenos Aires: Médica Panamericana.</li>
+                    <li>2. Rouvière, H., & Delmas, A. (2005). <em>Anatomía Humana: Descriptiva, topográfica y funcional</em> (11a. ed.). Barcelona: Elsevier Masson.</li>
+                    <li>3. Moore, K. L., Agur, A. M., & Dalley, A. F. (2015). <em>Fundamentos de Anatomía con orientación clínica</em> (5a. ed.). Barcelona: Wolters Kluwer.</li>
+                    <li>4. Latarjet, M., & Ruiz Liard, A. (2019). <em>Anatomía Humana</em> (5a ed., Vol. II). Buenos Aires: Médica Panamericana.</li>
+                    <li>5. Netter, F. H. (2019). <em>Atlas de Anatomía Humana</em> (7ª ed.). Barcelona: Masson.</li>
+                </ul>
+                <p style="color:#94a3b8; font-size:12px; margin-top:10px; text-align:center;">
+                    📖 Estas referencias sustentan el contenido desarrollado en esta página.
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- MENÚ DE TEMAS                                              -->
+        <!-- ========================================================== -->
+        <div style="text-align:center; margin-top:30px; padding:20px; border-top:2px solid #334155;">
+            <a href="../temas.html" class="btn-menu" style="
+                display:inline-block;
+                padding:12px 35px;
+                background:var(--primary-color);
+                color:white;
+                border-radius:10px;
+                font-weight:600;
+                text-decoration:none;
+                transition:0.3s;
+            ">📋 Menú de temas</a>
+        </div>
+
+    </main>
+</div>
+
+<!-- ============================================================ -->
+<!-- 4. FOOTER                                                     -->
+<!-- ============================================================ -->
+<footer class="footer-global">
+    <p>🩺 MedStudy · Simulador de Estudio · 2026</p>
+</footer>
+
+<!-- ============================================================ -->
+<!-- 5. JAVASCRIPT                                                 -->
+<!-- ============================================================ -->
+<script>
+
+    // ========================================================
+    // 1. PROGRESO
+    // ========================================================
+    let progreso = 0;
+    const secciones = document.querySelectorAll('.contenido > section, .contenido > section section');
+    const barra = document.getElementById('barraProgreso');
+    const porcentajeTexto = document.getElementById('porcentajeProgreso');
+
+    function actualizarProgreso() {
+        let vistas = 0;
+        secciones.forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.7) vistas++;
+        });
+        progreso = Math.round((vistas / secciones.length) * 100);
+        barra.style.width = progreso + '%';
+        porcentajeTexto.textContent = progreso;
+    }
+
+    window.addEventListener('scroll', actualizarProgreso);
+    window.addEventListener('load', actualizarProgreso);
+
+    // ========================================================
+    // 2. FLASHCARDS (12 en total)
+    // ========================================================
+    let flashcardsAcertadas = 0;
+    let flashcardsTotales = 0;
+    let totalFlashcards = 12;
+
+    function actualizarFlashcardsGlobal() {
+        document.getElementById('flashcardsCompletadas').textContent = flashcardsAcertadas;
+        document.querySelectorAll('[id^="flashcardProgreso"]').forEach(el => {
+            el.textContent = flashcardsAcertadas;
+        });
+        document.querySelectorAll('[id^="flashcardTotal"]').forEach(el => {
+            el.textContent = totalFlashcards;
+        });
+    }
+
+    function flashcardAcertada() {
+        flashcardsAcertadas++;
+        flashcardsTotales++;
+        actualizarFlashcardsGlobal();
+        alert('✅ ¡Bien!');
+    }
+
+    function flashcardFallada() {
+        flashcardsTotales++;
+        actualizarFlashcardsGlobal();
+        alert('❌ Revísalo después.');
+    }
+
+    actualizarFlashcardsGlobal();
+
+    // ========================================================
+    // 3. FEYNMAN
+    // ========================================================
+    function guardarFeynman() {
+        const texto = document.getElementById('feynmanTexto').value;
+        if (texto.trim().length > 0) {
+            localStorage.setItem('feynman_miologia', texto);
+            document.getElementById('feynmanGuardado').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('feynmanGuardado').style.display = 'none';
+            }, 3000);
+        } else {
+            alert('✍️ Escribe algo antes de guardar.');
+        }
+    }
+
+    // ========================================================
+    // 4. MINI EXAMEN
+    // ========================================================
+    function corregirExamen() {
+        const preguntas = document.querySelectorAll('.pregunta');
+        let correctas = 0;
+        const respuestasCorrectas = [2, 0, 3, 1, 2, 1, 2, 1, 1, 1];
+
+        preguntas.forEach((p, i) => {
+            const seleccionada = p.querySelector('input:checked');
+            const respuestaDiv = p.querySelector('.respuesta-correcta');
+            respuestaDiv.style.display = 'block';
+
+            if (seleccionada && parseInt(seleccionada.value) === respuestasCorrectas[i]) {
+                correctas++;
+                seleccionada.parentElement.style.color = '#22c55e';
+            } else if (seleccionada) {
+                seleccionada.parentElement.style.color = '#ef4444';
+            }
+        });
+
+        document.getElementById('resultadoExamen').textContent =
+            `📊 Resultado: ${correctas}/10 correctas (${(correctas/10)*100}%)`;
+    }
+
+    // ========================================================
+    // 5. POMODORO
+    // ========================================================
+    let pomodoroActivo = false;
+    let pomodoroTiempo = 25 * 60;
+    let pomodoroIntervalo = null;
+    let pomodoroContador = 1;
+
+    function actualizarPomodoroDisplay() {
+        const min = String(Math.floor(pomodoroTiempo / 60)).padStart(2, '0');
+        const seg = String(pomodoroTiempo % 60).padStart(2, '0');
+        document.getElementById('pomodoroMinutos').textContent = min;
+        document.getElementById('pomodoroSegundos').textContent = seg;
+    }
+
+    function iniciarPomodoro() {
+        if (pomodoroActivo) return;
+        pomodoroActivo = true;
+        pomodoroIntervalo = setInterval(() => {
+            pomodoroTiempo--;
+            actualizarPomodoroDisplay();
+            if (pomodoroTiempo <= 0) {
+                clearInterval(pomodoroIntervalo);
+                pomodoroActivo = false;
+                alert('⏰ ¡Tiempo completado! Descansa 5 minutos.');
+                pomodoroContador++;
+                document.getElementById('pomodoroContador').textContent = pomodoroContador;
+                pomodoroTiempo = 25 * 60;
+                actualizarPomodoroDisplay();
+            }
+        }, 1000);
+    }
+
+    function pausarPomodoro() {
+        clearInterval(pomodoroIntervalo);
+        pomodoroActivo = false;
+    }
+
+    function reiniciarPomodoro() {
+        clearInterval(pomodoroIntervalo);
+        pomodoroActivo = false;
+        pomodoroTiempo = 25 * 60;
+        actualizarPomodoroDisplay();
+    }
+
+    // ========================================================
+    // 6. ÍNDICE - RESALTADO DE SECCIÓN ACTIVA
+    // ========================================================
+    const enlaces = document.querySelectorAll('.indice a');
+
+    window.addEventListener('scroll', () => {
+        let actual = '';
+        secciones.forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < 200) {
+                actual = sec.getAttribute('id');
+            }
+        });
+        enlaces.forEach(enlace => {
+            enlace.parentElement.classList.remove('activo');
+            if (enlace.getAttribute('href') === '#' + actual) {
+                enlace.parentElement.classList.add('activo');
+            }
+        });
+    });
+
+    // ========================================================
+    // 7. SCROLL SUAVE
+    // ========================================================
+    document.querySelectorAll('.indice a').forEach(enlace => {
+        enlace.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.querySelector(enlace.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // ========================================================
+    // 8. TIEMPO DE ESTUDIO (simulado)
+    // ========================================================
+    let tiempoEstudio = 0;
+    setInterval(() => {
+        tiempoEstudio++;
+        document.getElementById('tiempoEstudio').textContent = tiempoEstudio;
+    }, 60000);
+
+</script>
+
+</body>
+</html>

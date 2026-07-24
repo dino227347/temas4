@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis Detallado</title>
+    <link rel="stylesheet" href="analisis.css">
+</head>
+
+<body>
+    <div class="contenedor">
+        <!-- Encabezado -->
+        <div class="header">
+            <h1>📋 Análisis Detallado</h1>
+            <p class="subtitulo">Revisa tu rendimiento pregunta por pregunta</p>
+        </div>
+
+        <!-- Tarjeta principal -->
+        <div class="tarjeta">
+            <!-- Resumen rápido -->
+            <div class="resumen-rapido">
+                <div class="resumen-item">
+                    <span class="label">Puntaje</span>
+                    <span class="valor" id="resumenPuntaje">0/60</span>
+                </div>
+                <div class="resumen-item">
+                    <span class="label">Porcentaje</span>
+                    <span class="valor" id="resumenPorcentaje">0%</span>
+                </div>
+            </div>
+
+            <!-- Rendimiento por área -->
+            <div class="seccion">
+                <h2>📚 Rendimiento por Área</h2>
+                <div id="areasContainer"></div>
+            </div>
+
+            <!-- Filtros -->
+            <div class="filtros">
+                <button class="filtro-btn active" data-filtro="todas" onclick="filtrarPreguntas('todas')">
+                    Todas
+                </button>
+                <button class="filtro-btn" data-filtro="falladas" onclick="filtrarPreguntas('falladas')">
+                    ❌ Falladas
+                </button>
+                <button class="filtro-btn" data-filtro="acertadas" onclick="filtrarPreguntas('acertadas')">
+                    ✅ Acertadas
+                </button>
+                <button class="filtro-btn" data-filtro="sinresponder" onclick="filtrarPreguntas('sinresponder')">
+                    ⏳ Sin responder
+                </button>
+            </div>
+
+            <!-- Lista de preguntas -->
+            <div class="seccion">
+                <h2 id="tituloLista">📝 Todas las preguntas</h2>
+                <div id="preguntasContainer"></div>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="acciones">
+                <button onclick="volverResultado()" class="btn-resultado">
+                    ← Volver al resultado
+                </button>
+                <button onclick="volverInicio()" class="btn-inicio">
+                    🏠 Volver al inicio
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="preguntas.js"></script>
+    <script src="analisis.js"></script>
+</body>
+</html>

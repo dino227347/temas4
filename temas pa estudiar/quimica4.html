@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Química - Tema 4: Enlaces Químicos e Interacciones Intermoleculares</title>
+    <link rel="stylesheet" href="tema-base.css">
+    <style>
+        /* ================================================================
+           PERSONALIZACIÓN PARA QUÍMICA (TEMA 4 - ENLACES QUÍMICOS)
+           ================================================================ */
+        :root {
+            --primary-color: #7c3aed;    /* Púrpura */
+            --secondary-color: #a78bfa;  /* Púrpura claro */
+            --accent-color: #8b5cf6;
+        }
+
+        .tema-header h1::before { content: "⚗️ "; }
+        .indice ul li.activo a { background: var(--primary-color); border-left-color: var(--secondary-color); }
+        .barra-interna { background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); }
+        .logo { color: var(--secondary-color); }
+        .nav-global a:hover { color: var(--secondary-color); background: #334155; }
+        .contenido h2 { color: var(--secondary-color); }
+        .indice h3 { color: var(--secondary-color); }
+        .flashcard h4 { color: var(--secondary-color); }
+        .examen button { background: var(--primary-color); }
+        .examen button:hover { background: #6d28d9; }
+        .pomodoro h3 { color: var(--primary-color); }
+        .pomodoro-timer { color: var(--secondary-color); }
+        .mapa-mental h4 { color: var(--secondary-color); }
+        .mapa-nodo.principal { background: var(--primary-color); }
+
+        .definicion-destacada {
+            background: #1e293b;
+            border-left: 4px solid var(--secondary-color);
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin: 16px 0;
+        }
+        .definicion-destacada p { margin: 0; color: #f1f5f9; }
+        .definicion-destacada strong { color: var(--secondary-color); }
+
+        .dato-curioso {
+            background: #0f172a;
+            border: 1px solid var(--secondary-color);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin: 16px 0;
+        }
+        .dato-curioso p { margin: 0; color: #cbd5e1; }
+        .dato-curioso strong { color: var(--secondary-color); }
+
+        .autoevaluacion {
+            background: #1e293b;
+            border: 2px solid var(--secondary-color);
+            border-radius: 14px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .autoevaluacion h3 { color: var(--secondary-color); }
+        .autoevaluacion li { padding: 8px 0; border-bottom: 1px solid #334155; color: #cbd5e1; }
+        .autoevaluacion li:last-child { border-bottom: none; }
+        .autoevaluacion li strong { color: #f1f5f9; }
+
+        .referencias {
+            background: #0f172a;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 14px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .referencias li { font-size: 13px; color: #94a3b8; margin-bottom: 6px; }
+        .referencias h4 { color: var(--secondary-color); margin-bottom: 12px; }
+
+        .active-recall {
+            background: #0f172a;
+            border: 2px solid #ef4444;
+            border-radius: 14px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .active-recall h4 { color: #ef4444; }
+
+        .resumen-rapido { border-left: 5px solid var(--secondary-color) !important; }
+
+        .tabla-fila span:first-child { color: var(--secondary-color); min-width: 150px; }
+        .tabla-fila span:nth-child(2) { color: #e2e8f0; flex: 2; }
+
+        .tabla-compleja {
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+        .tabla-compleja table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            color: #e2e8f0;
+            background: #0f172a;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .tabla-compleja th {
+            background: #1e293b;
+            color: var(--secondary-color);
+            padding: 8px 10px;
+            text-align: left;
+            border-bottom: 2px solid #334155;
+        }
+        .tabla-compleja td {
+            padding: 6px 10px;
+            border-bottom: 1px solid #334155;
+        }
+        .tabla-compleja tr:last-child td { border-bottom: none; }
+        .tabla-compleja strong { color: var(--secondary-color); }
+
+        .formula-destacada {
+            background: #0f172a;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin: 10px 0;
+            text-align: center;
+            font-size: 18px;
+            color: #f1f5f9;
+            border: 1px solid var(--secondary-color);
+            font-family: 'Courier New', monospace;
+        }
+        .formula-destacada .highlight { color: var(--secondary-color); font-weight: bold; }
+
+        .nota {
+            background: #0f172a;
+            border-radius: 10px;
+            padding: 10px 16px;
+            border-left: 4px solid #f59e0b;
+            margin: 10px 0;
+            color: #cbd5e1;
+        }
+        .nota strong { color: var(--secondary-color); }
+
+        .estructura-lewis {
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            color: var(--secondary-color);
+            background: #0f172a;
+            padding: 8px 16px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 4px 8px;
+            border: 1px solid #334155;
+        }
+
+        @media (max-width: 768px) {
+            .tabla-fila { flex-direction: column; }
+            .tabla-fila span { min-width: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- 1. HEADER GLOBAL                                              -->
+<!-- ============================================================ -->
+<header class="header-global">
+    <div class="logo">⚗️ ChemStudy</div>
+    <nav class="nav-global">
+        <a href="../index.html">🏠 Inicio</a>
+        <a href="../temas.html">📚 Temas</a>
+        <a href="../Primer mini examen/examenGUjaja.html">📝 Examen</a>
+    </nav>
+</header>
+
+<!-- ============================================================ -->
+<!-- 2. PROGRESO DEL TEMA                                          -->
+<!-- ============================================================ -->
+<div class="tema-header">
+    <h1>Química - Tema 4: Enlaces Químicos e Interacciones Intermoleculares</h1>
+    <div class="progreso">
+        <span>Progreso: <span id="porcentajeProgreso">0</span>%</span>
+        <div class="barra">
+            <div class="barra-interna" id="barraProgreso" style="width: 0%;"></div>
+        </div>
+    </div>
+    <div class="tema-meta">
+        <span>⏱️ <span id="tiempoEstudio">0</span> min estudiados</span>
+        <span>📇 <span id="flashcardsCompletadas">0</span> flashcards</span>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 3. CUERPO: ÍNDICE + CONTENIDO                                -->
+<!-- ============================================================ -->
+<div class="contenedor-estudio">
+
+    <!-- ===================== -->
+    <!-- 3.1 ÍNDICE (sticky)   -->
+    <!-- ===================== -->
+    <aside class="indice">
+        <h3>📌 Índice</h3>
+        <ul>
+            <li class="activo"><a href="#resumen">⭐ Resumen</a></li>
+            <li><a href="#pomodoro">⏱️ Pomodoro</a></li>
+            <li><a href="#introduccion">1. Introducción</a></li>
+            <li><a href="#generalidades">2. Generalidades sobre enlaces</a></li>
+            <li><a href="#teoria-lewis">3. Teoría de Lewis (Regla del Octeto)</a></li>
+            <li><a href="#estructura-lewis">3.1 Estructura de Lewis</a></li>
+            <li><a href="#enlace-ionico">4. Enlace iónico</a></li>
+            <li><a href="#enlace-covalente">5. Enlace covalente</a></li>
+            <li><a href="#covalente-polar">5.1 Enlace covalente polar y no polar</a></li>
+            <li><a href="#covalente-coordinado">5.2 Enlace covalente coordinado</a></li>
+            <li><a href="#enlace-metalico">6. Enlace metálico</a></li>
+            <li><a href="#fuerzas-intermoleculares">7. Fuerzas intermoleculares</a></li>
+            <li><a href="#interacciones-biologicas">8. Interacciones biológicas</a></li>
+            <li><a href="#autoevaluacion">9. Autoevaluación</a></li>
+            <li><a href="#examen">10. Mini Examen</a></li>
+            <li><a href="#cuadro-resumen">📊 Cuadro resumen</a></li>
+            <li><a href="#referencias">📚 Referencias</a></li>
+        </ul>
+    </aside>
+
+    <!-- ===================== -->
+    <!-- 3.2 CONTENIDO          -->
+    <!-- ===================== -->
+    <main class="contenido">
+
+        <!-- ========================================================== -->
+        <!-- RESUMEN RÁPIDO                                              -->
+        <!-- ========================================================== -->
+        <section id="resumen" class="resumen-rapido">
+            <h2>⭐ Resumen Rápido</h2>
+            <p><strong>Enlace químico:</strong> conjunto de fuerzas que mantienen unidos átomos, iones o moléculas.</p>
+            <ul>
+                <li><strong>Regla del Octeto (Lewis):</strong> los átomos ganan, pierden o comparten electrones para alcanzar 8 electrones en su capa de valencia (configuración de gas noble).</li>
+                <li><strong>Enlace iónico:</strong> transferencia de electrones entre metal (baja electronegatividad) y no metal (alta electronegatividad). Diferencia de electronegatividad > 1.7.</li>
+                <li><strong>Enlace covalente:</strong> compartición de electrones entre átomos no metálicos. Puede ser polar (diferencia de electronegatividad entre 0.4 y 1.7) o no polar (diferencia ≤ 0.4).</li>
+                <li><strong>Enlace covalente coordinado:</strong> un átomo aporta el par de electrones (donador) y otro lo recibe (aceptor).</li>
+                <li><strong>Enlace metálico:</strong> electrones deslocalizados en un "mar de electrones" alrededor de núcleos positivos.</li>
+                <li><strong>Fuerzas intermoleculares (van der Waals):</strong> dipolo-dipolo, dispersión (London), ión-dipolo.</li>
+                <li><strong>Puentes de hidrógeno:</strong> interacción entre H unido a O, N o F y un par de electrones no compartido de otra molécula.</li>
+                <li><strong>Interacciones biológicas:</strong> hidrofóbicas, puentes salinos, puentes disulfuro.</li>
+            </ul>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- POMODORO                                                    -->
+        <!-- ========================================================== -->
+        <section id="pomodoro" class="pomodoro">
+            <h3>⏱️ Pomodoro · Enfoque de estudio</h3>
+            <p style="color:#94a3b8; font-size:14px; margin-bottom:12px;">
+                Estudia por 25 minutos, descansa 5. Repite 4 ciclos y toma un descanso largo de 15-30 min.
+            </p>
+            <div class="pomodoro-timer">
+                <span id="pomodoroMinutos">25</span>:<span id="pomodoroSegundos">00</span>
+            </div>
+            <div class="pomodoro-botones">
+                <button onclick="iniciarPomodoro()">▶ Iniciar</button>
+                <button onclick="pausarPomodoro()">⏸ Pausar</button>
+                <button onclick="reiniciarPomodoro()">⏹ Reiniciar</button>
+            </div>
+            <p>🍅 Pomodoro #<span id="pomodoroContador">1</span> de hoy</p>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 1. INTRODUCCIÓN                                            -->
+        <!-- ========================================================== -->
+        <section id="introduccion">
+            <h2>1. Introducción</h2>
+            <p>La <strong>electronegatividad</strong> es la capacidad de un átomo para atraer electrones de otro átomo, formando una unión estable llamada <strong>enlace químico</strong>. Gracias a los enlaces químicos, a nivel molecular, se llevan a cabo muchas funciones biológicas en nuestro organismo.</p>
+            <p>El objetivo de este tema es dar a conocer los diversos tipos y características particulares de los enlaces químicos y las interacciones moleculares.</p>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 2. GENERALIDADES                                           -->
+        <!-- ========================================================== -->
+        <section id="generalidades">
+            <h2>2. Generalidades sobre enlaces químicos</h2>
+            <div class="definicion-destacada">
+                <p><strong>Enlace químico:</strong> conjunto de fuerzas que mantienen unidos dos átomos, iones o moléculas, confiriendo estabilidad a los compuestos.</p>
+            </div>
+            <p>La formación de un enlace está ligada a una <strong>variación de energía potencial</strong>. La distancia a la cual la energía es mínima y la estabilidad máxima se llama <strong>longitud de enlace</strong> (expresada en Ångstroms, Å).</p>
+            <p>La <strong>energía de enlace</strong> (Ee) es la cantidad de energía necesaria para romper el enlace entre dos átomos y separarlos a una distancia infinita (se expresa en Kcal/mol).</p>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 3. TEORÍA DE LEWIS                                        -->
+        <!-- ========================================================== -->
+        <section id="teoria-lewis">
+            <h2>3. Teoría de Lewis (Regla del Octeto)</h2>
+            <div class="definicion-destacada">
+                <p><strong>Regla del Octeto:</strong> los átomos ganan, pierden o comparten electrones para lograr una estructura electrónica estable similar a la de un <strong>gas noble</strong> (8 electrones en la capa de valencia, excepto He con 2).</p>
+            </div>
+            <p>Fue propuesta por <strong>Gilbert Newton Lewis</strong>, <strong>Irving Langmuir</strong> y <strong>Walther Kossel</strong>. Lewis ideó la representación de los electrones de valencia mediante puntos (estructura de Lewis).</p>
+
+            <div class="dato-curioso">
+                <p>📌 <strong>Dato:</strong> Los gases nobles tienen configuraciones electrónicas estables: He (1s²), Ne (1s²2s²2p⁶), Ar (1s²2s²2p⁶3s²3p⁶), Kr, Xe, Rn. Esto explica su inercia química.</p>
+            </div>
+
+            <!-- IMAGEN: Gilbert Lewis -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/quimi1.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                🖼️ <strong>IMAGEN:</strong> Gilbert N. Lewis y sus primeros esbozos sobre la regla del octeto (fig. 1 del PDF) - <em>Fuente: buscabiografias.com; Chang & Goldsby</em></p>
+            </div>
+
+            <!-- IMAGEN: Átomo cúbico -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/quimi2.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                🖼️ <strong>IMAGEN:</strong> Representación de los elementos según la teoría del átomo cúbico (fig. 2 del PDF) - <em>Fuente: quimica.laguia2000.com</em></p>
+            </div>
+
+            <p>Cuando los átomos alcanzan ocho electrones en su última capa al combinarse, son <strong>isoelectrónicos</strong> con los gases nobles.</p>
+
+            <!-- IMAGEN: Formación enlace iónico según Lewis -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/quimi3.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                🖼️ <strong>IMAGEN:</strong> Formación del enlace iónico entre dos átomos según Lewis (fig. 3 del PDF) - <em>Fuente: quimica.laguia2000.com</em></p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 3.1 ESTRUCTURA DE LEWIS                                    -->
+        <!-- ========================================================== -->
+        <section id="estructura-lewis">
+            <h3>3.1 Estructura de Lewis</h3>
+            <div class="definicion-destacada">
+                <p><strong>Estructura de Lewis:</strong> representación esquemática de los electrones de valencia de un átomo o molécula, usando puntos o líneas (pares de electrones enlazantes).</p>
+            </div>
+            <p><strong>Pasos para dibujar una estructura de Lewis:</strong></p>
+            <ol>
+                <li>Realizar la distribución electrónica del elemento.</li>
+                <li>Identificar los electrones de la capa de valencia.</li>
+                <li>Escribir el símbolo del elemento y colocar los electrones de valencia alrededor (como puntos).</li>
+                <li>Emparejar los puntos hasta alcanzar un octeto (8 electrones).</li>
+            </ol>
+            <p><strong>Ejemplos de estructuras de Lewis para elementos monoatómicos:</strong></p>
+            <div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin:12px 0;">
+                <div style="text-align:center; background:#0f172a; padding:10px 20px; border-radius:8px; border:1px solid #334155;">
+                    <p style="color:#94a3b8; font-size:12px;">Magnesio (Mg)</p>
+                    <div style="font-size:24px; color:var(--secondary-color);">·Mg·</div>
+                </div>
+                <div style="text-align:center; background:#0f172a; padding:10px 20px; border-radius:8px; border:1px solid #334155;">
+                    <p style="color:#94a3b8; font-size:12px;">Aluminio (Al)</p>
+                    <div style="font-size:24px; color:var(--secondary-color);">·Al·</div>
+                </div>
+                <div style="text-align:center; background:#0f172a; padding:10px 20px; border-radius:8px; border:1px solid #334155;">
+                    <p style="color:#94a3b8; font-size:12px;">Bromo (Br)</p>
+                    <div style="font-size:24px; color:var(--secondary-color);">:Br·</div>
+                </div>
+                <div style="text-align:center; background:#0f172a; padding:10px 20px; border-radius:8px; border:1px solid #334155;">
+                    <p style="color:#94a3b8; font-size:12px;">Kriptón (Kr)</p>
+                    <div style="font-size:24px; color:var(--secondary-color);">:Kr:</div>
+                </div>
+            </div>
+
+            <!-- IMAGEN: Resumen de estructuras Lewis -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/quimi4.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                🖼️ <strong>IMAGEN:</strong> Resumen de la estructura de Lewis de varios elementos de la tabla periódica (fig. 4 del PDF) - <em>Fuente: Recio F. Química Inorgánica</em></p>
+            </div>
+
+            <!-- ========================================================== -->
+            <!-- FLASHCARD (1)                                               -->
+            <!-- ========================================================== -->
+            <div class="flashcard">
+                <h4>📇 Flashcard · Repaso Rápido</h4>
+                <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                    <p><strong>"Regla del Octeto"</strong></p>
+                    <p class="flashcard-respuesta" style="display:none;">Los átomos tienden a ganar, perder o compartir electrones para alcanzar 8 electrones en su capa de valencia (configuración de gas noble), excepto el H que busca 2 electrones (configuración del He).</p>
+                </div>
+                <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                    <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                    <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                </div>
+                <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                    📊 Progreso: <span id="flashcardProgreso1">0</span> de <span id="flashcardTotal1">12</span> flashcards
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 4. ENLACE IÓNICO                                          -->
+        <!-- ========================================================== -->
+        <section id="enlace-ionico">
+            <h2>4. Enlace iónico</h2>
+            <div class="definicion-destacada">
+                <p><strong>Enlace iónico:</strong> formación de <strong>cationes</strong> (metales, baja electronegatividad) y <strong>aniones</strong> (no metales, alta electronegatividad) mediante <strong>transferencia de electrones</strong>. La atracción electrostática entre iones de cargas opuestas forma el enlace.</p>
+            </div>
+
+            <p><strong>Condición:</strong> diferencia de electronegatividad (ΔEN) <strong>mayor a 1.7</strong>.</p>
+
+            <!-- IMAGEN: Valores de electronegatividad según Pauling -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/quimi5.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                🖼️ <strong>IMAGEN:</strong> Valores de electronegatividad para algunos elementos según Pauling (fig. 5 del PDF) - <em>Fuente: Chang & Goldsby, Química</em></p>
+            </div>
+
+            <h3>4.1 Ejemplo: Cloruro de sodio (NaCl)</h3>
+            <ul>
+                <li>Configuración electrónica: Na = 1s²2s²2p⁶3s¹; Cl = 1s²2s²2p⁶3p⁵</li>
+                <li>Electronegatividades: Na = 0.9, Cl = 3.0 → ΔEN = 2.1 > 1.7 (enlace iónico)</li>
+                <li>El sodio cede su electrón de valencia al cloro. Na → Na⁺ + e⁻; Cl + e⁻ → Cl⁻</li>
+            </ul>
+            <div style="text-align:center; font-size:20px; color:var(--secondary-color); font-family:'Courier New',monospace; padding:10px; background:#0f172a; border-radius:8px; margin:10px 0;">
+                Na· + ·Cl: → Na⁺ [:Cl:]⁻
+            </div>
+
+            <!-- IMAGEN: Formación del NaCl -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/quimi6.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                🖼️ <strong>IMAGEN:</strong> Formación del enlace iónico del cloruro de sodio (fig. 6 del PDF) - <em>Fuente: Daub & Seese, Química</em></p>
+            </div>
+
+            <h3>4.2 Ejemplo: Fluoruro de calcio (CaF₂)</h3>
+            <ul>
+                <li>Configuración electrónica: Ca = 1s²2s²2p⁶3s²3p⁶4s²; F = 1s²2s²2p⁵</li>
+                <li>Electronegatividades: Ca = 1.0, F = 4.0 → ΔEN = 3.0 > 1.7 (enlace iónico)</li>
+                <li>El calcio cede 2 electrones (uno a cada flúor). Ca → Ca²⁺ + 2e⁻; 2F + 2e⁻ → 2F⁻</li>
+            </ul>
+            <div style="text-align:center; font-size:18px; color:var(--secondary-color); font-family:'Courier New',monospace; padding:10px; background:#0f172a; border-radius:8px; margin:10px 0;">
+                Ca· + 2·F: → Ca²⁺ [:F:]⁻₂
+            </div>
+
+            <div class="dato-curioso">
+                <p>🦷 <strong>Dato clínico:</strong> El flúor (F⁻) se encuentra en los dientes y huesos. Ayuda a proteger los dientes de las caries y puede inhibir el desarrollo de la osteoporosis.</p>
+            </div>
+
+            <h3>4.3 Propiedades de los compuestos iónicos</h3>
+            <ul>
+                <li>Sólidos cristalinos.</li>
+                <li>Altos puntos de fusión (>400°C) y ebullición.</li>
+                <li>Solubles en solventes polares (agua); insolubles en no polares.</li>
+                <li>Conductores de electricidad en estado líquido o disueltos (iones móviles).</li>
+                <li>Se forman entre metales y no metales (diferencia de electronegatividad > 1.7).</li>
+            </ul>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 5. ENLACE COVALENTE                                       -->
+        <!-- ========================================================== -->
+        <section id="enlace-covalente">
+            <h2>5. Enlace covalente</h2>
+            <div class="definicion-destacada">
+                <p><strong>Enlace covalente:</strong> unión de átomos que <strong>comparten</strong> uno o varios pares de electrones. Se forma entre átomos no metálicos (iguales o con electronegatividades similares).</p>
+            </div>
+            <p><strong>Ejemplo:</strong> H₂. Cada átomo de H comparte su electrón, completando su nivel (configuración del He).</p>
+            <div style="text-align:center; font-size:20px; color:var(--secondary-color); font-family:'Courier New',monospace; padding:10px; background:#0f172a; border-radius:8px; margin:10px 0;">
+                H· + ·H → H:H
+            </div>
+
+            <p><strong>Ejemplo:</strong> F₂. Cada átomo de F comparte un electrón, completando su octeto.</p>
+            <div style="text-align:center; font-size:20px; color:var(--secondary-color); font-family:'Courier New',monospace; padding:10px; background:#0f172a; border-radius:8px; margin:10px 0;">
+                ·F: + ·F: → :F:F:
+            </div>
+
+            <div class="nota">
+                <p><strong>Nota:</strong> Los electrones no compartidos se llaman <strong>pares libres</strong> (pares de electrones de valencia que no participan en el enlace).</p>
+            </div>
+
+            <!-- ========================================================== -->
+            <!-- 5.1 ENLACE COVALENTE POLAR Y NO POLAR                     -->
+            <!-- ========================================================== -->
+            <section id="covalente-polar">
+                <h3>5.1 Enlace covalente polar y no polar</h3>
+
+                <h4>Enlace covalente no polar (apolar)</h4>
+                <p>Se forma entre átomos <strong>iguales</strong> (ΔEN = 0) o con electronegatividades muy similares (ΔEN ≤ 0.4). La distribución de electrones es uniforme.</p>
+                <p><strong>Ejemplos:</strong> Cl₂, H₂, CH₄.</p>
+
+                <h4>Enlace covalente polar</h4>
+                <p>Se forma entre átomos <strong>diferentes</strong> con electronegatividades distintas (ΔEN entre 0.4 y 1.7). El átomo más electronegativo atrae con mayor fuerza los electrones, creando un <strong>dipolo</strong> (polo parcial negativo δ⁻ y positivo δ⁺).</p>
+                <p><strong>Ejemplo:</strong> HCl (ΔEN = 3.0 − 2.1 = 0.9). El cloro (más electronegativo) adquiere carga parcial negativa (δ⁻) y el hidrógeno positiva (δ⁺).</p>
+                <div style="text-align:center; font-size:20px; color:var(--secondary-color); font-family:'Courier New',monospace; padding:10px; background:#0f172a; border-radius:8px; margin:10px 0;">
+                    H—Cl<br>
+                    δ⁺  δ⁻
+                </div>
+
+                <div class="tabla-compleja">
+                    <table>
+                        <thead>
+                            <tr><th>Comparación</th><th>Enlace no polar</th><th>Enlace polar</th><th>Enlace iónico</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>ΔEN</strong></td><td>0 - 0.4</td><td>0.4 - 1.7</td><td>> 1.7</td></tr>
+                            <tr><td><strong>Ejemplo</strong></td><td>F₂ (4.0 - 4.0 = 0)</td><td>HF (4.0 - 2.1 = 1.9)</td><td>LiF (4.0 - 1.0 = 3.0)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- 5.2 ENLACE COVALENTE COORDINADO                            -->
+            <!-- ========================================================== -->
+            <section id="covalente-coordinado">
+                <h3>5.2 Enlace covalente coordinado</h3>
+                <div class="definicion-destacada">
+                    <p><strong>Enlace covalente coordinado:</strong> un átomo aporta el <strong>par de electrones</strong> (donador) y otro lo recibe (aceptor) para formar el enlace.</p>
+                </div>
+                <p><strong>Ejemplo:</strong> Ion amonio (NH₄⁺). El NH₃ tiene un par de electrones no compartidos en el N, que se dona al H⁺ (deficiente en electrones).</p>
+                <div style="text-align:center; font-size:18px; color:var(--secondary-color); font-family:'Courier New',monospace; padding:10px; background:#0f172a; border-radius:8px; margin:10px 0;">
+                    NH₃ + H⁺ → NH₄⁺
+                </div>
+                <div class="dato-curioso">
+                    <p>🧪 <strong>Dato:</strong> Los enlaces covalentes coordinados son importantes en la formación de iones complejos y en la química de coordinación.</p>
+                </div>
+
+                <!-- ========================================================== -->
+                <!-- FLASHCARD (2)                                               -->
+                <!-- ========================================================== -->
+                <div class="flashcard">
+                    <h4>📇 Flashcard · Repaso Rápido</h4>
+                    <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                    <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                        <p><strong>"Diferencia entre enlace iónico y covalente"</strong></p>
+                        <p class="flashcard-respuesta" style="display:none;">Iónico: transferencia de electrones (metal + no metal, ΔEN > 1.7). Covalente: compartición de electrones (no metales, ΔEN ≤ 1.7).</p>
+                    </div>
+                    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                        <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                        <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                    </div>
+                    <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                        📊 Progreso: <span id="flashcardProgreso2">0</span> de <span id="flashcardTotal2">12</span> flashcards
+                    </p>
+                </div>
+            </section>
+
+            <h3>5.3 Propiedades de los compuestos covalentes</h3>
+            <ul>
+                <li>Pueden ser sólidos, líquidos o gases.</li>
+                <li>Bajos puntos de fusión y ebullición.</li>
+                <li>Forman verdaderas moléculas.</li>
+                <li>No conducen electricidad en estado líquido.</li>
+                <li>Solubles en solventes polares o no polares según su polaridad.</li>
+            </ul>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 6. ENLACE METÁLICO                                         -->
+        <!-- ========================================================== -->
+        <section id="enlace-metalico">
+            <h2>6. Enlace metálico</h2>
+            <div class="definicion-destacada">
+                <p><strong>Enlace metálico:</strong> red de <strong>núcleos cargados positivamente</strong> inmersos en un <strong>"mar de electrones"</strong> que se mueven libremente.</p>
+            </div>
+            <p><strong>Teorías que lo explican:</strong></p>
+            <ul>
+                <li><strong>Teoría del mar de electrones:</strong> los electrones de valencia se deslocalizan entre todos los núcleos metálicos.</li>
+                <li><strong>Teoría de bandas:</strong> los electrones se acomodan en bandas de energía (banda de valencia y banda de conducción).</li>
+            </ul>
+
+            <!-- IMAGEN: Enlace metálico -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/quimi7.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                🖼️ <strong>IMAGEN:</strong> Modelo del mar de electrones (fig. 8 del PDF) - <em>Fuente: Perez et al. Química I</em></p>
+            </div>
+
+            <h3>Propiedades de los metales</h3>
+            <ul>
+                <li>Brillo y lustre metálico.</li>
+                <li>Sólidos a temperatura ambiente (excepto Hg, líquido).</li>
+                <li>Altos puntos de fusión y ebullición.</li>
+                <li><strong>Dúctiles</strong> (se pueden hacer hilos) y <strong>maleables</strong> (se pueden hacer láminas).</li>
+                <li>Buenos conductores de electricidad y calor.</li>
+                <li>Forman cationes (pierden electrones).</li>
+            </ul>
+
+            <!-- ========================================================== -->
+            <!-- FLASHCARD (3)                                               -->
+            <!-- ========================================================== -->
+            <div class="flashcard">
+                <h4>📇 Flashcard · Repaso Rápido</h4>
+                <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                    <p><strong>"Enlace metálico"</strong></p>
+                    <p class="flashcard-respuesta" style="display:none;">Red de cationes metálicos inmersos en un "mar de electrones" deslocalizados. Explica la conductividad, ductilidad y maleabilidad de los metales.</p>
+                </div>
+                <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                    <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                    <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                </div>
+                <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                    📊 Progreso: <span id="flashcardProgreso3">0</span> de <span id="flashcardTotal3">12</span> flashcards
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 7. FUERZAS INTERMOLECULARES                                 -->
+        <!-- ========================================================== -->
+        <section id="fuerzas-intermoleculares">
+            <h2>7. Fuerzas intermoleculares (Fuerzas de van der Waals)</h2>
+            <div class="definicion-destacada">
+                <p><strong>Fuerzas intermoleculares:</strong> fuerzas de atracción entre moléculas que determinan el estado físico de la materia (sólido, líquido, gas). Son mucho más débiles que los enlaces químicos (0.1 a 35 kJ/mol).</p>
+            </div>
+            <p>Descubiertas por <strong>Johannes van der Waals</strong> (Premio Nobel 1910).</p>
+
+            <h3>7.1 Interacciones dipolo-dipolo</h3>
+            <p>Se producen entre moléculas <strong>polares</strong>. El extremo positivo de un dipolo se orienta hacia el extremo negativo de otro.</p>
+            <div class="dato-curioso">
+                <p>⚡ <strong>Dato:</strong> Este tipo de interacción es más débil que el enlace iónico, pero más fuerte que las fuerzas de dispersión.</p>
+            </div>
+
+            <h3>7.2 Fuerzas de dispersión (London)</h3>
+            <p>Fuerzas muy débiles que se producen entre <strong>moléculas no polares</strong> por la formación de dipolos instantáneos debido al movimiento de los electrones. Aumentan con el tamaño molecular.</p>
+            <p><strong>Ejemplo:</strong> gases nobles, hidrocarburos.</p>
+
+            <h3>7.3 Interacciones ión-dipolo</h3>
+            <p>Atracción entre un <strong>ion</strong> y una <strong>molécula polar</strong>. Son más fuertes que las fuerzas dipolo-dipolo.</p>
+            <p><strong>Ejemplo:</strong> disolución de NaCl en agua (los iones Na⁺ y Cl⁻ interactúan con las moléculas polares de H₂O).</p>
+
+            <!-- IMAGEN: Interacciones ión-dipolo -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/quimi8.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                🖼️ <strong>IMAGEN:</strong> Interacción ión-dipolo (fig. 11 del PDF) - <em>Fuente: portaleducativo.net</em></p>
+            </div>
+
+            <h3>7.4 Puentes de hidrógeno</h3>
+            <div class="definicion-destacada">
+                <p><strong>Puente de hidrógeno:</strong> interacción entre un átomo de <strong>hidrógeno</strong> unido a un átomo muy electronegativo (O, N, F) y un <strong>par de electrones no compartido</strong> de otra molécula vecina.</p>
+                <p style="margin-top:8px;">Energía: -3 a -6 kcal/mol.</p>
+            </div>
+            <p>Son más fuertes que las fuerzas de van der Waals, pero más débiles que los enlaces covalentes.</p>
+            <p><strong>Ejemplos:</strong> agua (H₂O), ADN (puentes de hidrógeno entre bases nitrogenadas), proteínas (estructuras secundarias).</p>
+
+            <!-- IMAGEN: Puentes de hidrógeno -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/quimi13.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <img src="Nueva carpeta/quimi14.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                🖼️ <strong>IMAGEN:</strong> Puentes de hidrógeno en el agua y en el ADN (fig. 12 y 13 del PDF) - <em>Fuente: Perez et al.; hiru.eus</em></p>
+            </div>
+
+            <!-- Tabla de fuerzas -->
+            <div class="tabla-compleja">
+                <table>
+                    <thead>
+                        <tr><th>Tipo de enlace</th><th>Fuerza (kcal/mol)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Covalente</strong></td><td>-50 a -100</td></tr>
+                        <tr><td><strong>Iónico</strong></td><td>-1 a -80</td></tr>
+                        <tr><td><strong>Puentes de hidrógeno</strong></td><td>-3 a -6</td></tr>
+                        <tr><td><strong>Van der Waals</strong></td><td>-0.5 a -1</td></tr>
+                        <tr><td><strong>Hidrofóbico</strong></td><td>-0.5 a -3</td></tr>
+                    </tbody>
+                </table>
+                <p style="text-align:center; color:#94a3b8; font-size:12px; margin-top:6px;">📋 Fuente: elaboración propia basada en el PDF</p>
+            </div>
+
+            <!-- ========================================================== -->
+            <!-- FLASHCARD (4)                                               -->
+            <!-- ========================================================== -->
+            <div class="flashcard">
+                <h4>📇 Flashcard · Repaso Rápido</h4>
+                <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">💡 Toca la tarjeta para ver la respuesta. Luego indica si lo sabías o no.</p>
+                <div class="flashcard-inner" onclick="this.querySelector('.flashcard-respuesta').style.display='block'">
+                    <p><strong>"Puentes de hidrógeno"</strong></p>
+                    <p class="flashcard-respuesta" style="display:none;">Interacción entre H unido a O, N o F y un par de electrones no compartido de otra molécula. Fuerza: -3 a -6 kcal/mol. Esencial en la estructura del agua, ADN y proteínas.</p>
+                </div>
+                <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+                    <button onclick="flashcardAcertada()">✅ Lo sabía</button>
+                    <button onclick="flashcardFallada()">❌ Lo olvidé</button>
+                </div>
+                <p style="font-size:13px; color:#64748b; margin-top:8px;">
+                    📊 Progreso: <span id="flashcardProgreso4">0</span> de <span id="flashcardTotal4">12</span> flashcards
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 8. INTERACCIONES BIOLÓGICAS                                -->
+        <!-- ========================================================== -->
+        <section id="interacciones-biologicas">
+            <h2>8. Interacciones biológicas</h2>
+
+            <h3>8.1 Interacciones hidrofóbicas</h3>
+            <p>Interacción entre moléculas <strong>apolares</strong> que tienden a agruparse en un medio acuoso para minimizar el contacto con el agua. Son importantes en el plegamiento de proteínas y la formación de membranas celulares.</p>
+            <p><strong>Ejemplo:</strong> los lípidos de la membrana celular tienen cabezas hidrofílicas (afines al agua) y colas hidrofóbicas (repelen el agua), formando una bicapa.</p>
+
+            <h3>8.2 Puentes salinos (enlaces salinos)</h3>
+            <p>Interacciones <strong>electrostáticas</strong> entre grupos cargados de aminoácidos en las proteínas (ej. entre el grupo carboxilo (−COO⁻) y el grupo amino (−NH₃⁺)). Estabilizan la estructura proteica a pH fisiológico.</p>
+
+            <h3>8.3 Puentes disulfuro</h3>
+            <div class="definicion-destacada">
+                <p><strong>Puente disulfuro:</strong> enlace <strong>covalente</strong> que se forma por la oxidación de dos residuos de <strong>cisteína</strong> (aminoácido) para formar <strong>cistina</strong> (−S−S−). Son comunes en proteínas extracelulares.</p>
+            </div>
+            <p>Los puentes disulfuro estabilizan la estructura tridimensional de las proteínas (ej. insulina, anticuerpos).</p>
+
+            <!-- IMAGEN: Fuerzas en proteínas -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/quimi9.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                <p>🖼️ <strong>IMAGEN:</strong> Fuerzas de los enlaces en proteínas (fig. 14 del PDF) - <em>Fuente: gmein.uib.es</em></p>
+            </div>
+
+            <!-- IMAGEN: Interacciones en proteínas -->
+            <div class="imagen-placeholder">
+                <img src="Nueva carpeta/quimi10.png"
+                    alt="Estructura interna del hueso: tejido compacto y esponjoso" 
+                    style="max-width:100%; border-radius:8px;">
+                    <p style="margin-top:8px; color:#94a3b8; font-size:13px;">
+                <p>🖼️ <strong>IMAGEN:</strong> Interacciones hidrofóbicas, puentes salinos y disulfuro en proteínas (fig. 15 del PDF) - <em>Fuente: ehu.eus</em></p>
+            </div>
+
+            <!-- Active Recall -->
+            <div class="active-recall">
+                <h4>❓ Active Recall</h4>
+                <p style="color:#cbd5e1;"><strong>¿Qué tipo de interacción mantiene la estructura secundaria de las proteínas (hélices α y láminas β)?</strong></p>
+                <details style="margin-top:10px; cursor:pointer; color:#94a3b8;">
+                    <summary style="font-weight:bold; color:#38bdf8;">👆 Ver respuesta</summary>
+                    <p style="color:#22c55e; margin-top:8px; padding:12px; background:#1e293b; border-radius:8px;">
+                        <strong>Puentes de hidrógeno</strong> entre el grupo C=O de un aminoácido y el grupo N−H de otro. Son fundamentales en la formación de hélices α y láminas β.
+                    </p>
+                </details>
+            </div>
+
+            <!-- Mapa Mental -->
+            <div class="mapa-mental">
+                <h4>🧠 Mapa Mental: Enlaces Químicos</h4>
+                <div class="mapa">
+                    <div class="mapa-nodo principal">⚗️ ENLACES QUÍMICOS</div>
+                    <div class="mapa-hijos" style="flex-wrap: wrap; gap: 15px;">
+                        <div class="mapa-nodo" style="min-width: 100px;">Iónico<br><small>Transferencia de e⁻, ΔEN > 1.7</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">Covalente<br><small>Compartición de e⁻, ΔEN ≤ 1.7</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">Metálico<br><small>Mar de electrones</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">Fuerzas intermoleculares<br><small>Van der Waals, puentes de H</small></div>
+                        <div class="mapa-nodo" style="min-width: 100px;">Interacciones biológicas<br><small>Hidrofóbicas, salinas, disulfuro</small></div>
+                    </div>
+                </div>
+                <p style="text-align:center; color:#94a3b8; font-size:13px; margin-top:10px;">
+                    🔹 Los enlaces químicos y las interacciones moleculares determinan las propiedades de la materia y las funciones biológicas.
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 9. AUTOEVALUACIÓN                                          -->
+        <!-- ========================================================== -->
+        <section id="autoevaluacion">
+            <h2>9. Ejercicios de Autoevaluación</h2>
+
+            <div class="autoevaluacion">
+                <h3>📝 Ejercicios del PDF</h3>
+                <ol style="list-style-type: decimal; padding-left: 20px;">
+                    <li><strong>Realice la estructura de Lewis de los siguientes elementos:</strong><br>
+                        a) Silicio (Si)<br>
+                        b) Oxígeno (O)<br>
+                        c) Nitrógeno (N)<br>
+                        d) Carbono (C)<br>
+                        e) Oro (Au)
+                    </li>
+                    <li><strong>Desarrolle la diferencia de electronegatividad de los siguientes enlaces y prediga qué tipo de enlace corresponde:</strong><br>
+                        a) Li - Cl<br>
+                        b) C - O<br>
+                        c) Br - Br<br>
+                        d) Mn - K - O
+                    </li>
+                    <li><strong>Realice el enlace iónico de los siguientes compuestos:</strong><br>
+                        a) MgCl₂<br>
+                        b) Na₂O<br>
+                        c) KI
+                    </li>
+                    <li><strong>Dibuje la estructura de Lewis para los siguientes compuestos:</strong><br>
+                        a) Ácido nítrico (HNO₃)<br>
+                        b) Amoniaco (NH₃)<br>
+                        c) Ácido fosfórico (H₃PO₄)
+                    </li>
+                </ol>
+
+                <details style="margin-top:15px; cursor:pointer; color:#94a3b8;">
+                    <summary style="font-weight:bold; color:#38bdf8;">👆 Ver respuestas sugeridas</summary>
+                    <div style="background:#0f172a; padding:15px; border-radius:10px; margin-top:10px; color:#e2e8f0; font-size:14px;">
+                        <p><strong>1.</strong> a) Si: ·Si· (4 e⁻ de valencia); b) O: ·O· (6 e⁻); c) N: ·N· (5 e⁻); d) C: ·C· (4 e⁻); e) Au: ·Au· (1 e⁻ de valencia, metal).</p>
+                        <p><strong>2.</strong> a) Li (1.0) - Cl (3.0) → ΔEN = 2.0 → iónico; b) C (2.5) - O (3.5) → ΔEN = 1.0 → covalente polar; c) Br (2.8) - Br (2.8) → ΔEN = 0 → covalente no polar; d) Mn (1.5) - K (0.8) - O (3.5) → enlaces iónicos (metal + no metal).</p>
+                        <p><strong>3.</strong> a) Mg (1.2) - Cl (3.0) → Mg²⁺ + 2Cl⁻; b) Na (0.9) - O (3.5) → 2Na⁺ + O²⁻; c) K (0.8) - I (2.7) → K⁺ + I⁻.</p>
+                        <p><strong>4.</strong> a) HNO₃: N central con un enlace doble a O y un enlace simple a OH; b) NH₃: N con 3 enlaces simples a H y un par libre; c) H₃PO₄: P central con 4 enlaces a O (3 a OH y 1 doble a O).</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="autoevaluacion" style="margin-top:20px;">
+                <h3>📝 Preguntas de opción múltiple</h3>
+                <ol style="list-style-type: decimal; padding-left: 20px;">
+                    <li><strong>Una vez realizada la estructura de Lewis para el ácido sulfúrico (H₂SO₄), ¿cuántos pares libres de electrones quedan?</strong><br>
+                        a) 10 &nbsp; b) 4 &nbsp; c) 20 &nbsp; d) 16 &nbsp; e) 8
+                    </li>
+                    <li><strong>Para determinar que un enlace covalente es polar, la diferencia de electronegatividad entre sus componentes debe ser:</strong><br>
+                        a) Menor a 0.9 &nbsp; b) Mayor a 1.7 &nbsp; c) Igual a 0 &nbsp; d) Entre 0.4 y 1.7 &nbsp; e) Menor a 0.4
+                    </li>
+                    <li><strong>El enlace metálico está claramente explicado por una de las siguientes teorías:</strong><br>
+                        a) Banda circular &nbsp; b) Electronegatividad &nbsp; c) Mar de electrones &nbsp; d) Regla del octeto &nbsp; e) de Lewis
+                    </li>
+                    <li><strong>Entre las fuerzas de van der Waals, una de las siguientes es considerada la más débil:</strong><br>
+                        a) Fuerzas dipolo-dipolo &nbsp; b) Fuerzas de dispersión &nbsp; c) Fuerzas ión-dipolo &nbsp; d) Puentes de hidrógeno &nbsp; e) Enlace iónico
+                    </li>
+                    <li><strong>El enlace que se forma entre los extremos carboxilo o amino terminal de los aminoácidos es del tipo:</strong><br>
+                        a) Puentes salinos &nbsp; b) Puentes de hidrógeno &nbsp; c) Interacciones hidrofóbicas &nbsp; d) Fuerzas de dispersión &nbsp; e) Puentes disulfuro
+                    </li>
+                </ol>
+
+                <details style="margin-top:15px; cursor:pointer; color:#94a3b8;">
+                    <summary style="font-weight:bold; color:#38bdf8;">👆 Ver respuestas</summary>
+                    <div style="background:#0f172a; padding:15px; border-radius:10px; margin-top:10px; color:#e2e8f0; font-size:14px;">
+                        <p><strong>1.</strong> a) 10 pares libres (el H₂SO₄ tiene 32 electrones de valencia, 16 pares totales, 6 pares enlazantes, 10 pares libres).</p>
+                        <p><strong>2.</strong> d) Entre 0.4 y 1.7.</p>
+                        <p><strong>3.</strong> c) Mar de electrones.</p>
+                        <p><strong>4.</strong> b) Fuerzas de dispersión (London).</p>
+                        <p><strong>5.</strong> a) Puentes salinos.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Feynman -->
+            <div class="feynman" style="margin-top:30px;">
+                <h4>🗣️ Explica este tema (Método Feynman)</h4>
+                <p><em>"Imagina que le enseñas a un niño de 5 años: ¿cómo se unen los átomos y qué tipos de uniones existen?"</em></p>
+                <textarea id="feynmanTexto" placeholder="Escribe tu explicación aquí..."></textarea>
+                <button onclick="guardarFeynman()">💾 Guardar explicación</button>
+                <p id="feynmanGuardado" style="color:#22c55e; margin-top:8px; display:none;">✅ Explicación guardada</p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- 10. MINI EXAMEN                                            -->
+        <!-- ========================================================== -->
+        <section id="examen">
+            <h2>10. Mini Examen (10 preguntas)</h2>
+            <p>Responde y haz clic en <strong>"Ver respuestas"</strong>.</p>
+
+            <div class="examen">
+                <!-- Pregunta 1 -->
+                <div class="pregunta">
+                    <p><strong>1. ¿Qué establece la regla del octeto?</strong></p>
+                    <label><input type="radio" name="q1" value="0"> A) Los átomos comparten electrones en pares</label>
+                    <label><input type="radio" name="q1" value="1"> B) Los átomos tienden a tener 8 electrones en su capa de valencia</label>
+                    <label><input type="radio" name="q1" value="2"> C) Los átomos metálicos forman cationes</label>
+                    <label><input type="radio" name="q1" value="3"> D) Los enlaces covalentes son polares</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B</div>
+                </div>
+                <!-- Pregunta 2 -->
+                <div class="pregunta">
+                    <p><strong>2. ¿Qué tipo de enlace se forma entre Na y Cl?</strong></p>
+                    <label><input type="radio" name="q2" value="0"> A) Covalente polar</label>
+                    <label><input type="radio" name="q2" value="1"> B) Covalente no polar</label>
+                    <label><input type="radio" name="q2" value="2"> C) Iónico</label>
+                    <label><input type="radio" name="q2" value="3"> D) Metálico</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: C</div>
+                </div>
+                <!-- Pregunta 3 -->
+                <div class="pregunta">
+                    <p><strong>3. ¿Cuál es la condición para que un enlace covalente sea polar?</strong></p>
+                    <label><input type="radio" name="q3" value="0"> A) ΔEN = 0</label>
+                    <label><input type="radio" name="q3" value="1"> B) ΔEN entre 0.4 y 1.7</label>
+                    <label><input type="radio" name="q3" value="2"> C) ΔEN > 1.7</label>
+                    <label><input type="radio" name="q3" value="3"> D) ΔEN < 0.4</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B</div>
+                </div>
+                <!-- Pregunta 4 -->
+                <div class="pregunta">
+                    <p><strong>4. ¿Qué teoría explica el enlace metálico como un "mar de electrones"?</strong></p>
+                    <label><input type="radio" name="q4" value="0"> A) Teoría de Lewis</label>
+                    <label><input type="radio" name="q4" value="1"> B) Teoría de bandas</label>
+                    <label><input type="radio" name="q4" value="2"> C) Teoría del mar de electrones</label>
+                    <label><input type="radio" name="q4" value="3"> D) Teoría de repulsión de pares electrónicos</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: C</div>
+                </div>
+                <!-- Pregunta 5 -->
+                <div class="pregunta">
+                    <p><strong>5. ¿Cuál de las siguientes es una característica de los compuestos iónicos?</strong></p>
+                    <label><input type="radio" name="q5" value="0"> A) Bajos puntos de fusión</label>
+                    <label><input type="radio" name="q5" value="1"> B) Son malos conductores en disolución</label>
+                    <label><input type="radio" name="q5" value="2"> C) Altos puntos de fusión</label>
+                    <label><input type="radio" name="q5" value="3"> D) Forman verdaderas moléculas</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: C</div>
+                </div>
+                <!-- Pregunta 6 -->
+                <div class="pregunta">
+                    <p><strong>6. ¿Qué tipo de fuerza intermolecular es la más fuerte entre las siguientes?</strong></p>
+                    <label><input type="radio" name="q6" value="0"> A) Fuerzas de dispersión</label>
+                    <label><input type="radio" name="q6" value="1"> B) Dipolo-dipolo</label>
+                    <label><input type="radio" name="q6" value="2"> C) Puentes de hidrógeno</label>
+                    <label><input type="radio" name="q6" value="3"> D) Ión-dipolo</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: D (pero entre las fuerzas de van der Waals, los puentes de H son los más fuertes; la pregunta del PDF indica que ión-dipolo es más fuerte que dipolo-dipolo)</div>
+                </div>
+                <!-- Pregunta 7 -->
+                <div class="pregunta">
+                    <p><strong>7. ¿Qué átomos pueden formar puentes de hidrógeno?</strong></p>
+                    <label><input type="radio" name="q7" value="0"> A) C, H, O</label>
+                    <label><input type="radio" name="q7" value="1"> B) O, N, F</label>
+                    <label><input type="radio" name="q7" value="2"> C) H, Cl, Br</label>
+                    <label><input type="radio" name="q7" value="3"> D) Na, K, Cl</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B</div>
+                </div>
+                <!-- Pregunta 8 -->
+                <div class="pregunta">
+                    <p><strong>8. ¿Qué tipo de interacción mantiene la estructura de la hélice α en las proteínas?</strong></p>
+                    <label><input type="radio" name="q8" value="0"> A) Puentes disulfuro</label>
+                    <label><input type="radio" name="q8" value="1"> B) Puentes de hidrógeno</label>
+                    <label><input type="radio" name="q8" value="2"> C) Enlaces iónicos</label>
+                    <label><input type="radio" name="q8" value="3"> D) Interacciones hidrofóbicas</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B</div>
+                </div>
+                <!-- Pregunta 9 -->
+                <div class="pregunta">
+                    <p><strong>9. ¿Qué enlace se forma entre dos residuos de cisteína en una proteína?</strong></p>
+                    <label><input type="radio" name="q9" value="0"> A) Puente salino</label>
+                    <label><input type="radio" name="q9" value="1"> B) Puente disulfuro</label>
+                    <label><input type="radio" name="q9" value="2"> C) Puente de hidrógeno</label>
+                    <label><input type="radio" name="q9" value="3"> D) Interacción hidrofóbica</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: B</div>
+                </div>
+                <!-- Pregunta 10 -->
+                <div class="pregunta">
+                    <p><strong>10. ¿Cuál es el elemento más electronegativo según la escala de Pauling?</strong></p>
+                    <label><input type="radio" name="q10" value="0"> A) Oxígeno</label>
+                    <label><input type="radio" name="q10" value="1"> B) Cloro</label>
+                    <label><input type="radio" name="q10" value="2"> C) Flúor</label>
+                    <label><input type="radio" name="q10" value="3"> D) Nitrógeno</label>
+                    <div class="respuesta-correcta" style="display:none;">✅ Correcta: C</div>
+                </div>
+
+                <button onclick="corregirExamen()">✅ Ver respuestas</button>
+                <div id="resultadoExamen" style="margin-top:15px; font-weight:bold;"></div>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- CUADRO RESUMEN                                              -->
+        <!-- ========================================================== -->
+        <section id="cuadro-resumen" style="margin-top:30px;">
+            <h2>📊 Cuadro Resumen: Tipos de Enlaces e Interacciones</h2>
+            <div style="background:#1e293b; border-radius:14px; padding:16px; overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; color:#e2e8f0; font-size:13px;">
+                    <thead>
+                        <tr style="background:#0f172a; color:#38bdf8;">
+                            <th style="padding:8px; border:1px solid #334155;">Tipo</th>
+                            <th style="padding:8px; border:1px solid #334155;">Descripción</th>
+                            <th style="padding:8px; border:1px solid #334155;">ΔEN</th>
+                            <th style="padding:8px; border:1px solid #334155;">Ejemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Iónico</strong></td><td style="padding:6px; border:1px solid #334155;">Transferencia de e⁻</td><td style="padding:6px; border:1px solid #334155;">> 1.7</td><td style="padding:6px; border:1px solid #334155;">NaCl, CaF₂</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Covalente no polar</strong></td><td style="padding:6px; border:1px solid #334155;">Compartición uniforme</td><td style="padding:6px; border:1px solid #334155;">0 - 0.4</td><td style="padding:6px; border:1px solid #334155;">H₂, Cl₂, CH₄</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Covalente polar</strong></td><td style="padding:6px; border:1px solid #334155;">Compartición desigual</td><td style="padding:6px; border:1px solid #334155;">0.4 - 1.7</td><td style="padding:6px; border:1px solid #334155;">HCl, H₂O</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Coordinado</strong></td><td style="padding:6px; border:1px solid #334155;">Donador + aceptor</td><td style="padding:6px; border:1px solid #334155;">Variable</td><td style="padding:6px; border:1px solid #334155;">NH₄⁺</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Metálico</strong></td><td style="padding:6px; border:1px solid #334155;">Mar de electrones</td><td style="padding:6px; border:1px solid #334155;">—</td><td style="padding:6px; border:1px solid #334155;">Fe, Cu, Au</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Puentes de H</strong></td><td style="padding:6px; border:1px solid #334155;">H con O, N, F</td><td style="padding:6px; border:1px solid #334155;">—</td><td style="padding:6px; border:1px solid #334155;">H₂O, ADN</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Van der Waals</strong></td><td style="padding:6px; border:1px solid #334155;">Dipolos, dispersión</td><td style="padding:6px; border:1px solid #334155;">—</td><td style="padding:6px; border:1px solid #334155;">Gases nobles</td></tr>
+                        <tr><td style="padding:6px; border:1px solid #334155;"><strong>Disulfuro</strong></td><td style="padding:6px; border:1px solid #334155;">Cisteína → cistina</td><td style="padding:6px; border:1px solid #334155;">—</td><td style="padding:6px; border:1px solid #334155;">Proteínas</td></tr>
+                    </tbody>
+                </table>
+                <p style="text-align:center; color:#94a3b8; font-size:12px; margin-top:10px;">📋 Fuente: elaboración propia basada en el PDF</p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- REFERENCIAS BIBLIOGRÁFICAS                                 -->
+        <!-- ========================================================== -->
+        <section id="referencias">
+            <h2>📚 Referencias Bibliográficas</h2>
+            <div class="referencias">
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li>1. Mora, V. (2012). <em>Química I: bachillerato: desarrolla competencias</em> (3ª ed.). México: ST EDITORIAL.</li>
+                    <li>2. Petrucci, R. H., Herring, F. G., Madura, J. D., & Bissonnette, C. (2017). <em>Química General. Principios y Aplicaciones Modernas</em> (11ª ed.). Madrid: Pearson.</li>
+                    <li>3. Recio, F. (2012). <em>Química Inorgánica</em> (5ª ed.). México: McGraw-Hill.</li>
+                    <li>4. Martínez, E. (2009). <em>Química I con enfoque en competencias</em>. México: Cengage Learning.</li>
+                    <li>5. Pérez, G., Garduño, G., & Rodríguez, C. (2007). <em>Química I. Un enfoque constructivista</em>. México: Pearson Educación.</li>
+                    <li>6. Garritz, A., Gasque, L., & Martínez, A. (2005). <em>Química Universitaria</em>. México: Pearson Educación.</li>
+                    <li>7. Chang, R., & Goldsby, K. A. (2016). <em>Química</em> (12ª ed.). México: McGraw-Hill.</li>
+                    <li>8. Daub, W., & Seese, W. (2005). <em>Química</em> (8ª ed.). México: Pearson.</li>
+                    <li>9. McMurry, J., & Fay, R. (2009). <em>Química General</em> (5ª ed.). México: Pearson Educación.</li>
+                    <li>10. Libro-Quimica 2024 psa-71-88 (material de estudio).</li>
+                </ul>
+                <p style="color:#94a3b8; font-size:12px; margin-top:10px; text-align:center;">
+                    📖 Estas referencias sustentan el contenido desarrollado en esta página.
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- MENÚ DE TEMAS                                              -->
+        <!-- ========================================================== -->
+        <div style="text-align:center; margin-top:30px; padding:20px; border-top:2px solid #334155;">
+            <a href="../temas.html" class="btn-menu" style="
+                display:inline-block;
+                padding:12px 35px;
+                background:var(--primary-color);
+                color:white;
+                border-radius:10px;
+                font-weight:600;
+                text-decoration:none;
+                transition:0.3s;
+            ">📋 Menú de temas</a>
+        </div>
+
+    </main>
+</div>
+
+<!-- ============================================================ -->
+<!-- 4. FOOTER                                                     -->
+<!-- ============================================================ -->
+<footer class="footer-global">
+    <p>⚗️ ChemStudy · Simulador de Estudio · 2026</p>
+</footer>
+
+<!-- ============================================================ -->
+<!-- 5. JAVASCRIPT                                                 -->
+<!-- ============================================================ -->
+<script>
+
+    // ========================================================
+    // 1. PROGRESO
+    // ========================================================
+    let progreso = 0;
+    const secciones = document.querySelectorAll('.contenido > section, .contenido > section section');
+    const barra = document.getElementById('barraProgreso');
+    const porcentajeTexto = document.getElementById('porcentajeProgreso');
+
+    function actualizarProgreso() {
+        let vistas = 0;
+        secciones.forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.7) vistas++;
+        });
+        progreso = Math.round((vistas / secciones.length) * 100);
+        barra.style.width = progreso + '%';
+        porcentajeTexto.textContent = progreso;
+    }
+
+    window.addEventListener('scroll', actualizarProgreso);
+    window.addEventListener('load', actualizarProgreso);
+
+    // ========================================================
+    // 2. FLASHCARDS (12 en total)
+    // ========================================================
+    let flashcardsAcertadas = 0;
+    let flashcardsTotales = 0;
+    let totalFlashcards = 12;
+
+    function actualizarFlashcardsGlobal() {
+        document.getElementById('flashcardsCompletadas').textContent = flashcardsAcertadas;
+        document.querySelectorAll('[id^="flashcardProgreso"]').forEach(el => {
+            el.textContent = flashcardsAcertadas;
+        });
+        document.querySelectorAll('[id^="flashcardTotal"]').forEach(el => {
+            el.textContent = totalFlashcards;
+        });
+    }
+
+    function flashcardAcertada() {
+        flashcardsAcertadas++;
+        flashcardsTotales++;
+        actualizarFlashcardsGlobal();
+        alert('✅ ¡Bien!');
+    }
+
+    function flashcardFallada() {
+        flashcardsTotales++;
+        actualizarFlashcardsGlobal();
+        alert('❌ Revísalo después.');
+    }
+
+    actualizarFlashcardsGlobal();
+
+    // ========================================================
+    // 3. FEYNMAN
+    // ========================================================
+    function guardarFeynman() {
+        const texto = document.getElementById('feynmanTexto').value;
+        if (texto.trim().length > 0) {
+            localStorage.setItem('feynman_enlaces_quimicos', texto);
+            document.getElementById('feynmanGuardado').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('feynmanGuardado').style.display = 'none';
+            }, 3000);
+        } else {
+            alert('✍️ Escribe algo antes de guardar.');
+        }
+    }
+
+    // ========================================================
+    // 4. MINI EXAMEN
+    // ========================================================
+    function corregirExamen() {
+        const preguntas = document.querySelectorAll('.pregunta');
+        let correctas = 0;
+        const respuestasCorrectas = [1, 2, 1, 2, 2, 2, 1, 1, 1, 2];
+
+        preguntas.forEach((p, i) => {
+            const seleccionada = p.querySelector('input:checked');
+            const respuestaDiv = p.querySelector('.respuesta-correcta');
+            respuestaDiv.style.display = 'block';
+
+            if (seleccionada && parseInt(seleccionada.value) === respuestasCorrectas[i]) {
+                correctas++;
+                seleccionada.parentElement.style.color = '#22c55e';
+            } else if (seleccionada) {
+                seleccionada.parentElement.style.color = '#ef4444';
+            }
+        });
+
+        document.getElementById('resultadoExamen').textContent =
+            `📊 Resultado: ${correctas}/10 correctas (${(correctas/10)*100}%)`;
+    }
+
+    // ========================================================
+    // 5. POMODORO
+    // ========================================================
+    let pomodoroActivo = false;
+    let pomodoroTiempo = 25 * 60;
+    let pomodoroIntervalo = null;
+    let pomodoroContador = 1;
+
+    function actualizarPomodoroDisplay() {
+        const min = String(Math.floor(pomodoroTiempo / 60)).padStart(2, '0');
+        const seg = String(pomodoroTiempo % 60).padStart(2, '0');
+        document.getElementById('pomodoroMinutos').textContent = min;
+        document.getElementById('pomodoroSegundos').textContent = seg;
+    }
+
+    function iniciarPomodoro() {
+        if (pomodoroActivo) return;
+        pomodoroActivo = true;
+        pomodoroIntervalo = setInterval(() => {
+            pomodoroTiempo--;
+            actualizarPomodoroDisplay();
+            if (pomodoroTiempo <= 0) {
+                clearInterval(pomodoroIntervalo);
+                pomodoroActivo = false;
+                alert('⏰ ¡Tiempo completado! Descansa 5 minutos.');
+                pomodoroContador++;
+                document.getElementById('pomodoroContador').textContent = pomodoroContador;
+                pomodoroTiempo = 25 * 60;
+                actualizarPomodoroDisplay();
+            }
+        }, 1000);
+    }
+
+    function pausarPomodoro() {
+        clearInterval(pomodoroIntervalo);
+        pomodoroActivo = false;
+    }
+
+    function reiniciarPomodoro() {
+        clearInterval(pomodoroIntervalo);
+        pomodoroActivo = false;
+        pomodoroTiempo = 25 * 60;
+        actualizarPomodoroDisplay();
+    }
+
+    // ========================================================
+    // 6. ÍNDICE - RESALTADO DE SECCIÓN ACTIVA
+    // ========================================================
+    const enlaces = document.querySelectorAll('.indice a');
+
+    window.addEventListener('scroll', () => {
+        let actual = '';
+        secciones.forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < 200) {
+                actual = sec.getAttribute('id');
+            }
+        });
+        enlaces.forEach(enlace => {
+            enlace.parentElement.classList.remove('activo');
+            if (enlace.getAttribute('href') === '#' + actual) {
+                enlace.parentElement.classList.add('activo');
+            }
+        });
+    });
+
+    // ========================================================
+    // 7. SCROLL SUAVE
+    // ========================================================
+    document.querySelectorAll('.indice a').forEach(enlace => {
+        enlace.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.querySelector(enlace.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // ========================================================
+    // 8. TIEMPO DE ESTUDIO (simulado)
+    // ========================================================
+    let tiempoEstudio = 0;
+    setInterval(() => {
+        tiempoEstudio++;
+        document.getElementById('tiempoEstudio').textContent = tiempoEstudio;
+    }, 60000);
+
+</script>
+
+</body>
+</html>

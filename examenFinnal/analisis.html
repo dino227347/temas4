@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis Detallado</title>
+    <link rel="stylesheet" href="analisis.css">
+</head>
+
+<body>
+    <div class="contenedor">
+        <!-- Encabezado -->
+        <div class="header">
+            <h1>📋 Análisis Detallado</h1>
+            <p class="subtitulo">Revisa tu rendimiento pregunta por pregunta</p>
+        </div>
+
+        <!-- Tarjeta principal -->
+        <div class="tarjeta">
+            <!-- Resumen rápido -->
+            <div class="resumen-rapido">
+                <div class="resumen-item">
+                    <span class="label">Puntaje</span>
+                    <span class="valor" id="resumenPuntaje">0/60</span>
+                </div>
+                <div class="resumen-item">
+                    <span class="label">Porcentaje</span>
+                    <span class="valor" id="resumenPorcentaje">0%</span>
+                </div>
+            </div>
+
+            <!-- Rendimiento por área -->
+            <div class="seccion">
+                <h2>📚 Rendimiento por Área</h2>
+                <div id="areasContainer"></div>
+            </div>
+
+            <!-- Filtros -->
+            <div class="filtros">
+                <button class="filtro-btn active" data-filtro="todas" onclick="filtrarPreguntas('todas')">
+                    Todas
+                </button>
+                <button class="filtro-btn" data-filtro="falladas" onclick="filtrarPreguntas('falladas')">
+                    ❌ Falladas
+                </button>
+                <button class="filtro-btn" data-filtro="acertadas" onclick="filtrarPreguntas('acertadas')">
+                    ✅ Acertadas
+                </button>
+                <button class="filtro-btn" data-filtro="sinresponder" onclick="filtrarPreguntas('sinresponder')">
+                    ⏳ Sin responder
+                </button>
+            </div>
+
+            <!-- Lista de preguntas -->
+            <div class="seccion">
+                <h2 id="tituloLista">📝 Todas las preguntas</h2>
+                <div id="preguntasContainer"></div>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="acciones">
+                <button onclick="volverResultado()" class="btn-resultado">
+                    ← Volver al resultado
+                </button>
+                <button onclick="volverInicio()" class="btn-inicio">
+                    🏠 Volver al inicio
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        console.log('=== CARGANDO ANÁLISIS ===');
+        
+        // Obtener el examen sorteado
+        const examenSorteado = JSON.parse(localStorage.getItem("examenSorteado"));
+        let archivoPreguntas = "preguntas.js";
+        if (examenSorteado) {
+            archivoPreguntas = `preguntas_examen${examenSorteado.id}.js`;
+            console.log('Examen sorteado:', examenSorteado.id, '→ archivo:', archivoPreguntas);
+        } else {
+            console.log('No hay examen sorteado, usando preguntas.js');
+        }
+
+        // Función para cargar un script con promesa
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = () => {
+                    console.log('✅ Script cargado:', src);
+                    resolve();
+                };
+                script.onerror = () => {
+                    console.error('❌ Error al cargar:', src);
+                    reject(new Error(`No se pudo cargar ${src}`));
+                };
+                document.head.appendChild(script);
+            });
+        }
+
+        // Cargar preguntas y luego analisis.js
+        loadScript(archivoPreguntas)
+            .then(() => {
+                console.log('Preguntas disponibles. Cargando analisis.js...');
+                return loadScript('analisis.js');
+            })
+            .then(() => {
+                console.log('analisis.js cargado. Buscando iniciarAnalisis...');
+                if (typeof iniciarAnalisis === 'function') {
+                    console.log('✅ iniciarAnalisis encontrada, ejecutando...');
+                    iniciarAnalisis();
+                } else {
+                    console.error('❌ iniciarAnalisis NO es una función');
+                    alert('Error: no se encontró la función iniciarAnalisis en analisis.js');
+                }
+            })
+            .catch(err => {
+                console.error('❌ Error en la carga:', err);
+                alert('Error al cargar los recursos: ' + err.message);
+            });
+    </script>
+</body>
+</html>
